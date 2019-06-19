@@ -20,7 +20,12 @@ namespace Crossword
 
             var randomWord = englishWords[randomNumber];
 
-            Console.WriteLine(randomWord);
+
+
+            for (int i = 0; i < randomWord.Length; i++)
+            {
+                Console.WriteLine(randomWord[i]);
+            }
             
         }
     }
