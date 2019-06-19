@@ -53,5 +53,11 @@
     <None Include="App.config" />
     <None Include="packages.config" />
   </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\Crossword.Data\Crossword.Data.csproj">
+      <Project>{6d573cff-b63b-4484-8679-b4a5a41d7971}</Project>
+      <Name>Crossword.Data</Name>
+    </ProjectReference>
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>
