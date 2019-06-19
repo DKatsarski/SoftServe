@@ -12,12 +12,16 @@ namespace Crossword
         static void Main()
         {
             var englishDictionary = new EnglishWordsDictionary();
-            var list = englishDictionary.GetWords;
+            var englishWords = englishDictionary.GetWords;
 
-            for (int i = 0; i < 50; i++)
-            {
-                Console.WriteLine(list[i]);
-            }
+            Random myRandomWords = new Random();
+
+            int randomNumber = myRandomWords.Next(0, englishWords.Count - 1);
+
+            var randomWord = englishWords[randomNumber];
+
+            Console.WriteLine(randomWord);
+            
         }
     }
 }
