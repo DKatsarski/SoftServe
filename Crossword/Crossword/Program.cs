@@ -11,22 +11,26 @@ namespace Crossword
     {
         static void Main()
         {
-            var englishDictionary = new EnglishWordsDictionary();
+            IWords englishDictionary = new EnglishWordsDictionary();
+
             var englishWords = englishDictionary.GetWords;
 
             Random myRandomWords = new Random();
 
-            int randomNumber = myRandomWords.Next(0, englishWords.Count - 1);
+            var listOfRandomWords = new List<string>();
 
-            var randomWord = englishWords[randomNumber];
-
-
-
-            for (int i = 0; i < randomWord.Length; i++)
+            for (int i = 0; i < 10; i++)
             {
-                Console.WriteLine(randomWord[i]);
+                int randomNumber = myRandomWords.Next(0, englishWords.Count - 1);
+
+                var randomWord = englishWords[randomNumber];
+
+                listOfRandomWords.Add(randomWord);
             }
-            
+
+
+
+
         }
     }
 }
