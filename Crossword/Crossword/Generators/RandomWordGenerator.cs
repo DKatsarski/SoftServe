@@ -22,6 +22,14 @@ namespace Crossword.Generators
             this.listOfWords = this.words.GetWords;
         }
 
+        public IList<string> ListOfAllWords
+        {
+            get
+            {
+                return this.listOfWords;
+            }
+        }
+
         public string GenerateRandomWord()
         {
             int maxIndexOfWordsList = listOfWords.Count;

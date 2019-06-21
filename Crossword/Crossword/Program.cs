@@ -15,17 +15,14 @@ namespace Crossword
             IWords englishDictionary = new EnglishWordsDictionary();
 
             var wordsOperator = new WordsOperator(englishDictionary);
-
-
-
             var randomWord = wordsOperator.GenerateRandomWord();
-         
+
             string[] alphabet = { "a", "b", "c", "d", "e", "f", "g", "h", "i", "j", "k", "l", "m", "n", "o", "p", "q", "r", "s", "t", "u", "v", "w", "x", "y", "z" };
 
-            Console.WriteLine(wordsOperator.GenerateRandomLetter(alphabet));
+            string[,] testArray = new string[30, 30];
 
-            //string[,] testArray = new string[30, 30];
 
+           
 
             //for (int i = 0; i < testArray.GetLength(0); i++)
             //{
@@ -37,7 +34,7 @@ namespace Crossword
 
             //}
 
-            //randomWord = wordsOperator.GenerateRandomWord(); 
+            //randomWord = wordsOperator.GenerateRandomWord();
 
             //while (testArray[0, 0] != randomWord[0].ToString())
             //{
@@ -65,7 +62,7 @@ namespace Crossword
             //    }
             //    Console.WriteLine();
             //}
-           
+
         }
     }
 }
