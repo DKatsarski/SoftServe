@@ -18,7 +18,7 @@ namespace Crossword.Generators
         {
             this.words = words;
             this.randomGenerator = new Random();
-            //important to be declared only just once to optimize resources
+            //important to be declared just once to optimize resources
             this.listOfWords = this.words.GetWords;
         }
 
