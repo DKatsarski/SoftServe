@@ -33,7 +33,29 @@ namespace Crossword
             string[] vowels = { "a", "e", "i", "o", "u" };
             string[] alphabet = { "a", "b", "c", "d", "e", "f", "g", "h", "i", "j", "k", "l", "m", "n", "o", "p", "q", "r", "s", "t", "u", "v", "w", "x", "y", "z" };
 
-            Console.WriteLine(alphabet.Length);
+            string[,] testArray = new string[10, 22];
+            int[][] testJaggedArray = new int[3][];
+
+            var numberBetween0And10 = new Random();
+
+            for (int row = 0; row < testArray.GetLength(0); row++)
+            {
+                for (int col = 0; col < testArray.GetLength(1); col++)
+                {
+                    int randomLetter = numberBetween0And10.Next(0, 26);
+                    testArray[row, col] = alphabet[randomLetter];
+                }
+            }
+
+            for (int row = 0; row < testArray.GetLength(0); row++)
+            {
+                for (int col = 0; col < testArray.GetLength(1); col++)
+                {
+                    Console.Write("{0} ", 
+                    testArray[row, col]);
+                }
+                Console.WriteLine();
+            }
 
         }
     }
