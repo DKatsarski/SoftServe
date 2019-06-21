@@ -32,7 +32,7 @@ namespace Crossword.Generators
 
         public string GenerateRandomWord()
         {
-            int maxIndexOfWordsList = listOfWords.Count;
+            int maxIndexOfWordsList = listOfWords.Count - 1;
             int randomIndexNumber = randomGenerator.Next(MinIndexOfList, maxIndexOfWordsList);
             var randomWord = listOfWords[randomIndexNumber];
             return randomWord;
@@ -40,7 +40,7 @@ namespace Crossword.Generators
 
         public string GenerateRandomLetter(string[] alphabet)
         {
-            int maxcIndexOfAlphabetList = alphabet.Length;
+            int maxcIndexOfAlphabetList = alphabet.Length - 1;
             int randomIndexNuber = randomGenerator.Next(MinIndexOfList, maxcIndexOfAlphabetList);
             var randomLetter = alphabet[randomIndexNuber];
             return randomLetter;
