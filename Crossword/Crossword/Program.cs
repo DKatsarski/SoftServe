@@ -21,6 +21,21 @@ namespace Crossword
 
             string[,] testArray = new string[30, 30];
 
+            var list = new List<string>()
+            {
+                "bojo",
+                "tonkata",
+                "paloma"
+            };
+
+            if (list.Exists(x => x.StartsWith("on")))
+            {
+                Console.WriteLine(true);
+            }
+            else
+            {
+                Console.WriteLine(false);
+            }
 
             //var a = 0;
 
@@ -68,6 +83,8 @@ namespace Crossword
             {
                 for (int col = 1; col < testArray.GetLength(1); col++)
                 {
+
+
                     randomLetter = wordsOperator.GenerateRandomLetter(englishAlphabet);
                     testArray[row, col] = randomLetter;
                 }
@@ -75,15 +92,15 @@ namespace Crossword
 
 
             //drawing 
-            for (int row = 0; row < testArray.GetLength(0); row++)
-            {
-                for (int col = 0; col < testArray.GetLength(1); col++)
-                {
-                    Console.Write("{0} ",
-                    testArray[row, col]);
-                }
-                Console.WriteLine();
-            }
+            //for (int row = 0; row < testArray.GetLength(0); row++)
+            //{
+            //    for (int col = 0; col < testArray.GetLength(1); col++)
+            //    {
+            //        Console.Write("{0} ",
+            //        testArray[row, col]);
+            //    }
+            //    Console.WriteLine();
+            //}
 
             //TODO: Two for loops with a while loop inside to check if the words exists. If it exists, then save letter. 
 
