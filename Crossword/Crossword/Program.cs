@@ -28,6 +28,7 @@ namespace Crossword
                 "paloma"
             };
 
+            //it should "StartsWith" Substring of the specific caracters in the crossword
             if (list.Exists(x => x.StartsWith("on")))
             {
                 Console.WriteLine(true);
