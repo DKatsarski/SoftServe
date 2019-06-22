@@ -60,10 +60,21 @@ namespace Crossword
                     testArray[0, i] = randomWord[i].ToString();
 
                 }
+            }
 
+            var randomLetter = string.Empty;
+            //it starts from 1 because index is already filled
+            for (int row = 1; row < testArray.GetLength(0); row++)
+            {
+                for (int col = 1; col < testArray.GetLength(1); col++)
+                {
+                    randomLetter = wordsOperator.GenerateRandomLetter(englishAlphabet);
+                    testArray[row, col] = randomLetter;
+                }
             }
 
 
+            //drawing 
             for (int row = 0; row < testArray.GetLength(0); row++)
             {
                 for (int col = 0; col < testArray.GetLength(1); col++)
