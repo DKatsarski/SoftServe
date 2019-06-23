@@ -17,6 +17,7 @@ namespace Crossword
             var wordsOperator = new WordsOperator(englishDictionary);
             var arrayOperator = new ArrayOperator();
             var randomGenerator = new RandomGenerator();
+            var wordVerificator = new WordsVerificator();
             var listOfAllWords = wordsOperator.ListOfAllWords;
             var randomWord = randomGenerator.GenerateRandomWord(listOfAllWords);
 
@@ -33,25 +34,10 @@ namespace Crossword
             };
 
             //it should "StartsWith" Substring of the specific caracters in the crossword
-            if (list.Exists(x => x.StartsWith("paloma")))
-            {
-                Console.WriteLine(true);
-            }
-            else
-            {
-                Console.WriteLine(false);
-            }
+            Console.WriteLine(wordVerificator.ContainsWordWithSpecificBeginning(list, "paloma"));
 
             //logic for the existance of the word as a whole
-            if (list.Exists(x => x.Equals("tonkata")))
-            {
-
-                Console.WriteLine("it has this word");
-            }
-            else
-            {
-                Console.WriteLine("not this time");
-            }
+            Console.WriteLine(wordVerificator.IsWordInList(list, "tonkata"));
 
             var asdfasdf = wordsOperator.GetListOfAllWordsFromASpecifiedBeginning("do");
             var a = 3;
