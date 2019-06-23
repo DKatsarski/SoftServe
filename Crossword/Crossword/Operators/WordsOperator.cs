@@ -9,16 +9,13 @@ namespace Crossword.Generators
 {
     public class WordsOperator
     {
-        private const int MinIndexOfList = 0;
         private IWords words;
-        private Random randomGenerator;
         private IList<string> listOfWords;
         private IList<string> listOfWordsFromASpecificBeggining;
 
         public WordsOperator(IWords words)
         {
             this.words = words;
-            this.randomGenerator = new Random();
             this.listOfWordsFromASpecificBeggining = new List<string>();
         }
 
@@ -32,28 +29,11 @@ namespace Crossword.Generators
             }
         }
 
-
-        public string GenerateRandomWord(IList<string> wordsToExtractFrom)
-        {
-            int maxIndexOfWordsList = wordsToExtractFrom.Count - 1;
-            int randomIndexNumber = randomGenerator.Next(MinIndexOfList, maxIndexOfWordsList);
-            var randomWord = wordsToExtractFrom[randomIndexNumber];
-            return randomWord;
-        }
-
-        public string GenerateRandomLetter(string[] alphabet)
-        {
-            int maxcIndexOfAlphabetList = alphabet.Length - 1;
-            int randomIndexNuber = randomGenerator.Next(MinIndexOfList, maxcIndexOfAlphabetList);
-            var randomLetter = alphabet[randomIndexNuber];
-            return randomLetter;
-        }
-
-        public IList<string> GetListOfAllWordsFromASpecifiedBeggining(string specificBegginingOfAWord)
+        public IList<string> GetListOfAllWordsFromASpecifiedBeginning(string specificBeginningOfAWord)
         {
             this.listOfWordsFromASpecificBeggining =
                 this.listOfWords
-                .Where(x => x.StartsWith(specificBegginingOfAWord))
+                .Where(x => x.StartsWith(specificBeginningOfAWord))
                 .ToList();
             return this.listOfWordsFromASpecificBeggining;
         }

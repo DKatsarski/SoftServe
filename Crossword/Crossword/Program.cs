@@ -16,7 +16,9 @@ namespace Crossword
 
             var wordsOperator = new WordsOperator(englishDictionary);
             var arrayOperator = new ArrayOperator();
-            var randomWord = wordsOperator.GenerateRandomWord();
+            var randomGenerator = new RandomGenerator();
+            var listOfAllWords = wordsOperator.ListOfAllWords;
+            var randomWord = randomGenerator.GenerateRandomWord(listOfAllWords);
 
 
             string[] englishAlphabet = { "a", "b", "c", "d", "e", "f", "g", "h", "i", "j", "k", "l", "m", "n", "o", "p", "q", "r", "s", "t", "u", "v", "w", "x", "y", "z" };
@@ -52,18 +54,18 @@ namespace Crossword
             }
 
 
-            var a = 0;
+            //var a = 3;
 
-            while (randomWord.Substring(0, 3) != "doo")
-            {
-                if (wordsOperator.ListOfAllWords[a].Length >= 5)
-                {
-                    randomWord = wordsOperator.ListOfAllWords[a];
+            //while (randomWord.Substring(0, 3) != "doo")
+            //{
+            //    if (wordsOperator.ListOfAllWords[a].Length >= 5 && wordsOperator.ListOfAllWords[a].StartsWith("d"))
+            //    {
+            //        randomWord = wordsOperator.ListOfAllWords[a];
 
-                }
-                a++;
-            }
-            Console.WriteLine(randomWord);
+            //    }
+            //    a++;
+            //}
+            //Console.WriteLine(randomWord);
 
             for (int i = 0; i < testArray.GetLength(0); i++)
             {
@@ -75,11 +77,11 @@ namespace Crossword
 
             }
 
-            randomWord = wordsOperator.GenerateRandomWord();
+            randomWord = randomGenerator.GenerateRandomWord(listOfAllWords);
 
             while (testArray[0, 0] != randomWord[0].ToString())
             {
-                randomWord = wordsOperator.GenerateRandomWord();
+                randomWord = randomGenerator.GenerateRandomWord(listOfAllWords);
 
             }
 
@@ -100,7 +102,7 @@ namespace Crossword
                 {
 
 
-                    randomLetter = wordsOperator.GenerateRandomLetter(englishAlphabet);
+                    randomLetter = randomGenerator.GenerateRandomLetter(englishAlphabet);
                 }
             }
 
