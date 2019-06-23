@@ -13,28 +13,31 @@ namespace Crossword.Generators
         private IWords words;
         private Random randomGenerator;
         private IList<string> listOfWords;
+        private IList<string> listOfWordsFromASpecificBeggining;
 
         public WordsOperator(IWords words)
         {
             this.words = words;
             this.randomGenerator = new Random();
-            //important to be declared just once to optimize resources
-            this.listOfWords = this.words.GetWords;
+            this.listOfWordsFromASpecificBeggining = new List<string>();
         }
 
         public IList<string> ListOfAllWords
         {
             get
             {
+                //important to be declared just once to optimize resources
+                this.listOfWords = this.words.GetWords;
                 return this.listOfWords;
             }
         }
 
-        public string GenerateRandomWord()
+
+        public string GenerateRandomWord(IList<string> wordsToExtractFrom)
         {
-            int maxIndexOfWordsList = listOfWords.Count - 1;
+            int maxIndexOfWordsList = wordsToExtractFrom.Count - 1;
             int randomIndexNumber = randomGenerator.Next(MinIndexOfList, maxIndexOfWordsList);
-            var randomWord = listOfWords[randomIndexNumber];
+            var randomWord = wordsToExtractFrom[randomIndexNumber];
             return randomWord;
         }
 
@@ -44,6 +47,15 @@ namespace Crossword.Generators
             int randomIndexNuber = randomGenerator.Next(MinIndexOfList, maxcIndexOfAlphabetList);
             var randomLetter = alphabet[randomIndexNuber];
             return randomLetter;
+        }
+
+        public IList<string> GetListOfAllWordsFromASpecifiedBeggining(string specificBegginingOfAWord)
+        {
+            this.listOfWordsFromASpecificBeggining =
+                this.listOfWords
+                .Where(x => x.StartsWith(specificBegginingOfAWord))
+                .ToList();
+            return this.listOfWordsFromASpecificBeggining;
         }
     }
 }
