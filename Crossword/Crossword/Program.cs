@@ -15,11 +15,13 @@ namespace Crossword
             IWords englishDictionary = new EnglishWordsDictionary();
 
             var wordsOperator = new WordsOperator(englishDictionary);
+            var arrayOperator = new ArrayOperator();
             var randomWord = wordsOperator.GenerateRandomWord();
+
 
             string[] englishAlphabet = { "a", "b", "c", "d", "e", "f", "g", "h", "i", "j", "k", "l", "m", "n", "o", "p", "q", "r", "s", "t", "u", "v", "w", "x", "y", "z" };
 
-            string[,] testArray = new string[30, 30];
+            string[,] testArray = new string[10, 10];
 
             var list = new List<string>()
             {
@@ -49,6 +51,35 @@ namespace Crossword
                 Console.WriteLine("not this time");
             }
 
+            int number = 0;
+
+            for (int row = 0; row < testArray.GetLength(0); row++)
+            {
+                for (int col = 0; col < testArray.GetLength(1); col++)
+                {
+                    testArray[row, col] = wordsOperator.GenerateRandomLetter(englishAlphabet);
+                }
+            }
+
+
+            for (int row = 0; row < testArray.GetLength(0); row++)
+            {
+                for (int col = 0; col < testArray.GetLength(1); col++)
+                {
+                    Console.Write("{0} ", testArray[row, col]);
+                }
+
+                Console.WriteLine();
+            }
+            var a = arrayOperator.GetSubStringOfTheRowOfMatrix(testArray, 1, 1);
+            var b = arrayOperator.GetSubStringOfTheColOfMatrix(testArray, 1, 1);
+
+
+            Console.WriteLine();
+            Console.WriteLine();
+
+            Console.WriteLine(a);
+            Console.WriteLine(b);
             //var a = 0;
 
             //while (randomWord.Substring(0, 3) != "doo")
@@ -62,45 +93,44 @@ namespace Crossword
             //}
             //Console.WriteLine(randomWord);
 
-            for (int i = 0; i < testArray.GetLength(0); i++)
-            {
-                if (i < randomWord.Length)
-                {
-                    testArray[i, 0] = randomWord[i].ToString();
+            //for (int i = 0; i < testArray.GetLength(0); i++)
+            //{
+            //    if (i < randomWord.Length)
+            //    {
+            //        testArray[i, 0] = randomWord[i].ToString();
 
-                }
+            //    }
 
-            }
+            //}
 
-            randomWord = wordsOperator.GenerateRandomWord();
+            //randomWord = wordsOperator.GenerateRandomWord();
 
-            while (testArray[0, 0] != randomWord[0].ToString())
-            {
-                randomWord = wordsOperator.GenerateRandomWord();
+            //while (testArray[0, 0] != randomWord[0].ToString())
+            //{
+            //    randomWord = wordsOperator.GenerateRandomWord();
 
-            }
+            //}
 
-            for (int i = 0; i < testArray.GetLength(1); i++)
-            {
-                if (i < randomWord.Length)
-                {
-                    testArray[0, i] = randomWord[i].ToString();
+            //for (int i = 0; i < testArray.GetLength(1); i++)
+            //{
+            //    if (i < randomWord.Length)
+            //    {
+            //        testArray[0, i] = randomWord[i].ToString();
 
-                }
-            }
+            //    }
+            //}
 
-            var randomLetter = string.Empty;
-            //it starts from 1 because index is already filled
-            for (int row = 1; row < testArray.GetLength(0); row++)
-            {
-                for (int col = 1; col < testArray.GetLength(1); col++)
-                {
+            //var randomLetter = string.Empty;
+            ////it starts from 1 because index is already filled
+            //for (int row = 0; row < testArray.GetLength(0); row++)
+            //{
+            //    for (int col = 1; col < testArray.GetLength(1); col++)
+            //    {
 
 
-                    randomLetter = wordsOperator.GenerateRandomLetter(englishAlphabet);
-                    testArray[row, col] = randomLetter;
-                }
-            }
+            //        randomLetter = wordsOperator.GenerateRandomLetter(englishAlphabet);
+            //    }
+            //}
 
 
             //drawing 
