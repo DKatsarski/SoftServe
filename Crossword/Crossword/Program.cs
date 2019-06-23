@@ -53,19 +53,18 @@ namespace Crossword
                 Console.WriteLine("not this time");
             }
 
+            var asdfasdf = wordsOperator.GetListOfAllWordsFromASpecifiedBeginning("do");
+            var a = 3;
 
-            //var a = 3;
+            while (randomWord.Substring(0, 2) != "do")
+            {
+               
+                    randomWord = asdfasdf[a];
 
-            //while (randomWord.Substring(0, 3) != "doo")
-            //{
-            //    if (wordsOperator.ListOfAllWords[a].Length >= 5 && wordsOperator.ListOfAllWords[a].StartsWith("d"))
-            //    {
-            //        randomWord = wordsOperator.ListOfAllWords[a];
-
-            //    }
-            //    a++;
-            //}
-            //Console.WriteLine(randomWord);
+                
+                a++;
+            }
+            Console.WriteLine(randomWord);
 
             for (int i = 0; i < testArray.GetLength(0); i++)
             {
