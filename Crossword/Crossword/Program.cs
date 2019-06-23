@@ -37,7 +37,7 @@ namespace Crossword
             Console.WriteLine(wordVerificator.ContainsWordWithSpecificBeginning(list, "paloma"));
 
             //logic for the existance of the word as a whole
-            Console.WriteLine(wordVerificator.IsWordInList(list, "tonkata"));
+            Console.WriteLine(wordVerificator.IsWordInList(list, "tonkta"));
 
             var asdfasdf = wordsOperator.GetListOfAllWordsFromASpecifiedBeginning("do");
             var a = 3;
@@ -103,7 +103,7 @@ namespace Crossword
                 Console.WriteLine();
             }
 
-            //TODO: Two for loops with a while loop inside to check if the words exists. If it exists, then save letter. 
+            //TODO: The logic should start from the first column, than from the frist row. It should check if there is a word from that string, than from row -> if there is word from that string. If there is not, than from the next substring
 
         }
     }
