@@ -29,13 +29,24 @@ namespace Crossword
             };
 
             //it should "StartsWith" Substring of the specific caracters in the crossword
-            if (list.Exists(x => x.StartsWith("on")))
+            if (list.Exists(x => x.StartsWith("paloma")))
             {
                 Console.WriteLine(true);
             }
             else
             {
                 Console.WriteLine(false);
+            }
+
+            //logic for the existance of the word as a whole
+            if (list.Exists(x => x.Equals("tonkata")))
+            {
+
+                Console.WriteLine("it has this word");
+            }
+            else
+            {
+                Console.WriteLine("not this time");
             }
 
             //var a = 0;
