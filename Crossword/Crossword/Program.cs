@@ -96,48 +96,55 @@ namespace Crossword
                 }
             }
 
+            for (int row = 0; row < testArray.GetLength(0); row++)
+            {
+                for (int col = 1; col < testArray.GetLength(1); col++)
+                {
+
+                }
+            }
 
             var randomLetter = string.Empty;
             var colFromMatrix = string.Empty;
             var rowFromMatrix = string.Empty;
 
-            var frameOfAPotentialWord = string.Empty;
-            for (int row = 0; row < testArray.GetLength(0); row++)
-            {
-                for (int col = 1; col < testArray.GetLength(1); col++)
-                {
-                    colFromMatrix = arrayOperator.ExtractColFromMatrix(testArray, col);
-                    
-                    //TODO: The method should return string where null is replaced by #
-                    //TODO: Than - if string contains # - use the words verificator to check for a specific REgex expresion, if not - just starts with 
-                    // if Reges - replace all the "#" with "." 
-                    //Than find word
-                    //than write word
-                    frameOfAPotentialWord = wordsOperator.ExtractFrameOfAPotentialWord(colFromMatrix);
-
-
-
-
-                    //TODO: check if there is a words with such begininng - if not - change the begininng and the position 
-
-
-                }
-                frameOfAPotentialWord = string.Empty;
-                rowFromMatrix = arrayOperator.ExtractRowFromMatrix(testArray, row);
-                frameOfAPotentialWord = wordsOperator.ExtractFrameOfAPotentialWord(rowFromMatrix);
-            }
-
-
-            ////drawing
+            //var frameOfAPotentialWord = string.Empty;
             //for (int row = 0; row < testArray.GetLength(0); row++)
             //{
-            //    for (int col = 0; col < testArray.GetLength(1); col++)
+            //    for (int col = 1; col < testArray.GetLength(1); col++)
             //    {
-            //        Console.Write("{0} ",
-            //        testArray[row, col]);
+            //        colFromMatrix = arrayOperator.ExtractColFromMatrix(testArray, col);
+
+            //        //TODO: The method should return string where null is replaced by #
+            //        //TODO: Than - if string contains # - use the words verificator to check for a specific REgex expresion, if not - just starts with 
+            //        // if Reges - replace all the "#" with "." 
+            //        //Than find word
+            //        //than write word
+            //        frameOfAPotentialWord = wordsOperator.ExtractFrameOfAPotentialWord(colFromMatrix);
+
+
+
+
+            //        //TODO: check if there is a words with such begininng - if not - change the begininng and the position 
+
+
             //    }
-            //    Console.WriteLine();
+            //    frameOfAPotentialWord = string.Empty;
+            //    rowFromMatrix = arrayOperator.ExtractRowFromMatrix(testArray, row);
+            //    frameOfAPotentialWord = wordsOperator.ExtractFrameOfAPotentialWord(rowFromMatrix);
             //}
+
+
+            //drawing
+            for (int row = 0; row < testArray.GetLength(0); row++)
+            {
+                for (int col = 0; col < testArray.GetLength(1); col++)
+                {
+                    Console.Write("{0} ",
+                    testArray[row, col]);
+                }
+                Console.WriteLine();
+            }
 
             //TODO: The logic should start from the first column, than from the frist row. It should check if there is a word from that string, than from row -> if there is word from that string. If there is not, than from the next substring
 
