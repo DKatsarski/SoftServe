@@ -32,5 +32,11 @@ namespace Crossword
             var randomLetter = alphabet[randomIndexNuber];
             return randomLetter;
         }
+
+        public int GenerateRandomNumberFromListOfStrings(List<string> listOfWords)
+        {
+            int randomNumber = randomGenerator.Next(MinIndexOfList, listOfWords.Count - 1);
+            return randomNumber;
+        }
     }
 }
