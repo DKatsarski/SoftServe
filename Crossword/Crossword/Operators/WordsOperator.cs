@@ -4,10 +4,12 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using Crossword.Operators.Contracts;
 
-namespace Crossword.Generators
+
+namespace Crossword.Operators
 {
-    public class WordsOperator
+    public class WordsOperator : IWordsOperator
     {
         private IWords words;
         private IList<string> listOfWords;

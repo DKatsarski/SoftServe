@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace Crossword.Generators
 {
-    public class ArrayOperator
+    public class ArrayOperator : IArrayOperator
     {
         private StringBuilder sb;
 
