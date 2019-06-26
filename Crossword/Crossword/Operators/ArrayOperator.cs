@@ -55,5 +55,23 @@ namespace Crossword.Operators
 
             return sb.ToString();
         }
+
+        public string ExtractRowFromMatrix(string[,] matrix, int row, int col)
+        {
+            sb.Clear();
+            for (int i = 0; i < matrix.GetLength(1); i++)
+            {
+                if (matrix[i, col] != null)
+                {
+                    sb.Append(matrix[i, col]);
+                }
+                else
+                {
+                    sb.Append("#");
+                }
+            }
+
+            return sb.ToString();
+        }
     }
 }

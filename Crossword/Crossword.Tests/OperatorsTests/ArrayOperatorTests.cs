@@ -5,6 +5,7 @@ using Microsoft.VisualStudio.TestTools.UnitTesting;
 using Moq;
 using Crossword;
 using Crossword.Operators.Contracts;
+using Crossword.Operators;
 
 namespace Crossword.Tests.OperatorsTests
 {
@@ -53,6 +54,35 @@ namespace Crossword.Tests.OperatorsTests
             var stringToCompare = arrOperator.Object.ExtractColFromMatrix(fakeMatrix, 0, 3);
 
             StringAssert.Equals(colOfAMatrix, stringToCompare);
+        }
+
+        [TestMethod]
+        public void ExtactColFromMatrixMethodReturnsSpecificSymbolInsteadOfNull()
+        {
+            var arrOperator = new ArrayOperator();
+            var randomGen = new RandomGenerator();
+            var colOfAMatrix = string.Empty;
+            var specificSymbol = "#";
+
+            var fakeAlphabet = new string[]
+            {
+                 null, null, null, null, null, null, "a"
+            };
+
+            var fakeMatrix = new string[10, 7];
+
+
+            for (int i = 0; i < fakeMatrix.GetLength(0); i++)
+            {
+                for (int col = 0; col < fakeMatrix.GetLength(1); col++)
+                {
+                    fakeMatrix[i, col] = randomGen.GenerateRandomLetter(fakeAlphabet);
+                }
+            }
+
+            var stringToCompare = arrOperator.ExtractColFromMatrix(fakeMatrix, 0, 3);
+
+            StringAssert.Contains(stringToCompare, specificSymbol);
         }
     }
 }
