@@ -1,4 +1,4 @@
-﻿namespace Crossword.Generators
+﻿namespace Crossword.Operators.Contracts
 {
     public interface IArrayOperator
     {

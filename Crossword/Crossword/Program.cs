@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using Crossword.Data;
-using Crossword.Generators;
+using Crossword.Operators;
 using System.Text.RegularExpressions;
 
 namespace Crossword
@@ -105,34 +105,34 @@ namespace Crossword
             }
 
             var randomLetter = string.Empty;
-            var colFromMatrix = new List<string>();
+            var colFromMatrix = string.Empty;
             var rowFromMatrix = string.Empty;
 
             var frameOfAPotentialWord = string.Empty;
-            for (int row = 0; row < testArray.GetLength(0); row++)
-            {
-                for (int col = 1; col < testArray.GetLength(1); col++)
-                {
-                    colFromMatrix = arrayOperator.ExtractColFromMatrix(testArray, row, col);
+            //for (int row = 0; row < testArray.GetLength(0); row++)
+            //{
+            //    for (int col = 1; col < testArray.GetLength(1); col++)
+            //    {
+            //        colFromMatrix = arrayOperator.ExtractColFromMatrix(testArray, row, col);
 
-                    //TODO: The method should return string where null is replaced by #
-                    //TODO: Than - if string contains # - use the words verificator to check for a specific REgex expresion, if not - just starts with 
-                    // if Reges - replace all the "#" with "." 
-                    //Than find word
-                    //than write word
-                    frameOfAPotentialWord = wordsOperator.ExtractFrameOfAPotentialWord(colFromMatrix);
-
-
+            //        //TODO: The method should return string where null is replaced by #
+            //        //TODO: Than - if string contains # - use the words verificator to check for a specific REgex expresion, if not - just starts with 
+            //        // if Reges - replace all the "#" with "." 
+            //        //Than find word
+            //        //than write word
+            //        frameOfAPotentialWord = wordsOperator.ExtractFrameOfAPotentialWord(colFromMatrix);
 
 
-                    //TODO: check if there is a words with such begininng - if not - change the begininng and the position 
 
 
-                }
-                frameOfAPotentialWord = string.Empty;
-                rowFromMatrix = arrayOperator.ExtractRowFromMatrix(testArray, row);
-                frameOfAPotentialWord = wordsOperator.ExtractFrameOfAPotentialWord(rowFromMatrix);
-            }
+            //        //TODO: check if there is a words with such begininng - if not - change the begininng and the position 
+
+
+            //    }
+            //    frameOfAPotentialWord = string.Empty;
+            //    rowFromMatrix = arrayOperator.ExtractRowFromMatrix(testArray, row);
+            //    frameOfAPotentialWord = wordsOperator.ExtractFrameOfAPotentialWord(rowFromMatrix);
+            //}
 
 
             //drawing

@@ -3,8 +3,9 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using Crossword.Operators.Contracts;
 
-namespace Crossword.Generators
+namespace Crossword.Operators
 {
     public class ArrayOperator : IArrayOperator
     {

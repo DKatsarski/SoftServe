@@ -1,6 +1,6 @@
 ﻿using System.Collections.Generic;
 
-namespace Crossword.Generators.Contracts
+namespace Crossword.Operators.Contracts
 {
     public interface IWordsOperator
     {

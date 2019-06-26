@@ -47,6 +47,8 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Operators\ArrayOperator.cs" />
+    <Compile Include="Contracts\IArrayOperator.cs" />
+    <Compile Include="Contracts\IWordsOperator.cs" />
     <Compile Include="Operators\WordsOperator.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -63,8 +65,6 @@
       <Name>Crossword.Data</Name>
     </ProjectReference>
   </ItemGroup>
-  <ItemGroup>
-    <Folder Include="Contracts\" />
-  </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>
