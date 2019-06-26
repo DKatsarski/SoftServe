@@ -6,6 +6,7 @@ using System.Text;
 using System.Threading.Tasks;
 using Crossword.Operators.Contracts;
 using Crossword.Constants;
+using System.Text.RegularExpressions;
 
 namespace Crossword.Operators
 {
@@ -13,12 +14,12 @@ namespace Crossword.Operators
     {
         private IWords words;
         private List<string> listOfWords;
-        private IList<string> listOfWordsFromASpecificBeggining;
+        private List<string> listOfWordsFromASpecificPattern;
 
         public WordsOperator(IWords words)
         {
             this.words = words;
-            this.listOfWordsFromASpecificBeggining = new List<string>();
+            this.listOfWordsFromASpecificPattern = new List<string>();
         }
 
         public List<string> ListOfAllWords
@@ -31,20 +32,55 @@ namespace Crossword.Operators
             }
         }
 
-        public IList<string> GetListOfAllWordsFromASpecifiedBeginning(string specificBeginningOfAWord)
+        public List<string> GetListOfAllWordsFromASpecifiedBeginning(string specificBeginningOfAWord)
         {
-            this.listOfWordsFromASpecificBeggining =
+            this.listOfWordsFromASpecificPattern =
                 this.listOfWords
                 .Where(x => x.StartsWith(specificBeginningOfAWord))
                 .ToList();
-            return this.listOfWordsFromASpecificBeggining;
+            return this.listOfWordsFromASpecificPattern;
+        }
+
+        public List<string> GetListOfAllWordsFromASpecifiedPattern(string specificPatternOfAWord)
+        {
+            long counter = 0;
+            for (int i = char.MinValue; i < char.MaxValue; i++)
+            {
+                counter++;
+            }
+            var arrOfAllCharSymbolsExceptOne = new char[counter];
+
+            for (int i = char.MinValue; i < char.MaxValue; i++)
+            {
+                char everySymbol = Convert.ToChar(i);
+                if ( everySymbol != char.Parse(GlobalConstants.SpecificSymbolToReplaceNull))
+                {
+                    arrOfAllCharSymbolsExceptOne[i] = everySymbol;
+                }
+            }
+            
+
+
+
+            this.listOfWordsFromASpecificPattern =
+                this.listOfWords
+                .Where(x => Regex.Match(x, specificPatternOfAWord).Success)
+                .Where(x => x.LastIndexOfAny(arrOfAllCharSymbolsExceptOne) ==
+                specificPatternOfAWord.LastIndexOfAny(arrOfAllCharSymbolsExceptOne))
+                .ToList();
+
+                
+               
+
+
+            return this.listOfWordsFromASpecificPattern;
         }
 
         public string ExtractFrameOfAPotentialWord(string potentialWord)
         {
             int lastOccuranceOfALetter = 0;
             string frameOfAPotentialWord = string.Empty;
-            for (int i = potentialWord.Length - 1; i >= 0 ; i--)
+            for (int i = potentialWord.Length - 1; i >= 0; i--)
             {
                 if (potentialWord[i] != char.Parse(GlobalConstants.SpecificSymbolToReplaceNull))
                 {

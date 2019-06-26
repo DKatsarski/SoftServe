@@ -6,6 +6,6 @@ namespace Crossword.Operators.Contracts
     {
         List<string> ListOfAllWords { get; }
 
-        IList<string> GetListOfAllWordsFromASpecifiedBeginning(string specificBeginningOfAWord);
+        List<string> GetListOfAllWordsFromASpecifiedBeginning(string specificBeginningOfAWord);
     }
 }

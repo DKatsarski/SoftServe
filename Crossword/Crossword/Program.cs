@@ -34,6 +34,11 @@ namespace Crossword
                 "paloma"
             };
 
+
+            var listtt = new List<string>();
+
+            listtt = wordsOperator.GetListOfAllWordsFromASpecifiedPattern("c...s.");
+
             //it should "StartsWith" Substring of the specific caracters in the crossword
             Console.WriteLine(wordVerificator.ContainsWordWithSpecificBeginning(list, "p"));
 
@@ -129,6 +134,7 @@ namespace Crossword
             var randomLetter = string.Empty;
             var colFromMatrix = string.Empty;
             var rowFromMatrix = string.Empty;
+            var listFromSpecificPattern = new List<string>();
 
             var frameOfAPotentialWord = string.Empty;
             var colOutsideRange = 0;
@@ -161,7 +167,11 @@ namespace Crossword
                             {
                                 break;
                             }
+
                         }
+
+                        listFromSpecificPattern = wordsOperator.GetListOfAllWordsFromASpecifiedBeginning(frameOfAPotentialWord);
+
                     }
                     else
                     {
