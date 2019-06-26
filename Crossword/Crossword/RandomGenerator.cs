@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Crossword.Constants;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -8,7 +9,6 @@ namespace Crossword
 {
     public class RandomGenerator
     {
-        private const int MinIndexOfList = 0;
         private Random randomGenerator;
 
 
@@ -20,7 +20,7 @@ namespace Crossword
         public string GenerateRandomWord(IList<string> wordsToExtractFrom)
         {
             int maxIndexOfWordsList = wordsToExtractFrom.Count - 1;
-            int randomIndexNumber = randomGenerator.Next(MinIndexOfList, maxIndexOfWordsList);
+            int randomIndexNumber = randomGenerator.Next(GlobalConstants.MinIndexOfList, maxIndexOfWordsList);
             var randomWord = wordsToExtractFrom[randomIndexNumber];
             return randomWord;
         }
@@ -28,14 +28,14 @@ namespace Crossword
         public string GenerateRandomLetter(string[] alphabet)
         {
             int maxcIndexOfAlphabetList = alphabet.Length - 1;
-            int randomIndexNuber = randomGenerator.Next(MinIndexOfList, maxcIndexOfAlphabetList);
+            int randomIndexNuber = randomGenerator.Next(GlobalConstants.MinIndexOfList, maxcIndexOfAlphabetList);
             var randomLetter = alphabet[randomIndexNuber];
             return randomLetter;
         }
 
         public int GenerateRandomNumberFromListOfStrings(List<string> listOfWords)
         {
-            int randomNumber = randomGenerator.Next(MinIndexOfList, listOfWords.Count - 1);
+            int randomNumber = randomGenerator.Next(GlobalConstants.MinIndexOfList, listOfWords.Count - 1);
             return randomNumber;
         }
     }

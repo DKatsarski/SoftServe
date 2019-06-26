@@ -6,6 +6,7 @@ using Moq;
 using Crossword;
 using Crossword.Operators.Contracts;
 using Crossword.Operators;
+using Crossword.Constants;
 
 namespace Crossword.Tests.OperatorsTests
 {
@@ -19,7 +20,7 @@ namespace Crossword.Tests.OperatorsTests
 
             var fakeMatrix = new string[4, 4];
             var testResult = arrOperator.Setup(x => x.ExtractColFromMatrix(fakeMatrix, 3, 3)).Returns("a##e");
-            
+
             string expectedString = "a##e";
             StringAssert.Equals(expectedString, testResult);
         }
@@ -61,8 +62,6 @@ namespace Crossword.Tests.OperatorsTests
         {
             var arrOperator = new ArrayOperator();
             var randomGen = new RandomGenerator();
-            var colOfAMatrix = string.Empty;
-            var specificSymbol = "#";
 
             var fakeAlphabet = new string[]
             {
@@ -82,7 +81,42 @@ namespace Crossword.Tests.OperatorsTests
 
             var stringToCompare = arrOperator.ExtractColFromMatrix(fakeMatrix, 0, 3);
 
-            StringAssert.Contains(stringToCompare, specificSymbol);
+            StringAssert.Contains(stringToCompare, GlobalConstants.SpecificSymbolToReplaceNull);
+        }
+
+        [TestMethod]
+        public void ExtactColFromMatrixMethodReturnsSpecificSymbolInsteadOfNullOnSpecificPosition()
+        {
+            var arrOperator = new ArrayOperator();
+            var randomGen = new RandomGenerator();
+
+            var fakeAlphabet = new string[]
+            {
+                 null, null, null, null, null, null, "a"
+            };
+
+            var fakeMatrix = new string[5, 5];
+
+            fakeMatrix[0, 0] = "a";
+            fakeMatrix[1, 0] = "b";
+            fakeMatrix[2, 0] = null;
+            fakeMatrix[3, 0] = null;
+            fakeMatrix[4, 0] = "a";
+
+
+            var counter = 0;
+
+
+            var stringToCompare = arrOperator.ExtractColFromMatrix(fakeMatrix, 0, 0);
+
+            for (int i = 0; i < stringToCompare.Length; i++)
+            {
+                if (stringToCompare[i].ToString() == GlobalConstants.SpecificSymbolToReplaceNull)
+                {
+                    counter++;
+                }
+            }
+            Assert.AreEqual(2, counter);
         }
     }
 }

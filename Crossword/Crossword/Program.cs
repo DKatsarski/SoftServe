@@ -39,7 +39,7 @@ namespace Crossword
 
             //logic for the existance of the word as a whole
             Console.WriteLine(wordVerificator.IsWordInList(list, "tonkta"));
-            string a = @"boj.";
+            string a = @"..n..t.";
 
             Console.WriteLine(wordVerificator.ContainsWordWithSpecificPositionOfCharacters(list, a));
 
@@ -109,30 +109,32 @@ namespace Crossword
             var rowFromMatrix = string.Empty;
 
             var frameOfAPotentialWord = string.Empty;
-            //for (int row = 0; row < testArray.GetLength(0); row++)
-            //{
-            //    for (int col = 1; col < testArray.GetLength(1); col++)
-            //    {
-            //        colFromMatrix = arrayOperator.ExtractColFromMatrix(testArray, row, col);
+            var colOutsideRange = 0;
 
-            //        //TODO: The method should return string where null is replaced by #
-            //        //TODO: Than - if string contains # - use the words verificator to check for a specific REgex expresion, if not - just starts with 
-            //        // if Reges - replace all the "#" with "." 
-            //        //Than find word
-            //        //than write word
-            //        frameOfAPotentialWord = wordsOperator.ExtractFrameOfAPotentialWord(colFromMatrix);
+            for (int row = 0; row < testArray.GetLength(0); row++)
+            {
+                for (int col = 1; col < testArray.GetLength(1); col++)
+                {
+                    colFromMatrix = arrayOperator.ExtractColFromMatrix(testArray, row, col);
 
-
-
-
-            //        //TODO: check if there is a words with such begininng - if not - change the begininng and the position 
+                    //TODO: The method should return string where null is replaced by #
+                    //TODO: Than - if string contains # - use the words verificator to check for a specific REgex expresion, if not - just starts with 
+                    // if Reges - replace all the "#" with "." 
+                    //Than find word
+                    //than write word
+                    frameOfAPotentialWord = wordsOperator.ExtractFrameOfAPotentialWord(colFromMatrix);
 
 
-            //    }
-            //    frameOfAPotentialWord = string.Empty;
-            //    rowFromMatrix = arrayOperator.ExtractRowFromMatrix(testArray, row);
-            //    frameOfAPotentialWord = wordsOperator.ExtractFrameOfAPotentialWord(rowFromMatrix);
-            //}
+                    colOutsideRange = col;
+
+                    //TODO: check if there is a words with such begininng - if not - change the begininng and the position 
+
+
+                }
+                frameOfAPotentialWord = string.Empty;
+                rowFromMatrix = arrayOperator.ExtractRowFromMatrix(testArray, row, colOutsideRange);
+                frameOfAPotentialWord = wordsOperator.ExtractFrameOfAPotentialWord(rowFromMatrix);
+            }
 
 
             //drawing

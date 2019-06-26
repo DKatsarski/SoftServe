@@ -39,5 +39,10 @@ namespace Crossword.Operators
                 .ToList();
             return this.listOfWordsFromASpecificBeggining;
         }
+
+        public string ExtractFrameOfAPotentialWord(string potentialWord)
+        {
+            return "sdf";
+        }
     }
 }

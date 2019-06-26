@@ -46,6 +46,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Constants\GlobalConstants.cs" />
     <Compile Include="Operators\ArrayOperator.cs" />
     <Compile Include="Contracts\IArrayOperator.cs" />
     <Compile Include="Contracts\IWordsOperator.cs" />
