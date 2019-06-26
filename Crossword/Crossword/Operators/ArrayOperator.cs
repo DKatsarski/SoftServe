@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using Crossword.Constants;
 using Crossword.Operators.Contracts;
 
 namespace Crossword.Operators
@@ -49,7 +50,7 @@ namespace Crossword.Operators
                 }
                 else
                 {
-                    sb.Append("#");
+                    sb.Append(GlobalConstants.SpecificSymbolToReplaceNull);
                 }
             }
 
@@ -67,7 +68,7 @@ namespace Crossword.Operators
                 }
                 else
                 {
-                    sb.Append("#");
+                    sb.Append(GlobalConstants.SpecificSymbolToReplaceNull);
                 }
             }
 

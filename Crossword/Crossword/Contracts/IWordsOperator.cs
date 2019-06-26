@@ -4,7 +4,7 @@ namespace Crossword.Operators.Contracts
 {
     public interface IWordsOperator
     {
-        IList<string> ListOfAllWords { get; }
+        List<string> ListOfAllWords { get; }
 
         IList<string> GetListOfAllWordsFromASpecifiedBeginning(string specificBeginningOfAWord);
     }

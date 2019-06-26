@@ -6,6 +6,7 @@ using System.Threading.Tasks;
 using Crossword.Data;
 using Crossword.Operators;
 using System.Text.RegularExpressions;
+using Crossword.Constants;
 
 namespace Crossword
 {
@@ -34,12 +35,12 @@ namespace Crossword
             };
 
             //it should "StartsWith" Substring of the specific caracters in the crossword
-            Console.WriteLine(wordVerificator.ContainsWordWithSpecificBeginning(list, "paloma"));
+            Console.WriteLine(wordVerificator.ContainsWordWithSpecificBeginning(list, "p"));
 
 
             //logic for the existance of the word as a whole
             Console.WriteLine(wordVerificator.IsWordInList(list, "tonkta"));
-            string a = @"..n..t.";
+            string a = @"b";
 
             Console.WriteLine(wordVerificator.ContainsWordWithSpecificPositionOfCharacters(list, a));
 
@@ -50,11 +51,32 @@ namespace Crossword
 
             //Console.WriteLine(list.Exists(() => Regex.Match(a));
 
+            string asdf = "aato";
+            string fdfd = "...";
+            string ff = "sdf....df....";
+
+            Console.WriteLine(asdf);
+
+            while (!wordVerificator.ContainsWordWithSpecificBeginning(list, asdf))
+            {
+                if (asdf.Length > 1)
+                {
+                    asdf = asdf.Substring(1);
+                }
+                else
+                {
+                    break;
+                }
+            }
+
+            Console.WriteLine(asdf);
 
 
 
 
 
+
+         
             //var asdfasdf = wordsOperator.GetListOfAllWordsFromASpecifiedBeginning("do");
             //var a = 3;
 
@@ -110,20 +132,56 @@ namespace Crossword
 
             var frameOfAPotentialWord = string.Empty;
             var colOutsideRange = 0;
+            var indexCounter = 0;
 
             for (int row = 0; row < testArray.GetLength(0); row++)
             {
                 for (int col = 1; col < testArray.GetLength(1); col++)
                 {
+                    //TODO: Stop, when the coloumns are as the generated random word
                     colFromMatrix = arrayOperator.ExtractColFromMatrix(testArray, row, col);
 
-                    //TODO: The method should return string where null is replaced by #
-                    //TODO: Than - if string contains # - use the words verificator to check for a specific REgex expresion, if not - just starts with 
-                    // if Reges - replace all the "#" with "." 
                     //Than find word
                     //than write word
+
+                    //!!!!!!!!if it is string.Empty than it should stop 
                     frameOfAPotentialWord = wordsOperator.ExtractFrameOfAPotentialWord(colFromMatrix);
 
+                    //TODO: Extracting random word and than writing it in the matrix
+                    if (!frameOfAPotentialWord.Contains(GlobalConstants.SpecificSymbolToReplaceNull))
+                    {
+                        while (!wordVerificator.ContainsWordWithSpecificBeginning(listOfAllWords, frameOfAPotentialWord))
+                        {
+                            if (frameOfAPotentialWord.Length > 1)
+                            {
+                                frameOfAPotentialWord = frameOfAPotentialWord.Substring(1);
+                                indexCounter++;
+                            }
+                            else
+                            {
+                                break;
+                            }
+                        }
+                    }
+                    else
+                    {
+                        while (!wordVerificator.ContainsWordWithSpecificPositionOfCharacters(listOfAllWords, frameOfAPotentialWord))
+                        {
+
+                            if (frameOfAPotentialWord.Length > 1)
+                            {
+                                frameOfAPotentialWord = frameOfAPotentialWord.Substring(1);
+                                indexCounter++;
+                            }
+                            else
+                            {
+                                break;
+                            }
+                        }
+                   
+                    }
+
+                    indexCounter = 0;
 
                     colOutsideRange = col;
 

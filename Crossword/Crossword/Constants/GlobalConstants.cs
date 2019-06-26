@@ -8,7 +8,7 @@ namespace Crossword.Constants
 {
     public class GlobalConstants
     {
-        public const string SpecificSymbolToReplaceNull = "#";
+        public const string SpecificSymbolToReplaceNull = ".";
         public const int MinIndexOfList = 0;
     }
 }

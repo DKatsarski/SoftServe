@@ -46,7 +46,6 @@ namespace Crossword.Tests.OperatorsTests
                 }
             }
 
-
             for (int i = 0; i < fakeMatrix.GetLength(1); i++)
             {
                 colOfAMatrix += fakeMatrix[i, 3];
