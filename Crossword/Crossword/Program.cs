@@ -19,6 +19,7 @@ namespace Crossword
             var arrayOperator = new ArrayOperator();
             var randomGenerator = new RandomGenerator();
             var wordVerificator = new WordsVerificator();
+            var matrixWriter = new MatrixWriter();
             var listOfAllWords = wordsOperator.ListOfAllWords;
             var randomWord = randomGenerator.GenerateRandomWord(listOfAllWords);
 
@@ -139,21 +140,20 @@ namespace Crossword
             var frameOfAPotentialWord = string.Empty;
             var colOutsideRange = 0;
             var indexCounter = 0;
+            var adaptatedIndex = 0;
 
             for (int row = 0; row < testArray.GetLength(0); row++)
             {
                 for (int col = 1; col < testArray.GetLength(1); col++)
                 {
-                    //TODO: Stop, when the coloumns are as the generated random word
                     colFromMatrix = arrayOperator.ExtractColFromMatrix(testArray, row, col);
-
-                    //Than find word
-                    //than write word
-
-                    //!!!!!!!!if it is string.Empty than it should stop 
                     frameOfAPotentialWord = wordsOperator.ExtractFrameOfAPotentialWord(colFromMatrix);
 
-                    //TODO: Extracting random word and than writing it in the matrix
+                    if (frameOfAPotentialWord == string.Empty)
+                    {
+                        break;
+                    }
+
                     if (!frameOfAPotentialWord.Contains(GlobalConstants.SpecificSymbolToReplaceNull))
                     {
                         while (!wordVerificator.ContainsWordWithSpecificBeginning(listOfAllWords, frameOfAPotentialWord))
@@ -169,16 +169,17 @@ namespace Crossword
                             }
                         }
 
+                        adaptatedIndex = row + indexCounter;
                         listFromSpecificPattern = wordsOperator.GetListOfAllWordsFromASpecifiedBeginning(frameOfAPotentialWord);
                         randomWord = randomGenerator.GenerateRandomWord(listFromSpecificPattern);
-                        //TODO: Write the randomWord to the matrix at the exact indexes
-
+                        matrixWriter.WriteOnCol(testArray, randomWord, adaptatedIndex, col);
+                        indexCounter = 0;
                     }
                     else
                     {
                         while (!wordVerificator.ContainsWordWithSpecificPositionOfCharacters(listOfAllWords, frameOfAPotentialWord))
                         {
-
+                            //potential problem with the ">1"
                             if (frameOfAPotentialWord.Length > 1)
                             {
                                 frameOfAPotentialWord = frameOfAPotentialWord.Substring(1);
@@ -189,7 +190,13 @@ namespace Crossword
                                 break;
                             }
                         }
+
+                        adaptatedIndex = row + indexCounter;
                         listFromSpecificPattern = wordsOperator.GetListOfAllWordsFromASpecifiedPattern(frameOfAPotentialWord);
+                        randomWord = randomGenerator.GenerateRandomWord(listFromSpecificPattern);
+                        matrixWriter.WriteOnCol(testArray, randomWord, adaptatedIndex, col);
+                        indexCounter = 0;
+
                     }
 
 
@@ -203,6 +210,11 @@ namespace Crossword
                 frameOfAPotentialWord = string.Empty;
                 rowFromMatrix = arrayOperator.ExtractRowFromMatrix(testArray, row, colOutsideRange);
                 frameOfAPotentialWord = wordsOperator.ExtractFrameOfAPotentialWord(rowFromMatrix);
+
+                if (frameOfAPotentialWord == string.Empty)
+                {
+                    break;
+                }
             }
 
 
