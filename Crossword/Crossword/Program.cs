@@ -37,7 +37,7 @@ namespace Crossword
 
             var listtt = new List<string>();
 
-            listtt = wordsOperator.GetListOfAllWordsFromASpecifiedPattern("c...s.");
+            listtt = wordsOperator.GetListOfAllWordsFromASpecifiedPattern("..s.");
 
             //it should "StartsWith" Substring of the specific caracters in the crossword
             Console.WriteLine(wordVerificator.ContainsWordWithSpecificBeginning(list, "p"));

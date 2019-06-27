@@ -43,35 +43,33 @@ namespace Crossword.Operators
 
         public List<string> GetListOfAllWordsFromASpecifiedPattern(string specificPatternOfAWord)
         {
-            long counter = 0;
-            for (int i = char.MinValue; i < char.MaxValue; i++)
-            {
-                counter++;
-            }
-            var arrOfAllCharSymbolsExceptOne = new char[counter];
+            var lastIndexOfSpecifiedLetter = 0;
+            var firstIndexOfSpecifiedLetter = 0;
 
-            for (int i = char.MinValue; i < char.MaxValue; i++)
+            for (int i = specificPatternOfAWord.Length - 1; i > 0; i--)
             {
-                char everySymbol = Convert.ToChar(i);
-                if ( everySymbol != char.Parse(GlobalConstants.SpecificSymbolToReplaceNull))
+                if (specificPatternOfAWord[i] != char.Parse(GlobalConstants.SpecificSymbolToReplaceNull))
                 {
-                    arrOfAllCharSymbolsExceptOne[i] = everySymbol;
+                    lastIndexOfSpecifiedLetter = i;
+                    break;
                 }
             }
-            
 
-
+            for (int i = 0; i < specificPatternOfAWord.Length; i++)
+            {
+                if (specificPatternOfAWord[i] != char.Parse(GlobalConstants.SpecificSymbolToReplaceNull))
+                {
+                    firstIndexOfSpecifiedLetter = i;
+                    break;
+                }
+            }
 
             this.listOfWordsFromASpecificPattern =
                 this.listOfWords
-                .Where(x => Regex.Match(x, specificPatternOfAWord).Success)
-                .Where(x => x.LastIndexOfAny(arrOfAllCharSymbolsExceptOne) ==
-                specificPatternOfAWord.LastIndexOfAny(arrOfAllCharSymbolsExceptOne))
+                .Where(x => Regex.Match(x, specificPatternOfAWord).Success &&
+                x[lastIndexOfSpecifiedLetter] == specificPatternOfAWord[lastIndexOfSpecifiedLetter] &&
+                x[firstIndexOfSpecifiedLetter] == specificPatternOfAWord[firstIndexOfSpecifiedLetter])
                 .ToList();
-
-                
-               
-
 
             return this.listOfWordsFromASpecificPattern;
         }
