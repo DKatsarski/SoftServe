@@ -6,7 +6,7 @@ using System.Text;
 using System.Text.RegularExpressions;
 using System.Threading.Tasks;
 
-namespace Crossword
+namespace Crossword.Verificators
 {
     public class WordsVerificator
     {
@@ -56,7 +56,6 @@ namespace Crossword
             {
                 return false;
             }
-           
         }
 
         public bool IsWordInList(List<string> listOfWords, string word)

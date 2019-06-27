@@ -10,5 +10,6 @@ namespace Crossword.Constants
     {
         public const string SpecificSymbolToReplaceNull = ".";
         public const int MinIndexOfList = 0;
+        public const int MatrixSize = 4;
     }
 }

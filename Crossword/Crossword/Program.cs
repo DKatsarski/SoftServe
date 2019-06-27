@@ -7,6 +7,7 @@ using Crossword.Data;
 using Crossword.Operators;
 using System.Text.RegularExpressions;
 using Crossword.Constants;
+using Crossword.Verificators;
 
 namespace Crossword
 {
@@ -19,6 +20,7 @@ namespace Crossword
             var arrayOperator = new ArrayOperator();
             var randomGenerator = new RandomGenerator();
             var wordVerificator = new WordsVerificator();
+            var matrixVerificator = new MatrixVerificator();
             var matrixWriter = new MatrixWriter();
             var painter = new Painter();
             var listOfAllWords = wordsOperator.ListOfAllWords;
@@ -27,7 +29,7 @@ namespace Crossword
 
             string[] englishAlphabet = { "a", "b", "c", "d", "e", "f", "g", "h", "i", "j", "k", "l", "m", "n", "o", "p", "q", "r", "s", "t", "u", "v", "w", "x", "y", "z" };
 
-            string[,] testArray = new string[40, 40];
+            string[,] testArray = new string[GlobalConstants.MatrixSize, GlobalConstants.MatrixSize];
 
 
 
@@ -93,7 +95,7 @@ namespace Crossword
 
 
             //drawing
-            painter.PaintMatrix(testArray);
+            // painter.PaintMatrix(testArray);
 
             var randomLetter = string.Empty;
             var colFromMatrix = string.Empty;
@@ -135,6 +137,12 @@ namespace Crossword
                         adaptatedIndex = indexCounter;
                         listFromSpecificPattern = wordsOperator.GetListOfAllWordsFromASpecifiedBeginning(frameOfAPotentialWord);
                         randomWord = randomGenerator.GenerateRandomWord(listFromSpecificPattern);
+
+                        if (matrixVerificator
+                            .WordWillBeOutsideOfMatrixColBoundery(testArray, randomWord, row + adaptatedIndex))
+                        {
+                            continue;
+                        }
                         matrixWriter.WriteOnCol(testArray, randomWord, adaptatedIndex, col);
                         indexCounter = 0;
 
@@ -161,6 +169,13 @@ namespace Crossword
                         adaptatedIndex =  indexCounter;
                         listFromSpecificPattern = wordsOperator.GetListOfAllWordsFromASpecifiedPattern(frameOfAPotentialWord);
                         randomWord = randomGenerator.GenerateRandomWord(listFromSpecificPattern);
+
+                        if (matrixVerificator
+                            .WordWillBeOutsideOfMatrixColBoundery(testArray, randomWord, row + adaptatedIndex))
+                        {
+                            continue;
+                        }
+
                         matrixWriter.WriteOnCol(testArray, randomWord, adaptatedIndex, col);
                         indexCounter = 0;
 
@@ -201,6 +216,13 @@ namespace Crossword
                     adaptatedIndex = indexCounter;
                     listFromSpecificPattern = wordsOperator.GetListOfAllWordsFromASpecifiedBeginning(frameOfAPotentialWord);
                     randomWord = randomGenerator.GenerateRandomWord(listFromSpecificPattern);
+
+                    if (matrixVerificator
+                            .WordWillBeOutsideOfMatrixRowBoundery(testArray, randomWord, colOutsideRange + adaptatedIndex))
+                    {
+                        continue;
+                    }
+
                     matrixWriter.WriteOnRow(testArray, randomWord, row, adaptatedIndex);
                     indexCounter = 0;
                     colOutsideRange++;
@@ -232,6 +254,13 @@ namespace Crossword
                     adaptatedIndex = indexCounter;
                     listFromSpecificPattern = wordsOperator.GetListOfAllWordsFromASpecifiedPattern(frameOfAPotentialWord);
                     randomWord = randomGenerator.GenerateRandomWord(listFromSpecificPattern);
+
+                    if (matrixVerificator
+                           .WordWillBeOutsideOfMatrixRowBoundery(testArray, randomWord, colOutsideRange + adaptatedIndex))
+                    {
+                        continue;
+                    }
+
                     matrixWriter.WriteOnRow(testArray, randomWord, row, adaptatedIndex);
                     indexCounter = 0;
                     colOutsideRange++;
