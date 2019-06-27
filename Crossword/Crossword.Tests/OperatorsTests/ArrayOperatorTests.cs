@@ -19,7 +19,7 @@ namespace Crossword.Tests.OperatorsTests
             var arrOperator = new Mock<IArrayOperator>();
 
             var fakeMatrix = new string[4, 4];
-            var testResult = arrOperator.Setup(x => x.ExtractColFromMatrix(fakeMatrix, 3, 3)).Returns("a##e");
+            var testResult = arrOperator.Setup(x => x.ExtractColFromMatrix(fakeMatrix, 3)).Returns("a##e");
 
             string expectedString = "a##e";
             StringAssert.Equals(expectedString, testResult);
@@ -51,7 +51,7 @@ namespace Crossword.Tests.OperatorsTests
                 colOfAMatrix += fakeMatrix[i, 3];
             }
 
-            var stringToCompare = arrOperator.Object.ExtractColFromMatrix(fakeMatrix, 0, 3);
+            var stringToCompare = arrOperator.Object.ExtractColFromMatrix(fakeMatrix, 3);
 
             StringAssert.Equals(colOfAMatrix, stringToCompare);
         }
@@ -78,7 +78,7 @@ namespace Crossword.Tests.OperatorsTests
                 }
             }
 
-            var stringToCompare = arrOperator.ExtractColFromMatrix(fakeMatrix, 0, 3);
+            var stringToCompare = arrOperator.ExtractColFromMatrix(fakeMatrix, 3);
 
             StringAssert.Contains(stringToCompare, GlobalConstants.SpecificSymbolToReplaceNull);
         }
@@ -106,7 +106,7 @@ namespace Crossword.Tests.OperatorsTests
             var counter = 0;
 
 
-            var stringToCompare = arrOperator.ExtractColFromMatrix(fakeMatrix, 0, 0);
+            var stringToCompare = arrOperator.ExtractColFromMatrix(fakeMatrix, 0);
 
             for (int i = 0; i < stringToCompare.Length; i++)
             {

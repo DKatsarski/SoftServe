@@ -28,54 +28,11 @@ namespace Crossword
 
             string[,] testArray = new string[40, 40];
 
-            var list = new List<string>()
-            {
-                "bojo",
-                "tonkata",
-                "paloma"
-            };
+          
 
 
-            var listtt = new List<string>();
-
-            listtt = wordsOperator.GetListOfAllWordsFromASpecifiedPattern("..s.");
-
-            //it should "StartsWith" Substring of the specific caracters in the crossword
-            Console.WriteLine(wordVerificator.ContainsWordWithSpecificBeginning(list, "p"));
-
-
-            //logic for the existance of the word as a whole
-            Console.WriteLine(wordVerificator.IsWordInList(list, "tonkta"));
-            string a = @"b";
-
-            Console.WriteLine(wordVerificator.ContainsWordWithSpecificPositionOfCharacters(list, a));
-
-            for (int i = 0; i < list.Count; i++)
-            {
-                Console.WriteLine(Regex.Match(list[i], a));
-            }
-
-            //Console.WriteLine(list.Exists(() => Regex.Match(a));
-
-            string asdf = "aato";
-            string fdfd = "...";
-            string ff = "sdf....df....";
-
-            Console.WriteLine(asdf);
-
-            while (!wordVerificator.ContainsWordWithSpecificBeginning(list, asdf))
-            {
-                if (asdf.Length > 1)
-                {
-                    asdf = asdf.Substring(1);
-                }
-                else
-                {
-                    break;
-                }
-            }
-
-            Console.WriteLine(asdf);
+      
+   
 
 
 
@@ -124,12 +81,17 @@ namespace Crossword
                 }
             }
 
+         
+
+            //drawing
             for (int row = 0; row < testArray.GetLength(0); row++)
             {
-                for (int col = 1; col < testArray.GetLength(1); col++)
+                for (int col = 0; col < testArray.GetLength(1); col++)
                 {
-
+                    Console.Write(testArray[row, col]);
                 }
+
+                Console.WriteLine();
             }
 
             var randomLetter = string.Empty;
@@ -146,7 +108,8 @@ namespace Crossword
             {
                 for (int col = 1; col < testArray.GetLength(1); col++)
                 {
-                    colFromMatrix = arrayOperator.ExtractColFromMatrix(testArray, row, col);
+                    colOutsideRange = col;
+                    colFromMatrix = arrayOperator.ExtractColFromMatrix(testArray, col);
                     frameOfAPotentialWord = wordsOperator.ExtractFrameOfAPotentialWord(colFromMatrix);
 
                     if (frameOfAPotentialWord == string.Empty)
@@ -174,6 +137,7 @@ namespace Crossword
                         randomWord = randomGenerator.GenerateRandomWord(listFromSpecificPattern);
                         matrixWriter.WriteOnCol(testArray, randomWord, adaptatedIndex, col);
                         indexCounter = 0;
+                        break;
                     }
                     else
                     {
@@ -196,23 +160,66 @@ namespace Crossword
                         randomWord = randomGenerator.GenerateRandomWord(listFromSpecificPattern);
                         matrixWriter.WriteOnCol(testArray, randomWord, adaptatedIndex, col);
                         indexCounter = 0;
-
+                        break;
                     }
-
-
-
-                    indexCounter = 0;
-                    colOutsideRange = col;
-
-
-
                 }
+
+                //row begins here
+
                 frameOfAPotentialWord = string.Empty;
-                rowFromMatrix = arrayOperator.ExtractRowFromMatrix(testArray, row, colOutsideRange);
+                rowFromMatrix = arrayOperator.ExtractRowFromMatrix(testArray, row);
                 frameOfAPotentialWord = wordsOperator.ExtractFrameOfAPotentialWord(rowFromMatrix);
+                indexCounter = 0;
 
                 if (frameOfAPotentialWord == string.Empty)
                 {
+                    break;
+                }
+
+                //fillerOfMatrix
+                if (!frameOfAPotentialWord.Contains(GlobalConstants.SpecificSymbolToReplaceNull))
+                {
+                    while (!wordVerificator.ContainsWordWithSpecificBeginning(listOfAllWords, frameOfAPotentialWord))
+                    {
+                        if (frameOfAPotentialWord.Length > 1)
+                        {
+                            frameOfAPotentialWord = frameOfAPotentialWord.Substring(1);
+                            indexCounter++;
+                        }
+                        else
+                        {
+                            break;
+                        }
+                    }
+
+                    adaptatedIndex = indexCounter + colOutsideRange;
+                    listFromSpecificPattern = wordsOperator.GetListOfAllWordsFromASpecifiedBeginning(frameOfAPotentialWord);
+                    randomWord = randomGenerator.GenerateRandomWord(listFromSpecificPattern);
+                    matrixWriter.WriteOnRow(testArray, randomWord, row, adaptatedIndex);
+                    indexCounter = 0;
+                    break;
+                }
+                else
+                {
+                    while (!wordVerificator.ContainsWordWithSpecificPositionOfCharacters(listOfAllWords, frameOfAPotentialWord))
+                    {
+                        //potential problem with the ">1"
+                        if (frameOfAPotentialWord.Length > 1)
+                        {
+                            frameOfAPotentialWord = frameOfAPotentialWord.Substring(1);
+                            indexCounter++;
+                        }
+                        else
+                        {
+                            break;
+                        }
+                    }
+
+                    adaptatedIndex = indexCounter + colOutsideRange;
+                    listFromSpecificPattern = wordsOperator.GetListOfAllWordsFromASpecifiedPattern(frameOfAPotentialWord);
+                    randomWord = randomGenerator.GenerateRandomWord(listFromSpecificPattern);
+                    matrixWriter.WriteOnRow(testArray, randomWord, row, adaptatedIndex);
+                    indexCounter = 0;
                     break;
                 }
             }
@@ -223,9 +230,9 @@ namespace Crossword
             {
                 for (int col = 0; col < testArray.GetLength(1); col++)
                 {
-                    Console.Write("{0} ",
-                    testArray[row, col]);
+                    Console.Write(testArray[row, col]);
                 }
+
                 Console.WriteLine();
             }
 

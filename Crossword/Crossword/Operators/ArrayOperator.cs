@@ -22,7 +22,7 @@ namespace Crossword.Operators
             sb.Clear();
             for (int currentIndex = 0; currentIndex <= col; currentIndex++)
             {
-                sb.Append(matrix[row, (currentIndex)]);
+                sb.Append(matrix[row, currentIndex]);
             }
 
             return sb.ToString();
@@ -39,7 +39,7 @@ namespace Crossword.Operators
             return sb.ToString();
         }
 
-        public string ExtractColFromMatrix(string[,] matrix, int row, int col)
+        public string ExtractColFromMatrix(string[,] matrix, int col)
         {
             sb.Clear();
             for (int i = 0; i < matrix.GetLength(1); i++)
@@ -57,14 +57,14 @@ namespace Crossword.Operators
             return sb.ToString();
         }
 
-        public string ExtractRowFromMatrix(string[,] matrix, int row, int col)
+        public string ExtractRowFromMatrix(string[,] matrix, int row)
         {
             sb.Clear();
-            for (int i = 0; i < matrix.GetLength(1); i++)
+            for (int i = 0; i < matrix.GetLength(0); i++)
             {
-                if (matrix[i, col] != null)
+                if (matrix[row, i] != null)
                 {
-                    sb.Append(matrix[i, col]);
+                    sb.Append(matrix[row, i]);
                 }
                 else
                 {

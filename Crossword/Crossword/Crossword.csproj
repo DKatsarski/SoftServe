@@ -48,6 +48,7 @@
   <ItemGroup>
     <Compile Include="Constants\GlobalConstants.cs" />
     <Compile Include="Contracts\IRandomGenerator.cs" />
+    <Compile Include="MatrixWriter.cs" />
     <Compile Include="Operators\ArrayOperator.cs" />
     <Compile Include="Contracts\IArrayOperator.cs" />
     <Compile Include="Contracts\IWordsOperator.cs" />

@@ -8,26 +8,20 @@ namespace Crossword
 {
     public class MatrixWriter
     {
-        private int row;
-        private int col;
-        private List<string> matrix;
-        public MatrixWriter(List<string> matrix, int row, int col)
-        {
-            this.row = row;
-            this.col = col;
-            this.matrix = matrix;
-        }
-        public void WriteOnRow(string word)
+        public void WriteOnRow(string[,] matrix, string word, int row, int indexToStartFrom)
         {
             for (int i = 0; i < word.Length; i++)
             {
-
+                matrix[row, indexToStartFrom + i] = word[i].ToString();
             }
         }
 
-        public void WriteOnCol(string word)
+        public void WriteOnCol(string[,] matrix, string word, int indexToStartFrom, int col)
         {
-
+            for (int i = 0; i < word.Length; i++)
+            {
+                matrix[indexToStartFrom + i, col] = word[i].ToString();
+            }
         }
     }
 }
