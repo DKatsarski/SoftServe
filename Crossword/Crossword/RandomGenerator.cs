@@ -1,4 +1,5 @@
 ﻿using Crossword.Constants;
+using Crossword.Contracts;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -7,17 +8,16 @@ using System.Threading.Tasks;
 
 namespace Crossword
 {
-    public class RandomGenerator
+    public class RandomGenerator : IRandomGenerator
     {
         private Random randomGenerator;
-
 
         public RandomGenerator()
         {
             this.randomGenerator = new Random();
         }
 
-        public string GenerateRandomWord(IList<string> wordsToExtractFrom)
+        public string GenerateRandomWord(List<string> wordsToExtractFrom)
         {
             int maxIndexOfWordsList = wordsToExtractFrom.Count - 1;
             int randomIndexNumber = randomGenerator.Next(GlobalConstants.MinIndexOfList, maxIndexOfWordsList);

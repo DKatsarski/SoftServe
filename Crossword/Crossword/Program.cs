@@ -167,10 +167,11 @@ namespace Crossword
                             {
                                 break;
                             }
-
                         }
 
                         listFromSpecificPattern = wordsOperator.GetListOfAllWordsFromASpecifiedBeginning(frameOfAPotentialWord);
+                        randomWord = randomGenerator.GenerateRandomWord(listFromSpecificPattern);
+                        //TODO: Write the randomWord to the matrix at the exact indexes
 
                     }
                     else
@@ -188,14 +189,14 @@ namespace Crossword
                                 break;
                             }
                         }
-                   
+                        listFromSpecificPattern = wordsOperator.GetListOfAllWordsFromASpecifiedPattern(frameOfAPotentialWord);
                     }
 
-                    indexCounter = 0;
 
+
+                    indexCounter = 0;
                     colOutsideRange = col;
 
-                    //TODO: check if there is a words with such begininng - if not - change the begininng and the position 
 
 
                 }

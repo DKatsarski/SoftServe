@@ -4,7 +4,7 @@ using Crossword.Data;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using Moq;
 using Crossword;
-using Crossword.Operators.Contracts;
+using Crossword.Contracts;
 using Crossword.Operators;
 using Crossword.Constants;
 

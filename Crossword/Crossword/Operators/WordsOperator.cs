@@ -1,11 +1,8 @@
-﻿using Crossword.Data;
-using System;
+﻿using Crossword.Constants;
+using Crossword.Data;
+using Crossword.Contracts;
 using System.Collections.Generic;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using Crossword.Operators.Contracts;
-using Crossword.Constants;
 using System.Text.RegularExpressions;
 
 namespace Crossword.Operators
@@ -78,6 +75,7 @@ namespace Crossword.Operators
         {
             int lastOccuranceOfALetter = 0;
             string frameOfAPotentialWord = string.Empty;
+
             for (int i = potentialWord.Length - 1; i >= 0; i--)
             {
                 if (potentialWord[i] != char.Parse(GlobalConstants.SpecificSymbolToReplaceNull))

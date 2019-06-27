@@ -69,6 +69,7 @@
     <Compile Include="OperatorsTests\ArrayOperatorTests.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="DatabaseTests.cs" />
+    <Compile Include="RandomGeneratorTests.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />

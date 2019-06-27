@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using Crossword.Constants;
-using Crossword.Operators.Contracts;
+using Crossword.Contracts;
 
 namespace Crossword.Operators
 {
