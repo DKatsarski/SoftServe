@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Crossword.Constants;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -24,8 +25,30 @@ namespace Crossword
 
         public bool ContainsWordWithSpecificPositionOfCharacters(List<string> listOfWords, string pattern)
         {
+            var lastIndexOfSpecifiedLetter = 0;
+            var firstIndexOfSpecifiedLetter = 0;
 
-            if (listOfWords.Exists(x => Regex.Match(x, pattern).Success))
+            for (int i = pattern.Length - 1; i > 0; i--)
+            {
+                if (pattern[i] != char.Parse(GlobalConstants.SpecificSymbolToReplaceNull))
+                {
+                    lastIndexOfSpecifiedLetter = i;
+                    break;
+                }
+            }
+
+            for (int i = 0; i < pattern.Length; i++)
+            {
+                if (pattern[i] != char.Parse(GlobalConstants.SpecificSymbolToReplaceNull))
+                {
+                    firstIndexOfSpecifiedLetter = i;
+                    break;
+                }
+            }
+
+            if (listOfWords.Exists(x => Regex.Match(x, pattern).Success &&
+                x[lastIndexOfSpecifiedLetter] == pattern[lastIndexOfSpecifiedLetter] &&
+                x[firstIndexOfSpecifiedLetter] == pattern[firstIndexOfSpecifiedLetter]))
             {
                 return true;
             }

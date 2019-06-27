@@ -20,6 +20,7 @@ namespace Crossword
             var randomGenerator = new RandomGenerator();
             var wordVerificator = new WordsVerificator();
             var matrixWriter = new MatrixWriter();
+            var painter = new Painter();
             var listOfAllWords = wordsOperator.ListOfAllWords;
             var randomWord = randomGenerator.GenerateRandomWord(listOfAllWords);
 
@@ -28,11 +29,19 @@ namespace Crossword
 
             string[,] testArray = new string[40, 40];
 
-          
 
 
-      
-   
+
+
+            //var list = new List<string>();
+            //Console.WriteLine(wordVerificator.ContainsWordWithSpecificPositionOfCharacters(listOfAllWords, ".iesia"));
+
+            //list = wordsOperator.GetListOfAllWordsFromASpecifiedPattern(".iesia");
+
+            //foreach (var item in list)
+            //{
+            //    Console.WriteLine(item);
+            //}
 
 
 
@@ -81,18 +90,10 @@ namespace Crossword
                 }
             }
 
-         
+
 
             //drawing
-            for (int row = 0; row < testArray.GetLength(0); row++)
-            {
-                for (int col = 0; col < testArray.GetLength(1); col++)
-                {
-                    Console.Write(testArray[row, col]);
-                }
-
-                Console.WriteLine();
-            }
+            painter.PaintMatrix(testArray);
 
             var randomLetter = string.Empty;
             var colFromMatrix = string.Empty;
@@ -100,15 +101,14 @@ namespace Crossword
             var listFromSpecificPattern = new List<string>();
 
             var frameOfAPotentialWord = string.Empty;
-            var colOutsideRange = 0;
+            var colOutsideRange = 1;
             var indexCounter = 0;
             var adaptatedIndex = 0;
 
-            for (int row = 0; row < testArray.GetLength(0); row++)
+            for (int row = 1; row < testArray.GetLength(0); row++)
             {
-                for (int col = 1; col < testArray.GetLength(1); col++)
+                for (int col = colOutsideRange; col < testArray.GetLength(1); col++)
                 {
-                    colOutsideRange = col;
                     colFromMatrix = arrayOperator.ExtractColFromMatrix(testArray, col);
                     frameOfAPotentialWord = wordsOperator.ExtractFrameOfAPotentialWord(colFromMatrix);
 
@@ -132,11 +132,14 @@ namespace Crossword
                             }
                         }
 
-                        adaptatedIndex = row + indexCounter;
+                        adaptatedIndex = indexCounter;
                         listFromSpecificPattern = wordsOperator.GetListOfAllWordsFromASpecifiedBeginning(frameOfAPotentialWord);
                         randomWord = randomGenerator.GenerateRandomWord(listFromSpecificPattern);
                         matrixWriter.WriteOnCol(testArray, randomWord, adaptatedIndex, col);
                         indexCounter = 0;
+
+                        // painter.PaintMatrix(testArray);
+
                         break;
                     }
                     else
@@ -155,11 +158,14 @@ namespace Crossword
                             }
                         }
 
-                        adaptatedIndex = row + indexCounter;
+                        adaptatedIndex =  indexCounter;
                         listFromSpecificPattern = wordsOperator.GetListOfAllWordsFromASpecifiedPattern(frameOfAPotentialWord);
                         randomWord = randomGenerator.GenerateRandomWord(listFromSpecificPattern);
                         matrixWriter.WriteOnCol(testArray, randomWord, adaptatedIndex, col);
                         indexCounter = 0;
+
+                        // painter.PaintMatrix(testArray);
+
                         break;
                     }
                 }
@@ -188,16 +194,20 @@ namespace Crossword
                         }
                         else
                         {
-                            break;
+                            continue;
                         }
                     }
 
-                    adaptatedIndex = indexCounter + colOutsideRange;
+                    adaptatedIndex = indexCounter;
                     listFromSpecificPattern = wordsOperator.GetListOfAllWordsFromASpecifiedBeginning(frameOfAPotentialWord);
                     randomWord = randomGenerator.GenerateRandomWord(listFromSpecificPattern);
                     matrixWriter.WriteOnRow(testArray, randomWord, row, adaptatedIndex);
                     indexCounter = 0;
-                    break;
+                    colOutsideRange++;
+
+                    // painter.PaintMatrix(testArray);
+
+                    continue;
                 }
                 else
                 {
@@ -211,30 +221,31 @@ namespace Crossword
                         }
                         else
                         {
-                            break;
+                            colOutsideRange++;
+
+                            //painter.PaintMatrix(testArray);
+
+                            continue;
                         }
                     }
 
-                    adaptatedIndex = indexCounter + colOutsideRange;
+                    adaptatedIndex = indexCounter;
                     listFromSpecificPattern = wordsOperator.GetListOfAllWordsFromASpecifiedPattern(frameOfAPotentialWord);
                     randomWord = randomGenerator.GenerateRandomWord(listFromSpecificPattern);
                     matrixWriter.WriteOnRow(testArray, randomWord, row, adaptatedIndex);
                     indexCounter = 0;
-                    break;
+                    colOutsideRange++;
+
+                    //  painter.PaintMatrix(testArray);
+
+                    continue;
                 }
             }
 
 
             //drawing
-            for (int row = 0; row < testArray.GetLength(0); row++)
-            {
-                for (int col = 0; col < testArray.GetLength(1); col++)
-                {
-                    Console.Write(testArray[row, col]);
-                }
+            painter.PaintMatrix(testArray);
 
-                Console.WriteLine();
-            }
 
             //TODO: The logic should start from the first column, than from the frist row. It should check if there is a word from that string, than from row -> if there is word from that string. If there is not, than from the next substring
 
