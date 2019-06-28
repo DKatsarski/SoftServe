@@ -19,7 +19,7 @@ namespace Crossword.Data
         {
             get
             {
-                this.englishWords = System.IO.File.ReadAllLines(@"C:\Users\dkats\Desktop\Programming\SoftServe\Crossword\Crossword\words\words.txt").ToList();
+                this.englishWords = System.IO.File.ReadAllLines(@"C:\Users\dkats\Desktop\Programming\SoftServe\Crossword\Crossword\words\wordList.txt").ToList();
                 return this.englishWords;
             }
         }

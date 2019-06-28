@@ -24,7 +24,9 @@ namespace Crossword.Operators
             get
             {
                 //important to be declared just once to optimize resources
-                this.listOfWords = this.words.GetWords;
+                this.listOfWords = this.words.GetWords
+                    .Where(x => Regex.Match(x, "^[A-Za-z0-9-]*$").Success)
+                .ToList();
                 return this.listOfWords;
             }
         }
