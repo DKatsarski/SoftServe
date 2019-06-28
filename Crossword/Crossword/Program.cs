@@ -95,7 +95,7 @@ namespace Crossword
 
 
             //drawing
-            // painter.PaintMatrix(testArray);
+             painter.PaintMatrix(testArray);
 
             var randomLetter = string.Empty;
             var colFromMatrix = string.Empty;
@@ -172,7 +172,8 @@ namespace Crossword
                         matrixWriter.WriteOnCol(testArray, randomWord, adaptatedIndex, col);
                         indexCounter = 0;
 
-                        // painter.PaintMatrix(testArray);
+                        Console.Clear();
+                        painter.PaintMatrix(testArray);
 
                         break;
                     }
@@ -224,7 +225,8 @@ namespace Crossword
                         matrixWriter.WriteOnCol(testArray, randomWord, adaptatedIndex, col);
                         indexCounter = 0;
 
-                        //  painter.PaintMatrix(testArray);
+                        Console.Clear();
+                        painter.PaintMatrix(testArray);
 
                         break;
                     }
@@ -292,7 +294,8 @@ namespace Crossword
                     indexCounter = 0;
                     colOutsideRange++;
 
-                    //   painter.PaintMatrix(testArray);
+                    Console.Clear();
+                    painter.PaintMatrix(testArray);
 
                     continue;
                 }
@@ -310,6 +313,7 @@ namespace Crossword
                         {
                             colOutsideRange++;
 
+                            Console.Clear();
                             painter.PaintMatrix(testArray);
 
                             continue;
@@ -350,7 +354,8 @@ namespace Crossword
                     indexCounter = 0;
                     colOutsideRange++;
 
-                    //  painter.PaintMatrix(testArray);
+                    Console.Clear();
+                    painter.PaintMatrix(testArray);
 
                     continue;
                 }
@@ -358,6 +363,7 @@ namespace Crossword
 
 
             //drawing
+            Console.Clear();
             painter.PaintMatrix(testArray);
 
 
