@@ -97,7 +97,7 @@ namespace Crossword
 
 
             //drawing
-             painter.PaintMatrix(testArray);
+          //   painter.PaintMatrix(testArray);
 
             var randomLetter = string.Empty;
             var colFromMatrix = string.Empty;
@@ -146,32 +146,32 @@ namespace Crossword
                         //    continue;
                         //}
 
-                        indexCounter = 0;
-                        while (matrixVerificator
-                            .WordWillBeOutsideOfMatrixColBoundery(testArray, randomWord, row + adaptatedIndex) &&
-                            indexCounter <= listFromSpecificPattern.Count * 3)
-                        {
-                            if (wordVerificator.ContainsWordWithSpecificBeginning(listFromSpecificPattern
-                                .Where(x => x.Length <= testArray.GetLength(0) - col)
-                                .ToList(), randomWord))
-                            {
-                                randomWord = randomGenerator.GenerateRandomWord(listFromSpecificPattern
-                                    .Where(x => x.Length <= testArray.GetLength(0) - col)
-                                    .ToList());
-                                indexCounter++;
+                        //indexCounter = 0;
+                        //while (matrixVerificator
+                        //    .WordWillBeOutsideOfMatrixColBoundery(testArray, randomWord, row + adaptatedIndex) &&
+                        //    indexCounter <= listFromSpecificPattern.Count * 3)
+                        //{
+                        //    if (wordVerificator.ContainsWordWithSpecificBeginning(listFromSpecificPattern
+                        //        .Where(x => x.Length <= testArray.GetLength(0) - col)
+                        //        .ToList(), randomWord))
+                        //    {
+                        //        randomWord = randomGenerator.GenerateRandomWord(listFromSpecificPattern
+                        //            .Where(x => x.Length <= testArray.GetLength(0) - col)
+                        //            .ToList());
+                        //        indexCounter++;
 
-                            }
+                        //    }
 
-                            indexCounter++;
-                        }
+                        //    indexCounter++;
+                        //}
 
-                        if (matrixVerificator
-                        .WordWillBeOutsideOfMatrixColBoundery(testArray, randomWord, row + adaptatedIndex))
-                        {
-                            continue;
-                        }
+                        //if (matrixVerificator
+                        //.WordWillBeOutsideOfMatrixColBoundery(testArray, randomWord, row + adaptatedIndex))
+                        //{
+                        //    continue;
+                        //}
 
-                        matrixWriter.WriteOnCol(testArray, randomWord, adaptatedIndex, col);
+                        testArray = matrixWriter.WriteOnCol(testArray, randomWord, adaptatedIndex, col);
                         indexCounter = 0;
 
                         Console.Clear();
@@ -218,13 +218,13 @@ namespace Crossword
                             indexCounter++;
                         }
 
-                        if (matrixVerificator
-                        .WordWillBeOutsideOfMatrixColBoundery(testArray, randomWord, row + adaptatedIndex))
-                        {
-                            continue;
-                        }
+                        //if (matrixVerificator
+                        //.WordWillBeOutsideOfMatrixColBoundery(testArray, randomWord, row + adaptatedIndex))
+                        //{
+                        //    continue;
+                        //}
 
-                        matrixWriter.WriteOnCol(testArray, randomWord, adaptatedIndex, col);
+                        testArray = matrixWriter.WriteOnCol(testArray, randomWord, adaptatedIndex, col);
                         indexCounter = 0;
 
                         Console.Clear();
@@ -292,7 +292,7 @@ namespace Crossword
                     //}
 
 
-                    matrixWriter.WriteOnRow(testArray, randomWord, row, adaptatedIndex);
+                    testArray = matrixWriter.WriteOnRow(testArray, randomWord, row, adaptatedIndex);
                     indexCounter = 0;
                     colOutsideRange++;
 
@@ -352,7 +352,7 @@ namespace Crossword
                     //}
 
 
-                    matrixWriter.WriteOnRow(testArray, randomWord, row, adaptatedIndex);
+                    testArray = matrixWriter.WriteOnRow(testArray, randomWord, row, adaptatedIndex);
                     indexCounter = 0;
                     colOutsideRange++;
 

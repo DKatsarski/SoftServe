@@ -11,8 +11,36 @@ namespace Crossword
 
         public void PaintMatrix(string[,] matrix)
         {
+            int colOutsideRange = 0;
             Console.WriteLine();
-            for (int row = 0; row < matrix.GetLength(0); row++)
+
+            int rowInmatrix = 0;
+            int lastRowInMatrixWithLetterInIt = matrix.GetLength(0) - 1;
+            bool isFound = false;
+
+            while (matrix[matrix.GetLength(0) - 1 - rowInmatrix, colOutsideRange] == null)
+            {
+                for (int i = 0; i < matrix.GetLength(1); i++)
+                {
+                    colOutsideRange = i;
+                    if (matrix[matrix.GetLength(0) - 1 - rowInmatrix, colOutsideRange] != null)
+                    {
+                        isFound = true;
+                        break;
+
+                    }
+                }
+
+                if (isFound)
+                {
+                    lastRowInMatrixWithLetterInIt = rowInmatrix;
+                    break;
+                }
+                rowInmatrix++;
+
+            }
+
+            for (int row = 0; row < lastRowInMatrixWithLetterInIt; row++)
             {
                 for (int col = 0; col < matrix.GetLength(1); col++)
                 {
@@ -23,7 +51,10 @@ namespace Crossword
                     }
 
                     Console.Write(" {0}  ", matrix[row, col]);
+                    colOutsideRange = col;
+                  
                 }
+
                 Console.WriteLine();
                 Console.WriteLine();
             }

@@ -8,20 +8,69 @@ namespace Crossword
 {
     public class MatrixWriter
     {
-        public void WriteOnRow(string[,] matrix, string word, int row, int indexToStartFrom)
+        public string[,] WriteOnRow(string[,] matrix, string word, int row, int indexToStartFrom)
         {
-            for (int i = 0; i < word.Length; i++)
+            if (word.Length >= matrix.GetLength(1) - (indexToStartFrom + 1))
             {
-                matrix[row, indexToStartFrom + i] = word[i].ToString();
+                var adaptedIndexArray = new string[(matrix.GetLength(1) + word.Length + indexToStartFrom + 1), (matrix.GetLength(1) + word.Length + indexToStartFrom + 1)];
+
+                for (int rowOfMatrix = 0; rowOfMatrix < matrix.GetLength(0); rowOfMatrix++)
+                {
+                    for (int colOfMatrix = 0; colOfMatrix < matrix.GetLength(1); colOfMatrix++)
+                    {
+                        adaptedIndexArray[rowOfMatrix, colOfMatrix] = matrix[rowOfMatrix, colOfMatrix];
+                    }
+                }
+
+                for (int i = 0; i < word.Length; i++)
+                {
+                    adaptedIndexArray[row, indexToStartFrom + i] = word[i].ToString();
+                }
+                matrix = adaptedIndexArray;
             }
+            else
+            {
+
+                for (int i = 0; i < word.Length; i++)
+                {
+                    matrix[row, indexToStartFrom + i] = word[i].ToString();
+                }
+            }
+
+            return matrix;
+
+
         }
 
-        public void WriteOnCol(string[,] matrix, string word, int indexToStartFrom, int col)
+        public string[,] WriteOnCol(string[,] matrix, string word, int indexToStartFrom, int col)
         {
-            for (int i = 0; i < word.Length; i++)
+            if (word.Length >= matrix.GetLength(0) - (indexToStartFrom + 1))
             {
-                matrix[indexToStartFrom + i, col] = word[i].ToString();
+                var adaptedIndexArray = new string[(matrix.GetLength(0) + word.Length + indexToStartFrom + 1), (matrix.GetLength(0) + word.Length + indexToStartFrom + 1)];
+
+                for (int rowOfMatrix = 0; rowOfMatrix < matrix.GetLength(0); rowOfMatrix++)
+                {
+                    for (int colOfMatrix = 0; colOfMatrix < matrix.GetLength(1); colOfMatrix++)
+                    {
+                        adaptedIndexArray[rowOfMatrix, colOfMatrix] = matrix[rowOfMatrix, colOfMatrix];
+                    }
+                }
+
+                for (int i = 0; i < word.Length; i++)
+                {
+                    adaptedIndexArray[indexToStartFrom + i, col] = word[i].ToString();
+                }
+                matrix = adaptedIndexArray;
             }
+            else
+            {
+                for (int i = 0; i < word.Length; i++)
+                {
+                    matrix[indexToStartFrom + i, col] = word[i].ToString();
+                }
+            }
+
+            return matrix;
         }
     }
 }
