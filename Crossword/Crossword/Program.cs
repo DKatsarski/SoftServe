@@ -76,7 +76,9 @@ namespace Crossword
                 }
             }
 
-            randomWord = randomGenerator.GenerateRandomWord(listOfAllWords);
+            var newListFromBeginning = new List<string>();
+            newListFromBeginning = wordsOperator.GetListOfAllWordsFromASpecifiedBeginning(randomWord[0].ToString());
+            randomWord = randomGenerator.GenerateRandomWord(newListFromBeginning);
 
             while (testArray[0, 0] != randomWord[0].ToString())
             {
