@@ -222,6 +222,10 @@ namespace Crossword
             }
 
 
+            //TODO: Put numbers infron of letters 
+            //TODO: change letters into stars (hide them)
+            //TODO: Implement interaction (guessing letters, showing them, counting mistakes etc. 
+
             //drawing
             Console.Clear();
             painter.PaintMatrix(testArray);
