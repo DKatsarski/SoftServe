@@ -10,7 +10,7 @@ namespace Crossword
     {
         public string[,] WriteOnRow(string[,] matrix, string word, int row, int indexToStartFrom)
         {
-            if (word.Length >= matrix.GetLength(1) - (indexToStartFrom + 1))
+            if (word.Length >= matrix.GetLength(1) - (indexToStartFrom))
             {
                 var adaptedIndexArray = new string[(matrix.GetLength(1) + word.Length + indexToStartFrom + 1), (matrix.GetLength(1) + word.Length + indexToStartFrom + 1)];
 
@@ -44,7 +44,7 @@ namespace Crossword
 
         public string[,] WriteOnCol(string[,] matrix, string word, int indexToStartFrom, int col)
         {
-            if (word.Length >= matrix.GetLength(0) - (indexToStartFrom + 1))
+            if (word.Length >= matrix.GetLength(0) - (indexToStartFrom))
             {
                 var adaptedIndexArray = new string[(matrix.GetLength(0) + word.Length + indexToStartFrom + 1), (matrix.GetLength(0) + word.Length + indexToStartFrom + 1)];
 

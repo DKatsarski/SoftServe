@@ -34,40 +34,6 @@ namespace Crossword
 
 
 
-
-            //var list = new List<string>();
-            //Console.WriteLine(wordVerificator.ContainsWordWithSpecificPositionOfCharacters(listOfAllWords, ".iesia"));
-
-            //list = wordsOperator.GetListOfAllWordsFromASpecifiedPattern(".iesia");
-
-            //foreach (var item in list)
-            //{
-            //    Console.WriteLine(item);
-            //}
-
-
-
-
-
-
-
-            //var asdfasdf = wordsOperator.GetListOfAllWordsFromASpecifiedBeginning("do");
-            //var a = 3;
-
-            //while (randomWord.Substring(0, 2) != "do")
-            //{
-
-            //        randomWord = asdfasdf[a];
-
-
-            //    a++;
-            //}
-            //Console.WriteLine(randomWord);
-
-
-
-
-
             for (int i = 0; i < testArray.GetLength(0); i++)
             {
                 if (i < randomWord.Length)
@@ -97,7 +63,7 @@ namespace Crossword
 
 
             //drawing
-          //   painter.PaintMatrix(testArray);
+             painter.PaintMatrix(testArray);
 
             var randomLetter = string.Empty;
             var colFromMatrix = string.Empty;
@@ -140,36 +106,7 @@ namespace Crossword
                         listFromSpecificPattern = wordsOperator.GetListOfAllWordsFromASpecifiedBeginning(frameOfAPotentialWord);
                         randomWord = randomGenerator.GenerateRandomWord(listFromSpecificPattern);
 
-                        //if (matrixVerificator
-                        //    .WordWillBeOutsideOfMatrixColBoundery(testArray, randomWord, row + adaptatedIndex))
-                        //{
-                        //    continue;
-                        //}
-
-                        //indexCounter = 0;
-                        //while (matrixVerificator
-                        //    .WordWillBeOutsideOfMatrixColBoundery(testArray, randomWord, row + adaptatedIndex) &&
-                        //    indexCounter <= listFromSpecificPattern.Count * 3)
-                        //{
-                        //    if (wordVerificator.ContainsWordWithSpecificBeginning(listFromSpecificPattern
-                        //        .Where(x => x.Length <= testArray.GetLength(0) - col)
-                        //        .ToList(), randomWord))
-                        //    {
-                        //        randomWord = randomGenerator.GenerateRandomWord(listFromSpecificPattern
-                        //            .Where(x => x.Length <= testArray.GetLength(0) - col)
-                        //            .ToList());
-                        //        indexCounter++;
-
-                        //    }
-
-                        //    indexCounter++;
-                        //}
-
-                        //if (matrixVerificator
-                        //.WordWillBeOutsideOfMatrixColBoundery(testArray, randomWord, row + adaptatedIndex))
-                        //{
-                        //    continue;
-                        //}
+          
 
                         testArray = matrixWriter.WriteOnCol(testArray, randomWord, adaptatedIndex, col);
                         indexCounter = 0;
@@ -199,30 +136,6 @@ namespace Crossword
                         listFromSpecificPattern = wordsOperator.GetListOfAllWordsFromASpecifiedPattern(frameOfAPotentialWord);
                         randomWord = randomGenerator.GenerateRandomWord(listFromSpecificPattern);
 
-                        indexCounter = 0;
-                        while (matrixVerificator
-                            .WordWillBeOutsideOfMatrixColBoundery(testArray, randomWord, row + adaptatedIndex) &&
-                            indexCounter <= listFromSpecificPattern.Count * 3)
-                        {
-                            if (wordVerificator.ContainsWordWithSpecificBeginning(listFromSpecificPattern
-                                .Where(x => x.Length <= testArray.GetLength(0) - col)
-                                .ToList(), randomWord))
-                            {
-                                randomWord = randomGenerator.GenerateRandomWord(listFromSpecificPattern
-                                    .Where(x => x.Length <= testArray.GetLength(0) - col)
-                                    .ToList());
-                                indexCounter++;
-
-                            }
-
-                            indexCounter++;
-                        }
-
-                        //if (matrixVerificator
-                        //.WordWillBeOutsideOfMatrixColBoundery(testArray, randomWord, row + adaptatedIndex))
-                        //{
-                        //    continue;
-                        //}
 
                         testArray = matrixWriter.WriteOnCol(testArray, randomWord, adaptatedIndex, col);
                         indexCounter = 0;
@@ -266,31 +179,6 @@ namespace Crossword
                     listFromSpecificPattern = wordsOperator.GetListOfAllWordsFromASpecifiedBeginning(frameOfAPotentialWord);
                     randomWord = randomGenerator.GenerateRandomWord(listFromSpecificPattern);
 
-                    //indexCounter = 0;
-                    //while (matrixVerificator
-                    //       .WordWillBeOutsideOfMatrixColBoundery(testArray, randomWord, row + adaptatedIndex) &&
-                    //       indexCounter <= listFromSpecificPattern.Count * 3)
-                    //{
-                    //    if (wordVerificator.ContainsWordWithSpecificBeginning(listFromSpecificPattern
-                    //        .Where(x => x.Length <= testArray.GetLength(1) - row)
-                    //        .ToList(), randomWord))
-                    //    {
-                    //        randomWord = randomGenerator.GenerateRandomWord(listFromSpecificPattern
-                    //            .Where(x => x.Length <= testArray.GetLength(1) - row)
-                    //            .ToList());
-                    //        indexCounter++;
-
-                    //    }
-
-                    //    indexCounter++;
-                    //}
-
-                    //if (matrixVerificator
-                    //.WordWillBeOutsideOfMatrixColBoundery(testArray, randomWord, row + adaptatedIndex))
-                    //{
-                    //    continue;
-                    //}
-
 
                     testArray = matrixWriter.WriteOnRow(testArray, randomWord, row, adaptatedIndex);
                     indexCounter = 0;
@@ -305,7 +193,6 @@ namespace Crossword
                 {
                     while (!wordVerificator.ContainsWordWithSpecificPositionOfCharacters(listOfAllWords, frameOfAPotentialWord))
                     {
-                        //  potential problem with the ">1"
                         if (frameOfAPotentialWord.Length > 1)
                         {
                             frameOfAPotentialWord = frameOfAPotentialWord.Substring(1);
@@ -313,12 +200,7 @@ namespace Crossword
                         }
                         else
                         {
-                            colOutsideRange++;
-
-                            Console.Clear();
-                            painter.PaintMatrix(testArray);
-
-                            continue;
+                            throw new FormatException("No such word exists in the given database.");
                         }
                     }
 
@@ -326,30 +208,6 @@ namespace Crossword
                     listFromSpecificPattern = wordsOperator.GetListOfAllWordsFromASpecifiedPattern(frameOfAPotentialWord);
                     randomWord = randomGenerator.GenerateRandomWord(listFromSpecificPattern);
 
-                    //indexCounter = 0;
-                    //while (matrixVerificator
-                    //       .WordWillBeOutsideOfMatrixColBoundery(testArray, randomWord, row + adaptatedIndex) &&
-                    //       indexCounter <= listFromSpecificPattern.Count * 3)
-                    //{
-                    //    if (wordVerificator.ContainsWordWithSpecificBeginning(listFromSpecificPattern
-                    //        .Where(x => x.Length <= testArray.GetLength(1) - row)
-                    //        .ToList(), randomWord))
-                    //    {
-                    //        randomWord = randomGenerator.GenerateRandomWord(listFromSpecificPattern
-                    //            .Where(x => x.Length <= testArray.GetLength(1) - row)
-                    //            .ToList());
-                    //        indexCounter++;
-
-                    //    }
-
-                    //    indexCounter++;
-                    //}
-
-                    //if (matrixVerificator
-                    //.WordWillBeOutsideOfMatrixColBoundery(testArray, randomWord, row + adaptatedIndex))
-                    //{
-                    //    continue;
-                    //}
 
 
                     testArray = matrixWriter.WriteOnRow(testArray, randomWord, row, adaptatedIndex);
@@ -367,9 +225,6 @@ namespace Crossword
             //drawing
             Console.Clear();
             painter.PaintMatrix(testArray);
-
-
-            //TODO: The logic should start from the first column, than from the frist row. It should check if there is a word from that string, than from row -> if there is word from that string. If there is not, than from the next substring
 
         }
 
