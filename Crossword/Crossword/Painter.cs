@@ -11,19 +11,20 @@ namespace Crossword
 
         public void PaintMatrix(string[,] matrix)
         {
+            Console.WriteLine();
             for (int row = 0; row < matrix.GetLength(0); row++)
             {
                 for (int col = 0; col < matrix.GetLength(1); col++)
                 {
                     if (matrix[row, col] == null)
                     {
-                        Console.Write("  ");
+                        Console.Write("    ");
                         continue;
                     }
 
-                    Console.Write("{0} ", matrix[row, col]);
+                    Console.Write(" {0}  ", matrix[row, col]);
                 }
-
+                Console.WriteLine();
                 Console.WriteLine();
             }
         }
