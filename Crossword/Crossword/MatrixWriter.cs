@@ -16,6 +16,7 @@ namespace Crossword
         {
             this.wordsCounter = wordsCounter;
         }
+
         public string[,] WriteOnRow(string[,] matrix, string word, int row, int indexToStartFrom)
         {
             if (word.Length >= matrix.GetLength(1) - (indexToStartFrom))

@@ -34,10 +34,6 @@ namespace Crossword
             string[,] testArray = new string[GlobalConstants.MatrixSize, GlobalConstants.MatrixSize];
 
 
-            //Console.WriteLine(wordVerificator.IsWordInList(listOfAllWords, "gg"));
-            //Console.WriteLine(wordVerificator.IsWordInList(listOfAllWords, "oak"));
-
-
             for (int i = 0; i < testArray.GetLength(0); i++)
             {
                 if (i < randomWord.Length)
@@ -67,17 +63,12 @@ namespace Crossword
             }
 
             wordsOperator.CollectedWordsFromCrossword.Add(randomWord);
-
-
-
-            //drawing
             painter.PaintMatrix(testArray, 0, 0);
 
             var randomLetter = string.Empty;
             var colFromMatrix = string.Empty;
             var rowFromMatrix = string.Empty;
             var listFromSpecificPattern = new List<string>();
-
             var frameOfAPotentialWord = string.Empty;
             var colOutsideRange = 1;
             var indexCounter = 0;
@@ -114,7 +105,7 @@ namespace Crossword
                         listFromSpecificPattern = wordsOperator.GetListOfAllWordsFromASpecifiedBeginning(frameOfAPotentialWord);
                         randomWord = randomGenerator.GenerateRandomWord(listFromSpecificPattern);
 
-            wordsOperator.CollectedWordsFromCrossword.Add(randomWord);
+                        wordsOperator.CollectedWordsFromCrossword.Add(randomWord);
 
 
                         testArray = matrixWriter.WriteOnCol(testArray, randomWord, adaptatedIndex, col);
@@ -233,22 +224,16 @@ namespace Crossword
                 }
             }
 
-            Console.WriteLine(wordsOperator.CollectedWordsFromCrossword.Count);
-            var counter = 0;
-            foreach (var word in wordsOperator.CollectedWordsFromCrossword)
-            {
-                if (counter == 0 || counter == 1)
-                {
-                    counter++;
-                    Console.WriteLine(1 + " " + word.ToString());
-                }
-                else
-                {
-                    Console.WriteLine(counter.ToString() + " " + word.ToString());
-                    counter++;
-                }
-              
-            }
+            painter.ListAllTheWords(wordsOperator);
+
+            Console.ReadLine();
+            Console.Clear();
+            painter.PaintMatrixWithSymbol(testArray, '2');
+            painter.ListAllTheWords(wordsOperator);
+
+
+
+
         }
 
 
