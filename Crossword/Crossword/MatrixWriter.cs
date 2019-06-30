@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Crossword.Operators;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -9,8 +10,12 @@ namespace Crossword
     public class MatrixWriter
     {
         private int numberOfWord;
-        private int counter;
+        private WordsOperator wordsCounter;
 
+        public MatrixWriter(WordsOperator wordsCounter)
+        {
+            this.wordsCounter = wordsCounter;
+        }
         public string[,] WriteOnRow(string[,] matrix, string word, int row, int indexToStartFrom)
         {
             if (word.Length >= matrix.GetLength(1) - (indexToStartFrom))
@@ -29,21 +34,15 @@ namespace Crossword
                 {
                     if (i == 0)
                     {
-                        this.numberOfWord = 0;
-                        if (row % 2 != 0)
-                        {
-                            this.numberOfWord = (row * 2) + 1;
-                        }
-                        else
-                        {
-                            this.numberOfWord = (row * 2) + 1;
-                        }
+
+                        this.numberOfWord = this.wordsCounter.CollectedWordsFromCrossword.Count - 1;
+
                         adaptedIndexArray[row, indexToStartFrom + i] = (this.numberOfWord.ToString() + word[i]).ToString();
 
                     }
                     else
                     {
-                        adaptedIndexArray[row, indexToStartFrom + i] =  word[i].ToString();
+                        adaptedIndexArray[row, indexToStartFrom + i] = word[i].ToString();
 
                     }
                 }
@@ -56,15 +55,8 @@ namespace Crossword
                 {
                     if (i == 0)
                     {
-                        this.numberOfWord = 0;
-                        if (row % 2 != 0)
-                        {
-                            this.numberOfWord = (row * 2) + 1;
-                        }
-                        else
-                        {
-                            this.numberOfWord = (row * 2) + 1;
-                        }
+                        this.numberOfWord = this.wordsCounter.CollectedWordsFromCrossword.Count - 1;
+
                         matrix[row, indexToStartFrom + i] = (this.numberOfWord.ToString() + word[i]).ToString();
                     }
                     else
@@ -97,15 +89,8 @@ namespace Crossword
                 {
                     if (i == 0)
                     {
-                        this.numberOfWord = 0;
-                        if (col % 2 != 0)
-                        {
-                            this.numberOfWord = col * 2;
-                        }
-                        else
-                        {
-                            this.numberOfWord = col * 2;
-                        }
+                        this.numberOfWord = this.wordsCounter.CollectedWordsFromCrossword.Count - 1;
+
                         adaptedIndexArray[indexToStartFrom + i, col] = (this.numberOfWord.ToString() + word[i]).ToString();
                     }
                     else
@@ -114,7 +99,7 @@ namespace Crossword
                     }
 
                 }
-                
+
                 matrix = adaptedIndexArray;
             }
             else
@@ -124,15 +109,8 @@ namespace Crossword
                 {
                     if (i == 0)
                     {
-                        this.numberOfWord = 0;
-                        if (col % 2 != 0)
-                        {
-                            this.numberOfWord = col * 2;
-                        }
-                        else
-                        {
-                            this.numberOfWord = col * 2;
-                        }
+                        this.numberOfWord = this.wordsCounter.CollectedWordsFromCrossword.Count - 1;
+
                         matrix[indexToStartFrom + i, col] = (this.numberOfWord.ToString() + word[i]).ToString();
                     }
                     else

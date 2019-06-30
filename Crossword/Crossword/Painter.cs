@@ -33,11 +33,11 @@ namespace Crossword
 
                 if (isFound)
                 {
-                    lastRowInMatrixWithLetterInIt = matrix.GetLength(0) - 1 - rowInmatrix;
+                    lastRowInMatrixWithLetterInIt = matrix.GetLength(0) - rowInmatrix;
                     break;
                 }
                 rowInmatrix++;
-                lastRowInMatrixWithLetterInIt = matrix.GetLength(0) - 1 - rowInmatrix;
+                lastRowInMatrixWithLetterInIt = matrix.GetLength(0) - rowInmatrix;
             }
 
             for (int row = 0; row < lastRowInMatrixWithLetterInIt; row++)

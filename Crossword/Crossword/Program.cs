@@ -21,7 +21,7 @@ namespace Crossword
             var randomGenerator = new RandomGenerator();
             var wordVerificator = new WordsVerificator();
             var matrixVerificator = new MatrixVerificator();
-            var matrixWriter = new MatrixWriter();
+            var matrixWriter = new MatrixWriter(wordsOperator);
             var painter = new Painter();
             var listOfAllWords = wordsOperator.ListOfAllWords;
             var randomWord = randomGenerator.GenerateRandomWord(listOfAllWords);
