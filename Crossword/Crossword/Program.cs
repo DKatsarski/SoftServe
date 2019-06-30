@@ -44,6 +44,8 @@ namespace Crossword
                 }
             }
 
+            wordsOperator.CollectedWordsFromCrossword.Add(randomWord);
+
             var newListFromBeginning = new List<string>();
             newListFromBeginning = wordsOperator.GetListOfAllWordsFromASpecifiedBeginning(randomWord[0].ToString());
             randomWord = randomGenerator.GenerateRandomWord(newListFromBeginning);
@@ -62,10 +64,12 @@ namespace Crossword
                 }
             }
 
+            wordsOperator.CollectedWordsFromCrossword.Add(randomWord);
+
 
 
             //drawing
-             painter.PaintMatrix(testArray, 0, 0);
+            painter.PaintMatrix(testArray, 0, 0);
 
             var randomLetter = string.Empty;
             var colFromMatrix = string.Empty;
@@ -108,7 +112,8 @@ namespace Crossword
                         listFromSpecificPattern = wordsOperator.GetListOfAllWordsFromASpecifiedBeginning(frameOfAPotentialWord);
                         randomWord = randomGenerator.GenerateRandomWord(listFromSpecificPattern);
 
-          
+            wordsOperator.CollectedWordsFromCrossword.Add(randomWord);
+
 
                         testArray = matrixWriter.WriteOnCol(testArray, randomWord, adaptatedIndex, col);
                         indexCounter = 0;
@@ -138,6 +143,7 @@ namespace Crossword
                         listFromSpecificPattern = wordsOperator.GetListOfAllWordsFromASpecifiedPattern(frameOfAPotentialWord);
                         randomWord = randomGenerator.GenerateRandomWord(listFromSpecificPattern);
 
+                        wordsOperator.CollectedWordsFromCrossword.Add(randomWord);
 
                         testArray = matrixWriter.WriteOnCol(testArray, randomWord, adaptatedIndex, col);
                         indexCounter = 0;
@@ -181,6 +187,7 @@ namespace Crossword
                     listFromSpecificPattern = wordsOperator.GetListOfAllWordsFromASpecifiedBeginning(frameOfAPotentialWord);
                     randomWord = randomGenerator.GenerateRandomWord(listFromSpecificPattern);
 
+                    wordsOperator.CollectedWordsFromCrossword.Add(randomWord);
 
                     testArray = matrixWriter.WriteOnRow(testArray, randomWord, row, adaptatedIndex);
                     indexCounter = 0;
@@ -209,6 +216,7 @@ namespace Crossword
                     adaptatedIndex = indexCounter;
                     listFromSpecificPattern = wordsOperator.GetListOfAllWordsFromASpecifiedPattern(frameOfAPotentialWord);
                     randomWord = randomGenerator.GenerateRandomWord(listFromSpecificPattern);
+                    wordsOperator.CollectedWordsFromCrossword.Add(randomWord);
 
 
 
@@ -223,15 +231,22 @@ namespace Crossword
                 }
             }
 
-
-            //TODO: Put numbers infron of letters 
-            //TODO: change letters into stars (hide them)
-            //TODO: Implement interaction (guessing letters, showing them, counting mistakes etc. 
-
-            //drawing
-            //Console.Clear();
-            //painter.PaintMatrix(testArray, adaptatedIndex);
-
+            Console.WriteLine(wordsOperator.CollectedWordsFromCrossword.Count);
+            var counter = 0;
+            foreach (var word in wordsOperator.CollectedWordsFromCrossword)
+            {
+                if (counter == 0 || counter == 1)
+                {
+                    counter++;
+                    Console.WriteLine(1 + " " + word.ToString());
+                }
+                else
+                {
+                    Console.WriteLine(counter.ToString() + " " + word.ToString());
+                    counter++;
+                }
+              
+            }
         }
 
 

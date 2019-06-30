@@ -12,11 +12,25 @@ namespace Crossword.Operators
         private IWords words;
         private List<string> listOfWords;
         private List<string> listOfWordsFromASpecificPattern;
+        private List<string> collectedWordsFromCrossword;
 
         public WordsOperator(IWords words)
         {
             this.words = words;
             this.listOfWordsFromASpecificPattern = new List<string>();
+            this.collectedWordsFromCrossword = new List<string>();
+        }
+
+        public List<string> CollectedWordsFromCrossword
+        {
+            get
+            {
+                return this.collectedWordsFromCrossword;
+            }
+            set
+            {
+                this.collectedWordsFromCrossword.Add(value.ToString());
+            }
         }
 
         public List<string> ListOfAllWords

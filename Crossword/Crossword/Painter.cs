@@ -44,19 +44,38 @@ namespace Crossword
             {
                 for (int col = 0; col < matrix.GetLength(1); col++)
                 {
-
-                    if (matrix[row, col] == null)
+                    if (matrix[row, col] != null && matrix[row, col].Length > 1)
                     {
-                        Console.Write("    ");
-                        indexToStartFrom++;
 
-                        continue;
+                        if (matrix[row, col].Length == 2)
+                        {
+                            Console.Write(" {0}{1}  ", matrix[row, col][0], matrix[row, col][1]);
+                        }
+                        else
+                        {
+                            Console.Write("{0}{1}{2}  ", matrix[row, col][0], matrix[row, col][1], matrix[row, col][2]);
+                        }
                     }
+                    else
+                    {
+                        if (matrix[row, col] == null)
+                        {
+                            Console.Write("     ");
+                            indexToStartFrom++;
+                        }
+                        else
+                        {
+                            Console.Write("  {0}  ", matrix[row, col]);
 
-                    Console.Write(" {0}  ", matrix[row, col]);
+                        }
+                    }
+                  
+
 
                     colOutsideRange = col;
                 }
+
+                //row
 
                 Console.WriteLine();
                 Console.WriteLine();
