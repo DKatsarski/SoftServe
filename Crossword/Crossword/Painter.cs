@@ -13,6 +13,7 @@ namespace Crossword
         {
             //Console.Write(" 1");
             Console.WriteLine();
+            Console.Write(" 1");
             int wordCounter = 1;
             int colOutsideRange = 0;
             int rowInmatrix = 0;
@@ -65,7 +66,14 @@ namespace Crossword
                         }
                         else
                         {
-                            Console.Write("  {0}  ", matrix[row, col]);
+                            if (row == 0 && col == 0)
+                            {
+                                Console.Write("{0}  ", matrix[row, col]);
+                            }
+                            else
+                            {
+                                Console.Write("  {0}  ", matrix[row, col]);
+                            }
 
                         }
                     }

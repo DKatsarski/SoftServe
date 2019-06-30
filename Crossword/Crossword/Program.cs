@@ -34,6 +34,8 @@ namespace Crossword
             string[,] testArray = new string[GlobalConstants.MatrixSize, GlobalConstants.MatrixSize];
 
 
+            //Console.WriteLine(wordVerificator.IsWordInList(listOfAllWords, "gg"));
+            //Console.WriteLine(wordVerificator.IsWordInList(listOfAllWords, "oak"));
 
 
             for (int i = 0; i < testArray.GetLength(0); i++)
