@@ -8,6 +8,9 @@ namespace Crossword
 {
     public class MatrixWriter
     {
+        private int numberOfWord;
+        private int counter;
+
         public string[,] WriteOnRow(string[,] matrix, string word, int row, int indexToStartFrom)
         {
             if (word.Length >= matrix.GetLength(1) - (indexToStartFrom))
@@ -24,7 +27,25 @@ namespace Crossword
 
                 for (int i = 0; i < word.Length; i++)
                 {
-                    adaptedIndexArray[row, indexToStartFrom + i] = word[i].ToString();
+                    if (i == 0)
+                    {
+                        this.numberOfWord = 0;
+                        if (row % 2 != 0)
+                        {
+                            this.numberOfWord = (row * 2) + 1;
+                        }
+                        else
+                        {
+                            this.numberOfWord = (row * 2) + 1;
+                        }
+                        adaptedIndexArray[row, indexToStartFrom + i] = (this.numberOfWord.ToString() + word[i]).ToString();
+
+                    }
+                    else
+                    {
+                        adaptedIndexArray[row, indexToStartFrom + i] =  word[i].ToString();
+
+                    }
                 }
                 matrix = adaptedIndexArray;
             }
@@ -33,7 +54,23 @@ namespace Crossword
 
                 for (int i = 0; i < word.Length; i++)
                 {
-                    matrix[row, indexToStartFrom + i] = word[i].ToString();
+                    if (i == 0)
+                    {
+                        this.numberOfWord = 0;
+                        if (row % 2 != 0)
+                        {
+                            this.numberOfWord = (row * 2) + 1;
+                        }
+                        else
+                        {
+                            this.numberOfWord = (row * 2) + 1;
+                        }
+                        matrix[row, indexToStartFrom + i] = (this.numberOfWord.ToString() + word[i]).ToString();
+                    }
+                    else
+                    {
+                        matrix[row, indexToStartFrom + i] = word[i].ToString();
+                    }
                 }
             }
 
@@ -58,15 +95,50 @@ namespace Crossword
 
                 for (int i = 0; i < word.Length; i++)
                 {
-                    adaptedIndexArray[indexToStartFrom + i, col] = word[i].ToString();
+                    if (i == 0)
+                    {
+                        this.numberOfWord = 0;
+                        if (col % 2 != 0)
+                        {
+                            this.numberOfWord = col * 2;
+                        }
+                        else
+                        {
+                            this.numberOfWord = col * 2;
+                        }
+                        adaptedIndexArray[indexToStartFrom + i, col] = (this.numberOfWord.ToString() + word[i]).ToString();
+                    }
+                    else
+                    {
+                        adaptedIndexArray[indexToStartFrom + i, col] = word[i].ToString();
+                    }
+
                 }
+                
                 matrix = adaptedIndexArray;
             }
             else
             {
+
                 for (int i = 0; i < word.Length; i++)
                 {
-                    matrix[indexToStartFrom + i, col] = word[i].ToString();
+                    if (i == 0)
+                    {
+                        this.numberOfWord = 0;
+                        if (col % 2 != 0)
+                        {
+                            this.numberOfWord = col * 2;
+                        }
+                        else
+                        {
+                            this.numberOfWord = col * 2;
+                        }
+                        matrix[indexToStartFrom + i, col] = (this.numberOfWord.ToString() + word[i]).ToString();
+                    }
+                    else
+                    {
+                        matrix[indexToStartFrom + i, col] = word[i].ToString();
+                    }
                 }
             }
 

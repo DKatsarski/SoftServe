@@ -27,7 +27,9 @@ namespace Crossword
             var randomWord = randomGenerator.GenerateRandomWord(listOfAllWords);
 
 
-            string[] englishAlphabet = { "a", "b", "c", "d", "e", "f", "g", "h", "i", "j", "k", "l", "m", "n", "o", "p", "q", "r", "s", "t", "u", "v", "w", "x", "y", "z" };
+            string[] englishAlphabet = { "a", "b", "c", "d", "e",
+                "f", "g", "h", "i", "j", "k", "l", "m", "n", "o",
+                "p", "q", "r", "s", "t", "u", "v", "w", "x", "y", "z" };
 
             string[,] testArray = new string[GlobalConstants.MatrixSize, GlobalConstants.MatrixSize];
 
@@ -63,7 +65,7 @@ namespace Crossword
 
 
             //drawing
-             painter.PaintMatrix(testArray);
+             painter.PaintMatrix(testArray, 0, 0);
 
             var randomLetter = string.Empty;
             var colFromMatrix = string.Empty;
@@ -112,7 +114,7 @@ namespace Crossword
                         indexCounter = 0;
 
                         Console.Clear();
-                        painter.PaintMatrix(testArray);
+                        painter.PaintMatrix(testArray, col, adaptatedIndex);
 
                         break;
                     }
@@ -141,7 +143,7 @@ namespace Crossword
                         indexCounter = 0;
 
                         Console.Clear();
-                        painter.PaintMatrix(testArray);
+                        painter.PaintMatrix(testArray, col, adaptatedIndex);
 
                         break;
                     }
@@ -185,7 +187,7 @@ namespace Crossword
                     colOutsideRange++;
 
                     Console.Clear();
-                    painter.PaintMatrix(testArray);
+                    painter.PaintMatrix(testArray, row, adaptatedIndex);
 
                     continue;
                 }
@@ -215,7 +217,7 @@ namespace Crossword
                     colOutsideRange++;
 
                     Console.Clear();
-                    painter.PaintMatrix(testArray);
+                    painter.PaintMatrix(testArray, row, adaptatedIndex);
 
                     continue;
                 }
@@ -227,8 +229,8 @@ namespace Crossword
             //TODO: Implement interaction (guessing letters, showing them, counting mistakes etc. 
 
             //drawing
-            Console.Clear();
-            painter.PaintMatrix(testArray);
+            //Console.Clear();
+            //painter.PaintMatrix(testArray, adaptatedIndex);
 
         }
 
