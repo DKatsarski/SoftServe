@@ -17,14 +17,20 @@ namespace Crossword.Data
             this.englishWords = new List<string>();
         }
 
+        public string[] EnglishAplphabet => new string[] { "a", "b", "c", "d", "e",
+                "f", "g", "h", "i", "j", "k", "l", "m", "n", "o",
+                "p", "q", "r", "s", "t", "u", "v", "w", "x", "y", "z" };
+
         public List<string> GetWords
         {
             get
             {
-
-                WebClient client = new WebClient();
-                var a = client.DownloadString("https://raw.githubusercontent.com/DKatsarski/SoftServe/master/Crossword/Crossword/words/wordList.txt").Split().ToList();
-                this.englishWords = a.ToList();
+                string words = string.Empty;
+                using (WebClient client = new WebClient())
+                {
+                    words = client.DownloadString("https://raw.githubusercontent.com/DKatsarski/SoftServe/master/Crossword/Crossword/words/wordList.txt");
+                }
+                this.englishWords = words.Split().ToList();
                 return this.englishWords;
             }
         }
