@@ -48,7 +48,7 @@
   <ItemGroup>
     <Compile Include="Constants\GlobalConstants.cs" />
     <Compile Include="Contracts\IRandomGenerator.cs" />
-    <Compile Include="CrosswordGenerator.cs" />
+    <Compile Include="Generators\CrosswordGenerator.cs" />
     <Compile Include="MatrixWriter.cs" />
     <Compile Include="Operators\ArrayOperator.cs" />
     <Compile Include="Contracts\IArrayOperator.cs" />
@@ -57,7 +57,7 @@
     <Compile Include="Painter.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="RandomGenerator.cs" />
+    <Compile Include="Generators\RandomGenerator.cs" />
     <Compile Include="Verificators\MatrixVerificator.cs" />
     <Compile Include="Verificators\WordsVerificator.cs" />
   </ItemGroup>

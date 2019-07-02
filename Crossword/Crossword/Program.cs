@@ -1,13 +1,10 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using Crossword.Constants;
 using Crossword.Data;
+using Crossword.Generators;
 using Crossword.Operators;
-using System.Text.RegularExpressions;
-using Crossword.Constants;
 using Crossword.Verificators;
+using System;
+using System.Collections.Generic;
 
 namespace Crossword
 {

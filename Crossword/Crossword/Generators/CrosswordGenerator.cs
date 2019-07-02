@@ -1,11 +1,7 @@
-﻿using System;
+﻿using Crossword.Operators;
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using Crossword.Operators;
 
-namespace Crossword
+namespace Crossword.Generators
 {
     public class CrosswordGenerator
     {
