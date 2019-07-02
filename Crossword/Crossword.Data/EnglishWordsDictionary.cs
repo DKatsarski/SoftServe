@@ -1,6 +1,8 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Linq;
+using System.Net;
 using System.Text;
 using System.Threading.Tasks;
 
@@ -19,7 +21,10 @@ namespace Crossword.Data
         {
             get
             {
-                this.englishWords = System.IO.File.ReadAllLines(@"C:\Users\dkats\Desktop\Programming\SoftServe\Crossword\Crossword\words\wordList.txt").ToList();
+
+                WebClient client = new WebClient();
+                var a = client.DownloadString("https://raw.githubusercontent.com/DKatsarski/SoftServe/master/Crossword/Crossword/words/wordList.txt").Split().ToList();
+                this.englishWords = a.ToList();
                 return this.englishWords;
             }
         }
