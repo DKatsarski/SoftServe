@@ -27,9 +27,9 @@ namespace Crossword
             var randomWord = randomGenerator.GenerateRandomWord(listOfAllWords);
 
 
-            string[] englishAlphabet = { "a", "b", "c", "d", "e",
-                "f", "g", "h", "i", "j", "k", "l", "m", "n", "o",
-                "p", "q", "r", "s", "t", "u", "v", "w", "x", "y", "z" };
+            //string[] englishAlphabet = { "a", "b", "c", "d", "e",
+            //    "f", "g", "h", "i", "j", "k", "l", "m", "n", "o",
+            //    "p", "q", "r", "s", "t", "u", "v", "w", "x", "y", "z" };
 
             string[,] testArray = new string[GlobalConstants.MatrixSize, GlobalConstants.MatrixSize];
 
@@ -228,12 +228,27 @@ namespace Crossword
 
             Console.ReadLine();
             Console.Clear();
-            painter.PaintMatrixWithSymbol(testArray, '2');
-            painter.ListAllTheWords(wordsOperator);
+
+            //painter.PaintMatrixWithSymbol(testArray, '@');
 
 
+            var listOfLetters = new List<char>();
+
+            while (Console.ReadKey().Key != ConsoleKey.Escape)
+            {
+                Console.WriteLine("Choose a letter: ");
+                var suggestedLetter = Console.ReadKey().KeyChar;
+                listOfLetters.Add(suggestedLetter);
+                Console.ReadLine();
+                Console.Clear();
+                painter.PaintMatrixWithSymbol(testArray, listOfLetters);
+
+                Console.WriteLine();
+                Console.WriteLine();
+                Console.WriteLine("Press ESC to end crossword");
 
 
+            }
         }
 
 

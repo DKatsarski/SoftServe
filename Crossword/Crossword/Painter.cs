@@ -1,6 +1,7 @@
 ﻿using Crossword.Constants;
 using Crossword.Operators;
 using System;
+using System.Collections.Generic;
 
 namespace Crossword
 {
@@ -102,13 +103,16 @@ namespace Crossword
             }
         }
 
-        public void PaintMatrixWithSymbol(string[,] matrix, char letterToBeRevealed)
+        public void PaintMatrixWithSymbol(string[,] matrix, List<char> lettersToBeRevealed)
         {
+
+
             Console.WriteLine();
             Console.Write(" 1");
             int colOutsideRange = 0;
             int rowInmatrix = 0;
             int lastRowInMatrixWithLetterInIt = matrix.GetLength(0) - 1;
+            var lastIndexOfElementInMatrix = 0;
             bool isFound = false;
 
             // cleaningn the matrix from unnecessary lines
@@ -136,7 +140,36 @@ namespace Crossword
             {
                 for (int col = 0; col < matrix.GetLength(1); col++)
                 {
+
+
+                    if (matrix[row, col] != null)
+                    {
+                        lastIndexOfElementInMatrix = matrix[row, col].Length - 1;
+                    }
+
                     if (matrix[row, col] != null && matrix[row, col].Length > 1)
+                    {
+                        for (int i = 0; i < lettersToBeRevealed.Count; i++)
+                        {
+
+
+                            if (matrix[row, col][lastIndexOfElementInMatrix] == lettersToBeRevealed[i])
+                            {
+
+                                if (matrix[row, col].Length == 2)
+                                {
+                                    Console.Write(" {0}{1}  ", matrix[row, col][0], lettersToBeRevealed[i].ToString());
+                                    break;
+                                }
+                                else
+                                {
+                                    Console.Write("{0}{1}{2}  ", matrix[row, col][0], matrix[row, col][1], lettersToBeRevealed[i].ToString());
+                                    break;
+                                }
+                            }
+                        }
+                    }
+                    else
                     {
 
                         if (matrix[row, col].Length == 2)
@@ -148,32 +181,53 @@ namespace Crossword
                             Console.Write("{0}{1}{2}  ", matrix[row, col][0], matrix[row, col][1], GlobalConstants.SymbolToHideNumbersWith);
                         }
                     }
+
+
+
+            
+
                     else
+            {
+                if (matrix[row, col] == null)
+                {
+                    Console.Write("     ");
+                }
+                else
+                {
+                    if (matrix[row, col][lastIndexOfElementInMatrix] == lettersToBeRevealed[i])
                     {
-                        if (matrix[row, col] == null)
+                        if (row == 0 && col == 0)
                         {
-                            Console.Write("     ");
+                            Console.Write("{0}  ", lettersToBeRevealed[i].ToString());
                         }
                         else
                         {
-                            if (row == 0 && col == 0)
-                            {
-                                Console.Write("{0}  ", GlobalConstants.SymbolToHideNumbersWith);
-                            }
-                            else
-                            {
-                                Console.Write("  {0}  ", GlobalConstants.SymbolToHideNumbersWith);
-                            }
-
+                            Console.Write("  {0}  ", lettersToBeRevealed[i].ToString());
                         }
                     }
-                    colOutsideRange = col;
+                    else
+                    {
+                        if (row == 0 && col == 0)
+                        {
+                            Console.Write("{0}  ", GlobalConstants.SymbolToHideNumbersWith);
+                        }
+                        else
+                        {
+                            Console.Write("  {0}  ", GlobalConstants.SymbolToHideNumbersWith);
+                        }
+                    }
+
+
                 }
 
-                Console.WriteLine();
-                Console.WriteLine();
+                colOutsideRange = col;
             }
         }
+
+        Console.WriteLine();
+                Console.WriteLine();
+            }
+}
 
 
     }
