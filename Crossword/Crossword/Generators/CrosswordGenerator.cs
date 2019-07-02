@@ -1,4 +1,6 @@
-﻿using Crossword.Operators;
+﻿using Crossword.Constants;
+using Crossword.Operators;
+using System;
 using System.Collections.Generic;
 
 namespace Crossword.Generators
@@ -8,15 +10,23 @@ namespace Crossword.Generators
         private string[,] crossword;
         private WordsOperator wordsOperator;
         private RandomGenerator randomGenerator;
+        private ArrayOperator arrayOperator;
+        private WordsVerificator wordVerificator;
+        private MatrixWriter matrixWriter;
+        private Painter painter;
 
         public CrosswordGenerator(string[,] crossword, WordsOperator wordsOperator)
         {
             this.crossword = crossword;
             this.wordsOperator = wordsOperator;
             this.randomGenerator = new RandomGenerator();
+            this.arrayOperator = new ArrayOperator();
+            this.wordVerificator = new WordsVerificator();
+            this.painter = new Painter();
+            this.matrixWriter = new MatrixWriter(wordsOperator);
         }
 
-        internal void GenerateFrame()
+        public void GenerateFrame()
         {
             var randomWord = randomGenerator.GenerateRandomWord(wordsOperator.ListOfAllWords);
 
@@ -44,6 +54,171 @@ namespace Crossword.Generators
             }
 
             wordsOperator.CollectedWordsFromCrossword.Add(randomWord);
+        }
+
+        public void GenerateCrossword()
+        {
+            var randomLetter = string.Empty;
+            var colFromMatrix = string.Empty;
+            var rowFromMatrix = string.Empty;
+            var listFromSpecificPattern = new List<string>();
+            var frameOfAPotentialWord = string.Empty;
+            var colOutsideRange = 1;
+            var indexCounter = 0;
+            var adaptatedIndex = 0;
+            var randomWord = string.Empty;
+            var listOfAllWords = wordsOperator.ListOfAllWords;
+
+            for (int row = 1; row < crossword.GetLength(0); row++)
+            {
+                for (int col = colOutsideRange; col < crossword.GetLength(1); col++)
+                {
+                    colFromMatrix = arrayOperator.ExtractColFromMatrix(crossword, col);
+                    frameOfAPotentialWord = wordsOperator.ExtractFrameOfAPotentialWord(colFromMatrix);
+
+                    if (frameOfAPotentialWord == string.Empty)
+                    {
+                        break;
+                    }
+
+                    if (!frameOfAPotentialWord.Contains(GlobalConstants.SpecificSymbolToReplaceNull))
+                    {
+                        while (!wordVerificator.ContainsWordWithSpecificBeginning(listOfAllWords, frameOfAPotentialWord))
+                        {
+                            if (frameOfAPotentialWord.Length > 1)
+                            {
+                                frameOfAPotentialWord = frameOfAPotentialWord.Substring(1);
+                                indexCounter++;
+                            }
+                            else
+                            {
+                                break;
+                            }
+                        }
+
+                        adaptatedIndex = indexCounter;
+                        listFromSpecificPattern = wordsOperator.GetListOfAllWordsFromASpecifiedBeginning(frameOfAPotentialWord);
+                        randomWord = randomGenerator.GenerateRandomWord(listFromSpecificPattern);
+
+                        wordsOperator.CollectedWordsFromCrossword.Add(randomWord);
+
+
+                        crossword = matrixWriter.WriteOnCol(crossword, randomWord, adaptatedIndex, col);
+                        indexCounter = 0;
+
+                        Console.Clear();
+                        painter.PaintMatrix(crossword, col, adaptatedIndex);
+
+                        break;
+                    }
+                    else
+                    {
+                        while (!wordVerificator.ContainsWordWithSpecificPositionOfCharacters(listOfAllWords, frameOfAPotentialWord))
+                        {
+                            //potential problem with the ">1"
+                            if (frameOfAPotentialWord.Length > 1)
+                            {
+                                frameOfAPotentialWord = frameOfAPotentialWord.Substring(1);
+                                indexCounter++;
+                            }
+                            else
+                            {
+                                break;
+                            }
+                        }
+
+                        adaptatedIndex = indexCounter;
+                        listFromSpecificPattern = wordsOperator.GetListOfAllWordsFromASpecifiedPattern(frameOfAPotentialWord);
+                        randomWord = randomGenerator.GenerateRandomWord(listFromSpecificPattern);
+
+                        wordsOperator.CollectedWordsFromCrossword.Add(randomWord);
+
+                        crossword = matrixWriter.WriteOnCol(crossword, randomWord, adaptatedIndex, col);
+                        indexCounter = 0;
+
+                        Console.Clear();
+                        painter.PaintMatrix(crossword, col, adaptatedIndex);
+
+                        break;
+                    }
+                }
+
+                //row begins here
+
+                frameOfAPotentialWord = string.Empty;
+                rowFromMatrix = arrayOperator.ExtractRowFromMatrix(crossword, row);
+                frameOfAPotentialWord = wordsOperator.ExtractFrameOfAPotentialWord(rowFromMatrix);
+                indexCounter = 0;
+
+                if (frameOfAPotentialWord == string.Empty)
+                {
+                    break;
+                }
+
+                //fillerOfMatrix
+                if (!frameOfAPotentialWord.Contains(GlobalConstants.SpecificSymbolToReplaceNull))
+                {
+                    while (!wordVerificator.ContainsWordWithSpecificBeginning(listOfAllWords, frameOfAPotentialWord))
+                    {
+                        if (frameOfAPotentialWord.Length > 1)
+                        {
+                            frameOfAPotentialWord = frameOfAPotentialWord.Substring(1);
+                            indexCounter++;
+                        }
+                        else
+                        {
+                            continue;
+                        }
+                    }
+
+                    adaptatedIndex = indexCounter;
+                    listFromSpecificPattern = wordsOperator.GetListOfAllWordsFromASpecifiedBeginning(frameOfAPotentialWord);
+                    randomWord = randomGenerator.GenerateRandomWord(listFromSpecificPattern);
+
+                    wordsOperator.CollectedWordsFromCrossword.Add(randomWord);
+
+                    crossword = matrixWriter.WriteOnRow(crossword, randomWord, row, adaptatedIndex);
+                    indexCounter = 0;
+                    colOutsideRange++;
+
+                    Console.Clear();
+                    painter.PaintMatrix(crossword, row, adaptatedIndex);
+
+                    continue;
+                }
+                else
+                {
+                    while (!wordVerificator.ContainsWordWithSpecificPositionOfCharacters(listOfAllWords, frameOfAPotentialWord))
+                    {
+                        if (frameOfAPotentialWord.Length > 1)
+                        {
+                            frameOfAPotentialWord = frameOfAPotentialWord.Substring(1);
+                            indexCounter++;
+                        }
+                        else
+                        {
+                            throw new FormatException("No such word exists in the given database.");
+                        }
+                    }
+
+                    adaptatedIndex = indexCounter;
+                    listFromSpecificPattern = wordsOperator.GetListOfAllWordsFromASpecifiedPattern(frameOfAPotentialWord);
+                    randomWord = randomGenerator.GenerateRandomWord(listFromSpecificPattern);
+                    wordsOperator.CollectedWordsFromCrossword.Add(randomWord);
+
+
+
+                    crossword = matrixWriter.WriteOnRow(crossword, randomWord, row, adaptatedIndex);
+                    indexCounter = 0;
+                    colOutsideRange++;
+
+                    Console.Clear();
+                    painter.PaintMatrix(crossword, row, adaptatedIndex);
+
+                    continue;
+                }
+            }
+
         }
     }
 }
