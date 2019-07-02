@@ -1,8 +1,6 @@
-﻿using System;
-using System.Collections.Generic;
-using Crossword.Contracts;
+﻿using Crossword.Generators;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
-using Moq;
+using System.Collections.Generic;
 
 namespace Crossword.Tests
 {

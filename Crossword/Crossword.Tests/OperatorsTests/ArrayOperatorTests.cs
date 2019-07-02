@@ -1,12 +1,9 @@
-﻿using System;
-using System.Collections.Generic;
-using Crossword.Data;
+﻿using Crossword.Constants;
+using Crossword.Contracts;
+using Crossword.Generators;
+using Crossword.Operators;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using Moq;
-using Crossword;
-using Crossword.Contracts;
-using Crossword.Operators;
-using Crossword.Constants;
 
 namespace Crossword.Tests.OperatorsTests
 {
