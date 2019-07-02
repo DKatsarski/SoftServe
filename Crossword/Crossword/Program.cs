@@ -233,22 +233,25 @@ namespace Crossword
 
 
             var listOfLetters = new List<char>();
+            Console.Clear();
+            painter.PaintMatrixWithSymbol(testArray, '2');
+            painter.ListAllTheWords(wordsOperator);
+            Console.ReadLine();
+            //while (Console.ReadKey().Key != ConsoleKey.Escape)
+            //{
+            //    Console.WriteLine("Choose a letter: ");
+            //    var suggestedLetter = Console.ReadKey().KeyChar;
+            //    listOfLetters.Add(suggestedLetter);
+            //    Console.ReadLine();
+            //    Console.Clear();
+            //    painter.PaintMatrixWithSymbol(testArray, '2');
+            //    Console.ReadLine();
+            //    Console.WriteLine();
+            //    Console.WriteLine();
+            //    Console.WriteLine("Press ESC to end crossword");
 
-            while (Console.ReadKey().Key != ConsoleKey.Escape)
-            {
-                Console.WriteLine("Choose a letter: ");
-                var suggestedLetter = Console.ReadKey().KeyChar;
-                listOfLetters.Add(suggestedLetter);
-                Console.ReadLine();
-                Console.Clear();
-                painter.PaintMatrixWithSymbol(testArray, listOfLetters);
 
-                Console.WriteLine();
-                Console.WriteLine();
-                Console.WriteLine("Press ESC to end crossword");
-
-
-            }
+            //}
         }
 
 
