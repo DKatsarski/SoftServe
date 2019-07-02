@@ -29,36 +29,11 @@ namespace Crossword
 
             string[,] crossword = new string[GlobalConstants.MatrixSize, GlobalConstants.MatrixSize];
 
+            var crosswordGenerator = new CrosswordGenerator(crossword, wordsOperator);
 
-            for (int i = 0; i < crossword.GetLength(0); i++)
-            {
-                if (i < randomWord.Length)
-                {
-                    crossword[i, 0] = randomWord[i].ToString();
-                }
-            }
+            crosswordGenerator.GenerateFrame();
 
-            wordsOperator.CollectedWordsFromCrossword.Add(randomWord);
-
-            var newListFromBeginning = new List<string>();
-            newListFromBeginning = wordsOperator.GetListOfAllWordsFromASpecifiedBeginning(randomWord[0].ToString());
-            randomWord = randomGenerator.GenerateRandomWord(newListFromBeginning);
-
-            while (crossword[0, 0] != randomWord[0].ToString())
-            {
-                randomWord = randomGenerator.GenerateRandomWord(listOfAllWords);
-
-            }
-
-            for (int i = 0; i < crossword.GetLength(1); i++)
-            {
-                if (i < randomWord.Length)
-                {
-                    crossword[0, i] = randomWord[i].ToString();
-                }
-            }
-
-            wordsOperator.CollectedWordsFromCrossword.Add(randomWord);
+          
             painter.PaintMatrix(crossword, 0, 0);
 
             var randomLetter = string.Empty;
