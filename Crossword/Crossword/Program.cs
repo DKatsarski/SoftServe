@@ -27,18 +27,14 @@ namespace Crossword
             var randomWord = randomGenerator.GenerateRandomWord(listOfAllWords);
 
 
-            //string[] englishAlphabet = { "a", "b", "c", "d", "e",
-            //    "f", "g", "h", "i", "j", "k", "l", "m", "n", "o",
-            //    "p", "q", "r", "s", "t", "u", "v", "w", "x", "y", "z" };
-
-            string[,] testArray = new string[GlobalConstants.MatrixSize, GlobalConstants.MatrixSize];
+            string[,] crossword = new string[GlobalConstants.MatrixSize, GlobalConstants.MatrixSize];
 
 
-            for (int i = 0; i < testArray.GetLength(0); i++)
+            for (int i = 0; i < crossword.GetLength(0); i++)
             {
                 if (i < randomWord.Length)
                 {
-                    testArray[i, 0] = randomWord[i].ToString();
+                    crossword[i, 0] = randomWord[i].ToString();
                 }
             }
 
@@ -48,22 +44,22 @@ namespace Crossword
             newListFromBeginning = wordsOperator.GetListOfAllWordsFromASpecifiedBeginning(randomWord[0].ToString());
             randomWord = randomGenerator.GenerateRandomWord(newListFromBeginning);
 
-            while (testArray[0, 0] != randomWord[0].ToString())
+            while (crossword[0, 0] != randomWord[0].ToString())
             {
                 randomWord = randomGenerator.GenerateRandomWord(listOfAllWords);
 
             }
 
-            for (int i = 0; i < testArray.GetLength(1); i++)
+            for (int i = 0; i < crossword.GetLength(1); i++)
             {
                 if (i < randomWord.Length)
                 {
-                    testArray[0, i] = randomWord[i].ToString();
+                    crossword[0, i] = randomWord[i].ToString();
                 }
             }
 
             wordsOperator.CollectedWordsFromCrossword.Add(randomWord);
-            painter.PaintMatrix(testArray, 0, 0);
+            painter.PaintMatrix(crossword, 0, 0);
 
             var randomLetter = string.Empty;
             var colFromMatrix = string.Empty;
@@ -74,11 +70,11 @@ namespace Crossword
             var indexCounter = 0;
             var adaptatedIndex = 0;
 
-            for (int row = 1; row < testArray.GetLength(0); row++)
+            for (int row = 1; row < crossword.GetLength(0); row++)
             {
-                for (int col = colOutsideRange; col < testArray.GetLength(1); col++)
+                for (int col = colOutsideRange; col < crossword.GetLength(1); col++)
                 {
-                    colFromMatrix = arrayOperator.ExtractColFromMatrix(testArray, col);
+                    colFromMatrix = arrayOperator.ExtractColFromMatrix(crossword, col);
                     frameOfAPotentialWord = wordsOperator.ExtractFrameOfAPotentialWord(colFromMatrix);
 
                     if (frameOfAPotentialWord == string.Empty)
@@ -108,11 +104,11 @@ namespace Crossword
                         wordsOperator.CollectedWordsFromCrossword.Add(randomWord);
 
 
-                        testArray = matrixWriter.WriteOnCol(testArray, randomWord, adaptatedIndex, col);
+                        crossword = matrixWriter.WriteOnCol(crossword, randomWord, adaptatedIndex, col);
                         indexCounter = 0;
 
                         Console.Clear();
-                        painter.PaintMatrix(testArray, col, adaptatedIndex);
+                        painter.PaintMatrix(crossword, col, adaptatedIndex);
 
                         break;
                     }
@@ -138,11 +134,11 @@ namespace Crossword
 
                         wordsOperator.CollectedWordsFromCrossword.Add(randomWord);
 
-                        testArray = matrixWriter.WriteOnCol(testArray, randomWord, adaptatedIndex, col);
+                        crossword = matrixWriter.WriteOnCol(crossword, randomWord, adaptatedIndex, col);
                         indexCounter = 0;
 
                         Console.Clear();
-                        painter.PaintMatrix(testArray, col, adaptatedIndex);
+                        painter.PaintMatrix(crossword, col, adaptatedIndex);
 
                         break;
                     }
@@ -151,7 +147,7 @@ namespace Crossword
                 //row begins here
 
                 frameOfAPotentialWord = string.Empty;
-                rowFromMatrix = arrayOperator.ExtractRowFromMatrix(testArray, row);
+                rowFromMatrix = arrayOperator.ExtractRowFromMatrix(crossword, row);
                 frameOfAPotentialWord = wordsOperator.ExtractFrameOfAPotentialWord(rowFromMatrix);
                 indexCounter = 0;
 
@@ -182,12 +178,12 @@ namespace Crossword
 
                     wordsOperator.CollectedWordsFromCrossword.Add(randomWord);
 
-                    testArray = matrixWriter.WriteOnRow(testArray, randomWord, row, adaptatedIndex);
+                    crossword = matrixWriter.WriteOnRow(crossword, randomWord, row, adaptatedIndex);
                     indexCounter = 0;
                     colOutsideRange++;
 
                     Console.Clear();
-                    painter.PaintMatrix(testArray, row, adaptatedIndex);
+                    painter.PaintMatrix(crossword, row, adaptatedIndex);
 
                     continue;
                 }
@@ -213,12 +209,12 @@ namespace Crossword
 
 
 
-                    testArray = matrixWriter.WriteOnRow(testArray, randomWord, row, adaptatedIndex);
+                    crossword = matrixWriter.WriteOnRow(crossword, randomWord, row, adaptatedIndex);
                     indexCounter = 0;
                     colOutsideRange++;
 
                     Console.Clear();
-                    painter.PaintMatrix(testArray, row, adaptatedIndex);
+                    painter.PaintMatrix(crossword, row, adaptatedIndex);
 
                     continue;
                 }
@@ -234,7 +230,7 @@ namespace Crossword
 
             var listOfLetters = new List<char>();
             Console.Clear();
-            painter.PaintMatrixWithSymbol(testArray, '2');
+            painter.PaintMatrixWithSymbol(crossword, '2');
             painter.ListAllTheWords(wordsOperator);
             Console.ReadLine();
             //while (Console.ReadKey().Key != ConsoleKey.Escape)
