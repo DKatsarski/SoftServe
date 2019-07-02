@@ -8,6 +8,7 @@ namespace Crossword.Generators
     public class CrosswordGenerator
     {
         private string[,] crossword;
+        private List<string> listOfAllWords;
         private WordsOperator wordsOperator;
         private RandomGenerator randomGenerator;
         private ArrayOperator arrayOperator;
@@ -19,6 +20,7 @@ namespace Crossword.Generators
         {
             this.crossword = crossword;
             this.wordsOperator = wordsOperator;
+            this.listOfAllWords = wordsOperator.ListOfAllWords;
             this.randomGenerator = new RandomGenerator();
             this.arrayOperator = new ArrayOperator();
             this.wordVerificator = new WordsVerificator();
@@ -28,7 +30,7 @@ namespace Crossword.Generators
 
         public void GenerateFrame()
         {
-            var randomWord = randomGenerator.GenerateRandomWord(wordsOperator.ListOfAllWords);
+            var randomWord = randomGenerator.GenerateRandomWord(listOfAllWords);
 
             for (int i = 0; i < crossword.GetLength(0); i++)
             {
@@ -58,7 +60,6 @@ namespace Crossword.Generators
 
         public void GenerateCrossword()
         {
-            var randomLetter = string.Empty;
             var colFromMatrix = string.Empty;
             var rowFromMatrix = string.Empty;
             var listFromSpecificPattern = new List<string>();
@@ -67,7 +68,6 @@ namespace Crossword.Generators
             var indexCounter = 0;
             var adaptatedIndex = 0;
             var randomWord = string.Empty;
-            var listOfAllWords = wordsOperator.ListOfAllWords;
 
             for (int row = 1; row < crossword.GetLength(0); row++)
             {
@@ -115,7 +115,6 @@ namespace Crossword.Generators
                     {
                         while (!wordVerificator.ContainsWordWithSpecificPositionOfCharacters(listOfAllWords, frameOfAPotentialWord))
                         {
-                            //potential problem with the ">1"
                             if (frameOfAPotentialWord.Length > 1)
                             {
                                 frameOfAPotentialWord = frameOfAPotentialWord.Substring(1);
@@ -144,7 +143,6 @@ namespace Crossword.Generators
                 }
 
                 //row begins here
-
                 frameOfAPotentialWord = string.Empty;
                 rowFromMatrix = arrayOperator.ExtractRowFromMatrix(crossword, row);
                 frameOfAPotentialWord = wordsOperator.ExtractFrameOfAPotentialWord(rowFromMatrix);
@@ -206,19 +204,23 @@ namespace Crossword.Generators
                     randomWord = randomGenerator.GenerateRandomWord(listFromSpecificPattern);
                     wordsOperator.CollectedWordsFromCrossword.Add(randomWord);
 
-
-
                     crossword = matrixWriter.WriteOnRow(crossword, randomWord, row, adaptatedIndex);
                     indexCounter = 0;
                     colOutsideRange++;
 
                     Console.Clear();
                     painter.PaintMatrix(crossword, row, adaptatedIndex);
+                    
 
                     continue;
                 }
             }
-
+            painter.ListAllTheWords(wordsOperator);
+            Console.ReadLine();
+            Console.Clear();
+            painter.PaintMatrixWithSymbol(crossword, '2');
+            painter.ListAllTheWords(wordsOperator);
+            Console.ReadLine();
         }
     }
 }

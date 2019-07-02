@@ -1,21 +1,27 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using Crossword.Constants;
+﻿using Crossword.Constants;
 using Crossword.Contracts;
+using System.Text;
 
 namespace Crossword.Operators
 {
     public class ArrayOperator : IArrayOperator
     {
         private StringBuilder sb;
+        private string[,] matrix;
 
         public ArrayOperator()
         {
             this.sb = new StringBuilder();
         }
+
+        public ArrayOperator(string[,] matrix)
+        {
+            this.matrix = matrix;
+
+        }
+
+
+        public string[,] MatrixKeeper => this.matrix;
 
         public string GetSubStringOfTheRowOfMatrix(string[,] matrix, int row, int col)
         {
