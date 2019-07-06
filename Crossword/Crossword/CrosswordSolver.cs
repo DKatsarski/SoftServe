@@ -10,14 +10,9 @@ namespace Crossword
     {
         public void SolveCrossword(string[,] crossword)
         {
-            for (int ro = 0; ro < crossword.GetLength(0); ro++)
-            {
-                for (int col = 0; col < crossword.GetLength(1); col++)
-                {
-                    Console.Write(crossword[ro, col] + " ");
-                }
-                Console.WriteLine();
-            }
+            var guessedLetter = Console.ReadKey()
+                .KeyChar
+                .ToString();
         }
     }
 }
