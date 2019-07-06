@@ -14,6 +14,7 @@ namespace Crossword.Generators
         private ArrayOperator arrayOperator;
         private WordsVerificator wordVerificator;
         private MatrixWriter matrixWriter;
+        private CrosswordSolver crosswordSolver;
         private Painter painter;
 
         public CrosswordGenerator(string[,] crossword, WordsOperator wordsOperator)
@@ -26,6 +27,7 @@ namespace Crossword.Generators
             this.wordVerificator = new WordsVerificator();
             this.painter = new Painter();
             this.matrixWriter = new MatrixWriter(wordsOperator);
+            this.crosswordSolver = new CrosswordSolver();
         }
 
         //TODO: Checks for when it is less then a word.length
@@ -220,6 +222,8 @@ namespace Crossword.Generators
             Console.ReadLine();
             Console.Clear();
             painter.PaintMatrixWithSymbol(crossword, GlobalConstants.SymbolToHideNumbersWith);
+
+            crosswordSolver.SolveCrossword(crossword);
 
             //painter.ReavealLetter(crossword);
             //painter.ListWordsByTheirNumberOfLettersAndDirection(wordsOperator);
