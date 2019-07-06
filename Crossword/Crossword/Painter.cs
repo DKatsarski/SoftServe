@@ -102,7 +102,7 @@ namespace Crossword
             }
         }
 
-        public void PaintMatrixWithSymbol(string[,] matrix, char letterToBeRevealed)
+        public void PaintMatrixWithSymbol(string[,] matrix, string specificSymbol)
         {
             Console.WriteLine();
             Console.Write(" 1");
@@ -141,11 +141,11 @@ namespace Crossword
 
                         if (matrix[row, col].Length == 2)
                         {
-                            Console.Write(" {0}{1}  ", matrix[row, col][0], GlobalConstants.SymbolToHideNumbersWith);
+                            Console.Write(" {0}{1}  ", matrix[row, col][0], specificSymbol);
                         }
                         else
                         {
-                            Console.Write("{0}{1}{2}  ", matrix[row, col][0], matrix[row, col][1], GlobalConstants.SymbolToHideNumbersWith);
+                            Console.Write("{0}{1}{2}  ", matrix[row, col][0], matrix[row, col][1], specificSymbol);
                         }
                     }
                     else
@@ -158,11 +158,11 @@ namespace Crossword
                         {
                             if (row == 0 && col == 0)
                             {
-                                Console.Write("{0}  ", GlobalConstants.SymbolToHideNumbersWith);
+                                Console.Write("{0}  ", specificSymbol);
                             }
                             else
                             {
-                                Console.Write("  {0}  ", GlobalConstants.SymbolToHideNumbersWith);
+                                Console.Write("  {0}  ", specificSymbol);
                             }
 
                         }

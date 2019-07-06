@@ -28,6 +28,7 @@ namespace Crossword.Generators
             this.matrixWriter = new MatrixWriter(wordsOperator);
         }
 
+        //TODO: Checks for when it is less then a word.length
         public void GenerateFrame()
         {
             var randomWord = randomGenerator.GenerateRandomWord(listOfAllWords);
@@ -218,9 +219,14 @@ namespace Crossword.Generators
             painter.ListAllTheWords(wordsOperator);
             Console.ReadLine();
             Console.Clear();
-            painter.PaintMatrixWithSymbol(crossword, '2');
+            painter.PaintMatrixWithSymbol(crossword, GlobalConstants.SymbolToHideNumbersWith);
+
+            //painter.ReavealLetter(crossword);
+            //painter.ListWordsByTheirNumberOfLettersAndDirection(wordsOperator);
             painter.ListAllTheWords(wordsOperator);
             Console.ReadLine();
+
+
         }
     }
 }
