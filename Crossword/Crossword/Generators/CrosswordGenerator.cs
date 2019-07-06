@@ -227,8 +227,8 @@ namespace Crossword.Generators
 
             //painter.ReavealLetter(crossword);
             //painter.ListWordsByTheirNumberOfLettersAndDirection(wordsOperator);
-            painter.ListAllTheWords(wordsOperator);
-            Console.ReadLine();
+            //painter.ListAllTheWords(wordsOperator);
+            //Console.ReadLine();
 
 
         }
