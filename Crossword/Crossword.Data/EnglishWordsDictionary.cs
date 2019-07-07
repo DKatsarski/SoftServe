@@ -7,15 +7,17 @@ namespace Crossword.Data
     public class EnglishWordsDictionary : IWords
     {
         private List<string> englishWords;
+        private string[] englishAlphabet;
 
         public EnglishWordsDictionary()
         {
             this.englishWords = new List<string>();
-        }
-
-        public string[] EnglishAplphabet => new string[] { "a", "b", "c", "d", "e",
+            this.englishAlphabet = new string[] { "a", "b", "c", "d", "e",
                 "f", "g", "h", "i", "j", "k", "l", "m", "n", "o",
                 "p", "q", "r", "s", "t", "u", "v", "w", "x", "y", "z" };
+        }
+
+        public string[] GetAplphabet => this.englishAlphabet;
 
         public List<string> GetWords
         {
@@ -30,5 +32,6 @@ namespace Crossword.Data
                 return this.englishWords;
             }
         }
+
     }
 }

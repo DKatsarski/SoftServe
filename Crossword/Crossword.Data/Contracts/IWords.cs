@@ -4,6 +4,7 @@ namespace Crossword.Data
 {
     public interface IWords
     {
-         List<string> GetWords { get; }
+        string[] GetAplphabet { get; }
+        List<string> GetWords { get; }
     }
 }
