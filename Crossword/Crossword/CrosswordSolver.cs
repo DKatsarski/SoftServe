@@ -17,6 +17,8 @@ namespace Crossword
 
         public void SolveCrossword(string[,] crossword)
         {
+            var guessedLetters = new List<string>();
+
             var escapeButton = "\u001b";
             while (true)
             {
@@ -26,15 +28,23 @@ namespace Crossword
 
                 if (guessedLetter == escapeButton)
                 {
-                    Console.WriteLine("S:DFSDFS");
+                    Console.WriteLine("Thanks for playing!!!");
                     break;
                 }
 
-                Console.WriteLine();
-                Console.WriteLine(guessedLetter);
-                Console.WriteLine(guessedLetter);
-                Console.WriteLine(guessedLetter);
-                Console.WriteLine(guessedLetter);
+                guessedLetters.Add(guessedLetter);
+
+                painter.RevealLetter(crossword, guessedLetters);
+
+
+
+
+
+
+
+
+
+         
             }
             
 
