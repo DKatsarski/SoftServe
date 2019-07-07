@@ -4,17 +4,16 @@
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
-    <ProjectGuid>{56E725F9-3F96-47F2-9917-40505B7A01D5}</ProjectGuid>
-    <OutputType>Exe</OutputType>
-    <RootNamespace>Crossword</RootNamespace>
-    <AssemblyName>Crossword</AssemblyName>
+    <ProjectGuid>{268EFF55-9AF6-4434-9140-1D92C6FE0C42}</ProjectGuid>
+    <OutputType>Library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>WordsMaster</RootNamespace>
+    <AssemblyName>WordsMaster</AssemblyName>
     <TargetFrameworkVersion>v4.8</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
-    <AutoGenerateBindingRedirects>true</AutoGenerateBindingRedirects>
     <Deterministic>true</Deterministic>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
-    <PlatformTarget>AnyCPU</PlatformTarget>
     <DebugSymbols>true</DebugSymbols>
     <DebugType>full</DebugType>
     <Optimize>false</Optimize>
@@ -24,7 +23,6 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
-    <PlatformTarget>AnyCPU</PlatformTarget>
     <DebugType>pdbonly</DebugType>
     <Optimize>true</Optimize>
     <OutputPath>bin\Release\</OutputPath>
@@ -33,9 +31,6 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
-    <Reference Include="NetSpell.SpellChecker, Version=2.1.7.41329, Culture=neutral, PublicKeyToken=318b389f0db66e46">
-      <HintPath>packages\NetSpell.2.1.7\lib\NetSpell.SpellChecker.dll</HintPath>
-    </Reference>
     <Reference Include="System" />
     <Reference Include="System.Core" />
     <Reference Include="System.Xml.Linq" />
@@ -46,36 +41,8 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Constants\GlobalConstants.cs" />
-    <Compile Include="Contracts\IRandomGenerator.cs" />
-    <Compile Include="CrosswordSolver.cs" />
-    <Compile Include="Generators\CrosswordGenerator.cs" />
-    <Compile Include="MatrixWriter.cs" />
-    <Compile Include="Operators\ArrayOperator.cs" />
-    <Compile Include="Contracts\IArrayOperator.cs" />
-    <Compile Include="Contracts\IWordsOperator.cs" />
-    <Compile Include="Operators\WordsOperator.cs" />
-    <Compile Include="Painter.cs" />
-    <Compile Include="Program.cs" />
+    <Compile Include="RandomFIieldGenerator.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="Generators\RandomGenerator.cs" />
-    <Compile Include="Verificators\MatrixVerificator.cs" />
-    <Compile Include="Verificators\WordsVerificator.cs" />
   </ItemGroup>
-  <ItemGroup>
-    <None Include="App.config" />
-    <None Include="packages.config" />
-  </ItemGroup>
-  <ItemGroup>
-    <ProjectReference Include="..\Crossword.Data\Crossword.Data.csproj">
-      <Project>{6d573cff-b63b-4484-8679-b4a5a41d7971}</Project>
-      <Name>Crossword.Data</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\WordsMaster\WordsMaster.csproj">
-      <Project>{268eff55-9af6-4434-9140-1d92c6fe0c42}</Project>
-      <Name>WordsMaster</Name>
-    </ProjectReference>
-  </ItemGroup>
-  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>
