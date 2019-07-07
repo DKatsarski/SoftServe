@@ -219,21 +219,42 @@ namespace Crossword
                         {
                             if (matrix[row, col].Length == 2)
                             {
-                                Console.Write(" {0}{1}  ", matrix[row, col][0], matrix[row, col][1]);
+
+                                Console.ForegroundColor = ConsoleColor.White;
+                                Console.Write(" {0}", matrix[row, col][0]);
+                                Console.ForegroundColor = ConsoleColor.DarkGreen;
+                                Console.Write("{0}  ", matrix[row, col][1]);
+
+
                             }
                             else
                             {
-                                Console.Write("{0}{1}{2}  ", matrix[row, col][0], matrix[row, col][1], matrix[row, col][2]);
+
+                                Console.ForegroundColor = ConsoleColor.White;
+
+                                Console.Write("{0}", matrix[row, col][0]);
+                                Console.Write("{0}",  matrix[row, col][1]);
+                                Console.ForegroundColor = ConsoleColor.DarkGreen;
+
+                                Console.Write("{0}  ",  matrix[row, col][2]);
+
+
                             }
                         }
                         else
                         {
+                            Console.ResetColor();
                             if (matrix[row, col].Length == 2)
                             {
+                                Console.ForegroundColor = ConsoleColor.White;
+
                                 Console.Write(" {0}{1}  ", matrix[row, col][0], GlobalConstants.SymbolToHideNumbersWith);
+
                             }
                             else
                             {
+                                Console.ForegroundColor = ConsoleColor.White;
+
                                 Console.Write("{0}{1}{2}  ", matrix[row, col][0], matrix[row, col][1], GlobalConstants.SymbolToHideNumbersWith);
                             }
                         }
@@ -241,6 +262,7 @@ namespace Crossword
                     }
                     else
                     {
+                        Console.ResetColor();
 
                         if (matrix[row, col] == null)
                         {
@@ -248,8 +270,11 @@ namespace Crossword
                         }
                         else
                         {
+
                             if (guessedLetters.Any(x => matrix[row, col].Contains(x)))
                             {
+                                Console.ForegroundColor = ConsoleColor.DarkGreen;
+
                                 if (row == 0 && col == 0)
                                 {
                                     Console.Write("{0}  ", matrix[row, col]);
@@ -261,12 +286,18 @@ namespace Crossword
                             }
                             else
                             {
+                                Console.ResetColor();
+
                                 if (row == 0 && col == 0)
                                 {
+                                    Console.ForegroundColor = ConsoleColor.White;
+
                                     Console.Write("{0}  ", GlobalConstants.SymbolToHideNumbersWith);
                                 }
                                 else
                                 {
+                                    Console.ForegroundColor = ConsoleColor.White;
+
                                     Console.Write("  {0}  ", GlobalConstants.SymbolToHideNumbersWith);
                                 }
                             }
