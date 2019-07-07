@@ -83,6 +83,28 @@ namespace Crossword
             }
         }
 
+        public void ListWordsOnlyWithHints(WordsOperator wordsOperator)
+        {
+            Console.WriteLine(wordsOperator.CollectedWordsFromCrossword.Count + " words");
+            Console.WriteLine();
+            var counter = 0;
+            foreach (var word in wordsOperator.CollectedWordsFromCrossword)
+            {
+                if (counter == 0 || counter == 1)
+                {
+                    counter++;
+                    Console.WriteLine(1 + " " + word.Count() + " letters");
+                }
+                else
+                {
+                    Console.WriteLine(counter.ToString() + " " + word.Count() + " letters");
+                    counter++;
+                }
+
+            }
+
+        }
+
         public void ListAllTheWords(WordsOperator wordsOperator)
         {
             Console.WriteLine(wordsOperator.CollectedWordsFromCrossword.Count + " words");

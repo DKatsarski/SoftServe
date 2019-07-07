@@ -2,6 +2,7 @@
 using Crossword.Operators;
 using System;
 using System.Collections.Generic;
+using System.Threading;
 
 namespace Crossword.Generators
 {
@@ -219,18 +220,11 @@ namespace Crossword.Generators
                 }
             }
             painter.ListAllTheWords(wordsOperator);
-            Console.ReadLine();
+            Thread.Sleep(3000);
             Console.Clear();
+
             painter.PaintMatrixWithSymbol(crossword, GlobalConstants.SymbolToHideNumbersWith);
-
-            crosswordSolver.SolveCrossword(crossword);
-
-            //painter.ReavealLetter(crossword);
-            //painter.ListWordsByTheirNumberOfLettersAndDirection(wordsOperator);
-            //painter.ListAllTheWords(wordsOperator);
-            //Console.ReadLine();
-
-
+            crosswordSolver.SolveCrossword(crossword, wordsOperator);
         }
     }
 }

@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Crossword.Operators;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -15,28 +16,48 @@ namespace Crossword
             this.painter = new Painter();
         }
 
-        public void SolveCrossword(string[,] crossword)
+        public void SolveCrossword(string[,] crossword, WordsOperator wordsOperator)
         {
             var guessedLetters = new List<string>();
 
+            painter.ListWordsOnlyWithHints(wordsOperator);
+            Console.WriteLine("Suggest Letter or Press ESC to exit: ");
             var escapeButton = "\u001b";
             while (true)
             {
+
+              
                 var guessedLetter = Console.ReadKey()
                 .KeyChar
                 .ToString();
 
                 if (guessedLetter == escapeButton)
                 {
-                    Console.WriteLine("Thanks for playing!!!");
+                    Console.Clear();
+                    Console.WriteLine();
+                    Console.ForegroundColor = ConsoleColor.Cyan;
+                    Console.WriteLine();
+                    Console.WriteLine();
+                    Console.WriteLine();
+                    Console.WriteLine();
+                    Console.WriteLine("                                 Thanks for playing!!!");
+                    Console.WriteLine();
+                    Console.WriteLine();
+                    Console.WriteLine();
+                    Console.WriteLine();
+                    Console.WriteLine();
+                    Console.WriteLine();
+
                     break;
                 }
 
                 guessedLetters.Add(guessedLetter);
-
+                Console.Clear();
                 painter.RevealLetter(crossword, guessedLetters);
 
 
+                painter.ListWordsOnlyWithHints(wordsOperator);
+                Console.WriteLine("Suggest Letter or Press ESC to exit: ");
 
 
 
@@ -44,9 +65,9 @@ namespace Crossword
 
 
 
-         
+
             }
-            
+
 
 
         }
