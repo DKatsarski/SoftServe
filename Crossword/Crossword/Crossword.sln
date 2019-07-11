@@ -9,7 +9,7 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Crossword.Data", "..\Crossw
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Crossword.Tests", "..\Crossword.Tests\Crossword.Tests.csproj", "{EBD91DA3-361A-4EA3-B780-D9D4599F4A2E}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "WordsMaster", "..\WordsMaster\WordsMaster.csproj", "{268EFF55-9AF6-4434-9140-1D92C6FE0C42}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DiscoveryingWords", "..\DiscoveryingWords\DiscoveryingWords.csproj", "{90B76B41-4A95-4766-AE83-72DFB52AF25F}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -29,10 +29,10 @@ Global
 		{EBD91DA3-361A-4EA3-B780-D9D4599F4A2E}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{EBD91DA3-361A-4EA3-B780-D9D4599F4A2E}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{EBD91DA3-361A-4EA3-B780-D9D4599F4A2E}.Release|Any CPU.Build.0 = Release|Any CPU
-		{268EFF55-9AF6-4434-9140-1D92C6FE0C42}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{268EFF55-9AF6-4434-9140-1D92C6FE0C42}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{268EFF55-9AF6-4434-9140-1D92C6FE0C42}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{268EFF55-9AF6-4434-9140-1D92C6FE0C42}.Release|Any CPU.Build.0 = Release|Any CPU
+		{90B76B41-4A95-4766-AE83-72DFB52AF25F}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{90B76B41-4A95-4766-AE83-72DFB52AF25F}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{90B76B41-4A95-4766-AE83-72DFB52AF25F}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{90B76B41-4A95-4766-AE83-72DFB52AF25F}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

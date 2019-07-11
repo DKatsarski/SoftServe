@@ -71,9 +71,9 @@
       <Project>{6d573cff-b63b-4484-8679-b4a5a41d7971}</Project>
       <Name>Crossword.Data</Name>
     </ProjectReference>
-    <ProjectReference Include="..\WordsMaster\WordsMaster.csproj">
-      <Project>{268eff55-9af6-4434-9140-1d92c6fe0c42}</Project>
-      <Name>WordsMaster</Name>
+    <ProjectReference Include="..\DiscoveryingWords\DiscoveryingWords.csproj">
+      <Project>{90b76b41-4a95-4766-ae83-72dfb52af25f}</Project>
+      <Name>DiscoveryingWords</Name>
     </ProjectReference>
   </ItemGroup>
   <ItemGroup />

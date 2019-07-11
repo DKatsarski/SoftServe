@@ -2,12 +2,11 @@
 using Crossword.Data;
 using Crossword.Generators;
 using Crossword.Operators;
-using System;
-using WordsMaster;
+using GuessingWords;
 
 namespace Crossword
 {
-    class Program
+    public class Program
     {
         static void Main()
         {
@@ -17,19 +16,8 @@ namespace Crossword
             var painter = new Painter();
             var listOfAllWords = wordsOperator.ListOfAllWords;
             string[,] crossword = new string[GlobalConstants.MatrixSize, GlobalConstants.MatrixSize];
-            var wordsMaster = new RandomFIieldGenerator(crossword);
-
-
-            //for (int row = 0; row < crossword.GetLength(0); row++)
-            //{
-            //    for (int col = 0; col < crossword.GetLength(1); col++)
-            //    {
-            //        Console.Write(crossword[row, col] + " ");
-            //    }
-            //    Console.WriteLine();
-            //}
-
             var crosswordGenerator = new CrosswordGenerator(crossword, wordsOperator);
+            var guessingWords = new Program();
             crosswordGenerator.GenerateFrame();
             painter.PaintMatrix(crossword, 0, 0);
             crosswordGenerator.GenerateCrossword();
