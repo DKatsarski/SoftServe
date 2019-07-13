@@ -2,7 +2,6 @@
 using Crossword.Data;
 using Crossword.Generators;
 using Crossword.Operators;
-using GuessingWords;
 
 namespace Crossword
 {
