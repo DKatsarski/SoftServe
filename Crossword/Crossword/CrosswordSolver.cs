@@ -21,7 +21,7 @@ namespace Crossword
             var guessedLetters = new List<string>();
 
             painter.ListWordsOnlyWithHints(wordsOperator);
-            Console.WriteLine("Suggest Letter or Press ESC to exit: ");
+            Console.WriteLine("Suggest Letter or Press ESC to exit:                         Number of Tries: 0");
             var escapeButton = "\u001b";
             while (true)
             {
@@ -57,7 +57,8 @@ namespace Crossword
 
 
                 painter.ListWordsOnlyWithHints(wordsOperator);
-                Console.WriteLine("Suggest Letter or Press ESC to exit: ");
+                Console.Write("Suggest Letter or Press ESC to exit:                         Number of Tries: {0}", Counter.CountTries());
+                Console.WriteLine();
 
 
 

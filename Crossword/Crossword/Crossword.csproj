@@ -48,6 +48,7 @@
   <ItemGroup>
     <Compile Include="Constants\GlobalConstants.cs" />
     <Compile Include="Contracts\IRandomGenerator.cs" />
+    <Compile Include="Counter.cs" />
     <Compile Include="CrosswordSolver.cs" />
     <Compile Include="Generators\CrosswordGenerator.cs" />
     <Compile Include="MatrixWriter.cs" />
