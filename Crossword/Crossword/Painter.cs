@@ -105,7 +105,6 @@ namespace Crossword
                     Console.WriteLine(counter.ToString() + " " + word.Count() + " letters" + " " + revealedCharacters);
                     counter++;
                 }
-
             }
         }
 
@@ -336,6 +335,48 @@ namespace Crossword
                 Console.WriteLine();
             }
 
+
+
         }
+
+        public bool ShowEndScreen(WordsOperator wordsOperator, List<string> guessedLetters)
+        {
+            var containsSymbol = true ;
+            var revealedCharacters = string.Empty;
+            var revealedWords = new List<string>();
+
+            foreach (var word in wordsOperator.CollectedWordsFromCrossword)
+            {
+                revealedCharacters = Regex.Replace(word, wordsOperator.RevealGuessedLetters(guessedLetters), GlobalConstants.SpecificSymbolToReplaceNull);
+                revealedWords.Add(revealedCharacters);
+            }
+
+            foreach (var word in revealedWords)
+            {
+                if (word.Contains(GlobalConstants.SpecificSymbolToReplaceNull))
+                {
+                    return !containsSymbol;
+                }
+            }
+
+            if (containsSymbol)
+            {
+                var score = (wordsOperator.CollectedWordsFromCrossword.Count * 1000) / Counter.CountTries();
+                Console.Clear();
+                Console.WriteLine();
+                Console.WriteLine();
+                Console.WriteLine();
+                Console.WriteLine();
+                Console.Write("        You've managed to solve {0} words with {1} guesses!",
+                    wordsOperator.CollectedWordsFromCrossword.Count, Counter.CountTries());
+                Console.WriteLine();
+                Console.WriteLine("        Your score is: {0}", score);
+
+            }
+
+
+            return containsSymbol;
+        }
+
     }
 }

@@ -61,7 +61,11 @@ namespace Crossword
                 Console.Write("Suggest Letter or Press ESC to exit:                         Number of Tries: {0}", Counter.CountTries());
                 Console.WriteLine();
 
+                if (painter.ShowEndScreen(wordsOperator, guessedLetters))
+                {
+                    break;
 
+                }
 
 
 
@@ -73,5 +77,6 @@ namespace Crossword
 
 
         }
+
     }
 }
