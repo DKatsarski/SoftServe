@@ -16,7 +16,6 @@ namespace Crossword
             var listOfAllWords = wordsOperator.ListOfAllWords;
             string[,] crossword = new string[GlobalConstants.MatrixSize, GlobalConstants.MatrixSize];
             var crosswordGenerator = new CrosswordGenerator(crossword, wordsOperator);
-            var guessingWords = new Program();
             crosswordGenerator.GenerateFrame();
             painter.PaintMatrix(crossword, 0, 0);
             crosswordGenerator.GenerateCrossword();

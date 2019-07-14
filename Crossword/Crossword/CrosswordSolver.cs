@@ -1,4 +1,5 @@
-﻿using Crossword.Operators;
+﻿using Crossword.Data;
+using Crossword.Operators;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -10,10 +11,12 @@ namespace Crossword
     public class CrosswordSolver
     {
         private Painter painter;
+        private ScoreKeeper scoreKeeper;
 
         public CrosswordSolver()
         {
             this.painter = new Painter();
+            this.scoreKeeper = new ScoreKeeper();
         }
 
         public void SolveCrossword(string[,] crossword, WordsOperator wordsOperator)
@@ -64,18 +67,16 @@ namespace Crossword
                 if (painter.ShowEndScreen(wordsOperator, guessedLetters))
                 {
                     break;
-
                 }
-
-
-
-
-
-
             }
 
+            Console.WriteLine("Write your name: ");
+            Console.WriteLine();
+            Console.WriteLine();
+            var names = Console.ReadLine();
+            var score = (wordsOperator.CollectedWordsFromCrossword.Count * 1000) / Counter.CountTries();
 
-
+            scoreKeeper.RegisterAccount(names, score);
         }
 
     }

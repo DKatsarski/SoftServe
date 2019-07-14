@@ -371,9 +371,12 @@ namespace Crossword
                     wordsOperator.CollectedWordsFromCrossword.Count, Counter.CountTries());
                 Console.WriteLine();
                 Console.WriteLine("        Your score is: {0}", score);
-
+                Console.WriteLine();
+                Console.WriteLine();
+                Console.WriteLine();
+                Console.WriteLine();
+                Console.WriteLine();
             }
-
 
             return containsSymbol;
         }
