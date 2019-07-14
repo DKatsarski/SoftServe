@@ -25,7 +25,7 @@ namespace Crossword
             var guessedLetters = new List<string>() { justAnElement };
 
             painter.ListWordsOnlyWithHints(wordsOperator, guessedLetters);
-            Console.WriteLine("Suggest Letter or Press ESC to exit:                         Number of Tries: 0");
+            Console.WriteLine("Suggest Letter or Press ESC to exit:                         Wrong guesses: 0");
             var escapeButton = "\u001b";
             while (true)
             {
@@ -61,7 +61,7 @@ namespace Crossword
 
 
                 painter.ListWordsOnlyWithHints(wordsOperator, guessedLetters);
-                Console.Write("Suggest Letter or Press ESC to exit:                         Number of Tries: {0}", Counter.CountTries());
+                Console.Write("Suggest Letter or Press ESC to exit:                         Number of Tries: {0}", Counter.ReturnWrongAnswers());
                 Console.WriteLine();
 
                 if (painter.ShowEndScreen(wordsOperator, guessedLetters))
@@ -70,13 +70,13 @@ namespace Crossword
                 }
             }
 
-            Console.WriteLine("Write your name: ");
-            Console.WriteLine();
-            Console.WriteLine();
-            var names = Console.ReadLine();
-            var score = (wordsOperator.CollectedWordsFromCrossword.Count * 1000) / Counter.CountTries();
+            //Console.WriteLine("Write your name: ");
+            //Console.WriteLine();
+            //Console.WriteLine();
+            //var names = Console.ReadLine();
+            //var score = (wordsOperator.CollectedWordsFromCrossword.Count * 1000) / Counter.CountTries();
 
-            scoreKeeper.RegisterAccount(names, score);
+            // scoreKeeper.RegisterAccount(names, score);
         }
 
     }

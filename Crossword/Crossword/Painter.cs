@@ -90,6 +90,9 @@ namespace Crossword
             Console.WriteLine();
             var counter = 0;
             var revealedCharacters = string.Empty;
+            var lastIndexOfguessedLetters = guessedLetters.Count - 1;
+            bool switcher = true;
+            var listOfUpdatedWords = new List<string>();
 
             foreach (var word in wordsOperator.CollectedWordsFromCrossword)
             {
@@ -98,6 +101,7 @@ namespace Crossword
                     revealedCharacters = Regex.Replace(word, wordsOperator.RevealGuessedLetters(guessedLetters), GlobalConstants.SpecificSymbolToReplaceNull);
                     counter++;
                     Console.WriteLine(1 + " " + word.Count() + " letters" + " " + revealedCharacters);
+            
                 }
                 else
                 {
@@ -105,6 +109,12 @@ namespace Crossword
                     Console.WriteLine(counter.ToString() + " " + word.Count() + " letters" + " " + revealedCharacters);
                     counter++;
                 }
+                listOfUpdatedWords.Add(revealedCharacters);
+            }
+
+            if (!listOfUpdatedWords.Any(x => x.Contains(guessedLetters[lastIndexOfguessedLetters])))
+            {
+                Counter.CounterOfWrongAnswers();
             }
         }
 
@@ -361,14 +371,14 @@ namespace Crossword
 
             if (containsSymbol)
             {
-                var score = (wordsOperator.CollectedWordsFromCrossword.Count * 1000) / Counter.CountTries();
+                var score = (wordsOperator.CollectedWordsFromCrossword.Count * 1000) / Counter.ReturnWrongAnswers();
                 Console.Clear();
                 Console.WriteLine();
                 Console.WriteLine();
                 Console.WriteLine();
                 Console.WriteLine();
                 Console.Write("        You've managed to solve {0} words with {1} guesses!",
-                    wordsOperator.CollectedWordsFromCrossword.Count, Counter.CountTries());
+                    wordsOperator.CollectedWordsFromCrossword.Count, Counter.ReturnWrongAnswers());
                 Console.WriteLine();
                 Console.WriteLine("        Your score is: {0}", score);
                 Console.WriteLine();
