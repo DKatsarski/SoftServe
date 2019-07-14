@@ -104,5 +104,18 @@ namespace Crossword.Operators
 
             return frameOfAPotentialWord;
         }
+
+        public string RevealGuessedLetters(List<string> listOfCharacters)
+        {
+            var revealedLetters = "[^";
+
+            for (int i = 0; i < listOfCharacters.Count; i++)
+            {
+                revealedLetters += listOfCharacters[i];
+            }
+
+            revealedLetters += "]";
+            return revealedLetters;
+        }
     }
 }

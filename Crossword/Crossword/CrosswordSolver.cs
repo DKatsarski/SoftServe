@@ -18,15 +18,16 @@ namespace Crossword
 
         public void SolveCrossword(string[,] crossword, WordsOperator wordsOperator)
         {
-            var guessedLetters = new List<string>();
+            var justAnElement = "@";
+            var guessedLetters = new List<string>() { justAnElement };
 
-            painter.ListWordsOnlyWithHints(wordsOperator);
+            painter.ListWordsOnlyWithHints(wordsOperator, guessedLetters);
             Console.WriteLine("Suggest Letter or Press ESC to exit:                         Number of Tries: 0");
             var escapeButton = "\u001b";
             while (true)
             {
 
-              
+
                 var guessedLetter = Console.ReadKey()
                 .KeyChar
                 .ToString();
@@ -56,7 +57,7 @@ namespace Crossword
                 painter.RevealLetter(crossword, guessedLetters);
 
 
-                painter.ListWordsOnlyWithHints(wordsOperator);
+                painter.ListWordsOnlyWithHints(wordsOperator, guessedLetters);
                 Console.Write("Suggest Letter or Press ESC to exit:                         Number of Tries: {0}", Counter.CountTries());
                 Console.WriteLine();
 

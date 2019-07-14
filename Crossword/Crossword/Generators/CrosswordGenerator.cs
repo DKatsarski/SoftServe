@@ -220,7 +220,7 @@ namespace Crossword.Generators
                 }
             }
             painter.ListAllTheWords(wordsOperator);
-            Thread.Sleep(1000);
+            Thread.Sleep(300);
             Console.Clear();
 
             painter.PaintMatrixWithSymbol(crossword, GlobalConstants.SymbolToHideNumbersWith);

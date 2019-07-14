@@ -3,6 +3,7 @@ using Crossword.Operators;
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Text.RegularExpressions;
 
 namespace Crossword
 {
@@ -83,21 +84,29 @@ namespace Crossword
             }
         }
 
-        public void ListWordsOnlyWithHints(WordsOperator wordsOperator)
+        public void ListWordsOnlyWithHints(WordsOperator wordsOperator, List<string> guessedLetters)
         {
             Console.WriteLine(wordsOperator.CollectedWordsFromCrossword.Count + " words");
             Console.WriteLine();
             var counter = 0;
+            var revealedCharacters = string.Empty;
+
+         
+
             foreach (var word in wordsOperator.CollectedWordsFromCrossword)
             {
                 if (counter == 0 || counter == 1)
                 {
+                    revealedCharacters = Regex.Replace(word, wordsOperator.RevealGuessedLetters(guessedLetters), GlobalConstants.SpecificSymbolToReplaceNull);
                     counter++;
-                    Console.WriteLine(1 + " " + word.Count() + " letters");
+                    Console.WriteLine(1 + " " + word.Count() + " letters" + " " + revealedCharacters);
                 }
                 else
                 {
-                    Console.WriteLine(counter.ToString() + " " + word.Count() + " letters");
+
+                    revealedCharacters = Regex.Replace(word, wordsOperator.RevealGuessedLetters(guessedLetters), GlobalConstants.SpecificSymbolToReplaceNull);
+
+                    Console.WriteLine(counter.ToString() + " " + word.Count() + " letters" + " " + revealedCharacters);
                     counter++;
                 }
 
@@ -255,10 +264,10 @@ namespace Crossword
                                 Console.ForegroundColor = ConsoleColor.White;
 
                                 Console.Write("{0}", matrix[row, col][0]);
-                                Console.Write("{0}",  matrix[row, col][1]);
+                                Console.Write("{0}", matrix[row, col][1]);
                                 Console.ForegroundColor = ConsoleColor.DarkGreen;
 
-                                Console.Write("{0}  ",  matrix[row, col][2]);
+                                Console.Write("{0}  ", matrix[row, col][2]);
 
 
                             }
@@ -280,7 +289,7 @@ namespace Crossword
                                 Console.Write("{0}{1}{2}  ", matrix[row, col][0], matrix[row, col][1], GlobalConstants.SymbolToHideNumbersWith);
                             }
                         }
-                       
+
                     }
                     else
                     {
@@ -331,8 +340,7 @@ namespace Crossword
                 Console.WriteLine();
                 Console.WriteLine();
             }
+
         }
-
-
     }
 }
