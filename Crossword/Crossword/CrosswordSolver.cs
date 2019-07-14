@@ -30,7 +30,7 @@ namespace Crossword
 
                 var guessedLetter = Console.ReadKey()
                 .KeyChar
-                .ToString();
+                .ToString().ToLower();
 
                 if (guessedLetter == escapeButton)
                 {

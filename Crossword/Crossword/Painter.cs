@@ -91,8 +91,6 @@ namespace Crossword
             var counter = 0;
             var revealedCharacters = string.Empty;
 
-         
-
             foreach (var word in wordsOperator.CollectedWordsFromCrossword)
             {
                 if (counter == 0 || counter == 1)
@@ -103,15 +101,12 @@ namespace Crossword
                 }
                 else
                 {
-
                     revealedCharacters = Regex.Replace(word, wordsOperator.RevealGuessedLetters(guessedLetters), GlobalConstants.SpecificSymbolToReplaceNull);
-
                     Console.WriteLine(counter.ToString() + " " + word.Count() + " letters" + " " + revealedCharacters);
                     counter++;
                 }
 
             }
-
         }
 
         public void ListAllTheWords(WordsOperator wordsOperator)
