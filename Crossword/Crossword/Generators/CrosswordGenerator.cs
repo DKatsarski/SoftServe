@@ -31,7 +31,6 @@ namespace Crossword.Generators
             this.crosswordSolver = new CrosswordSolver();
         }
 
-        //TODO: Checks for when it is less then a word.length
         public void GenerateFrame()
         {
             var randomWord = randomGenerator.GenerateRandomWord(listOfAllWords);

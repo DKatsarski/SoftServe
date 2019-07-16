@@ -56,7 +56,7 @@ namespace Crossword
 
            
 
-            return this.validWordsHolder;
+            return this.validWordsHolder.Distinct().ToList();
         }
 
     }

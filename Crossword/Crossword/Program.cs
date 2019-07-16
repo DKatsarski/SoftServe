@@ -22,13 +22,12 @@ namespace Crossword
 
 
             var wordsExplorerFieldGenerator = new WordsExplorerFieldGenerator();
+
             var validWordsCounter = new ValidWordsCounter();
 
             var wordsExplorerField = wordsExplorerFieldGenerator.GenerateField(englishDictionary.GetAplphabet);
 
-            painter.PaintWordsExplorer(wordsExplorerField);
-
-            var listOfValidWords  = validWordsCounter.GetListWithDecodedWords(wordsExplorerField, listOfAllWords);
+            var listOfExistingWords  = validWordsCounter.GetListWithDecodedWords(wordsExplorerField, listOfAllWords);
 
 
 
