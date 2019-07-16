@@ -25,6 +25,8 @@ namespace Crossword
 
             var wordsExplorerField = wordsExplorerFieldGenerator.GenerateField(englishDictionary.GetAplphabet);
 
+            painter.PaintWordsExplorer(wordsExplorerField);
+
 
 
         }
