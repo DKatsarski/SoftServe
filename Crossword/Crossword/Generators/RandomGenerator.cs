@@ -2,6 +2,7 @@
 using Crossword.Contracts;
 using System;
 using System.Collections.Generic;
+using System.Linq;
 
 namespace Crossword.Generators
 {
@@ -26,7 +27,29 @@ namespace Crossword.Generators
         {
             int maxcIndexOfAlphabetList = alphabet.Length - 1;
             int randomIndexNuber = randomGenerator.Next(GlobalConstants.MinIndexOfList, maxcIndexOfAlphabetList);
+            var vowels = new string[]
+                {
+                    "a",
+                    "o",
+                    "e",
+                    "i",
+                    "u"
+            };
             var randomLetter = alphabet[randomIndexNuber];
+
+            for (int i = 0; i < 3; i++)
+            {
+                if (!vowels.Contains(randomLetter))
+                {
+                    randomIndexNuber = randomGenerator.Next(GlobalConstants.MinIndexOfList, maxcIndexOfAlphabetList);
+                    randomLetter = alphabet[randomIndexNuber];
+                }
+                else
+                {
+                    break;
+                }
+            }
+
             return randomLetter;
         }
 

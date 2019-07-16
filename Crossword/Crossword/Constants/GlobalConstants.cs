@@ -11,7 +11,8 @@ namespace Crossword.Constants
         public const string SpecificSymbolToReplaceNull = ".";
         public const string SymbolToHideNumbersWith = "*";
         public const int MinIndexOfList = 0;
-        public const int MatrixSize = 15;
+        public const int MatrixSize = 20;
+        public const int MinWordSize = 2;
     }
 }
 
