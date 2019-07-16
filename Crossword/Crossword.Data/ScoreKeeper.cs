@@ -17,7 +17,7 @@ namespace Crossword.Data
 
             using (WebClient client = new WebClient())
             {
-                accounts = client.UploadString("https://raw.githubusercontent.com/DKatsarski/SoftServe/master/Crossword/Crossword/words/score.txt", account);
+                accounts = client.UploadString("https://drive.google.com/file/d/1vioNVJWzUAoN2URDqmNO2E5CKasxJmFL/view?usp=sharing", account);
             }
         }
 
