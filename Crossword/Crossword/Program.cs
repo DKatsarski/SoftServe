@@ -25,7 +25,8 @@ namespace Crossword
             var validWordsCounter = new ValidWordsCounter();
 
             var wordsExplorerField = wordsExplorerFieldGenerator.GenerateField(englishDictionary.GetAplphabet);
-          
+
+            painter.PaintWordsExplorer(wordsExplorerField);
 
             var listOfValidWords  = validWordsCounter.GetListWithDecodedWords(wordsExplorerField, listOfAllWords);
 

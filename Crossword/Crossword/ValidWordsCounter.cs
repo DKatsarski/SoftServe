@@ -11,13 +11,15 @@ namespace Crossword
     {
         private WordsVerificator wordsVerificator;
         private List<string> validWordsHolder;
-        private StringBuilder wordToBechecked;
+        private StringBuilder wordToBecheckedOnCols;
+        private StringBuilder wordToBecheckedOnRows;
 
         public ValidWordsCounter()
         {
             this.wordsVerificator = new WordsVerificator();
             this.validWordsHolder = new List<string>();
-            this.wordToBechecked = new StringBuilder();
+            this.wordToBecheckedOnCols = new StringBuilder();
+            this.wordToBecheckedOnRows = new StringBuilder();
         }
 
         public List<string> GetListWithDecodedWords(string[,] wordsExplorerField, List<string> listOfAllWords)
@@ -28,41 +30,31 @@ namespace Crossword
                 {
                     for (int col = allTries; col < GlobalConstants.MatrixSize; col++)
                     {
-                        wordToBechecked.Append(wordsExplorerField[row, col]);
+                        wordToBecheckedOnCols.Append(wordsExplorerField[row, col]);
+                        wordToBecheckedOnRows.Append(wordsExplorerField[col, row]);
 
-                        if (wordToBechecked.ToString().Length > GlobalConstants.MinWordSize
-                            && wordsVerificator.IsWordInList(listOfAllWords, wordToBechecked.ToString()))
+                        if (wordToBecheckedOnCols.ToString().Length > GlobalConstants.MinWordSize
+                            && wordsVerificator.IsWordInList(listOfAllWords, wordToBecheckedOnCols.ToString()))
                         {
-                            this.validWordsHolder.Add(wordToBechecked.ToString());
+                            this.validWordsHolder.Add(wordToBecheckedOnCols.ToString());
+                        }
+
+                        if (wordToBecheckedOnRows.ToString().Length > GlobalConstants.MinWordSize
+                           && wordsVerificator.IsWordInList(listOfAllWords, wordToBecheckedOnRows.ToString()))
+                        {
+                            this.validWordsHolder.Add(wordToBecheckedOnRows.ToString());
                         }
                     }
-                    wordToBechecked.Clear();
+                    wordToBecheckedOnCols.Clear();
+                    wordToBecheckedOnRows.Clear();
 
                 }
 
-                wordToBechecked.Clear();
+                wordToBecheckedOnCols.Clear();
+                wordToBecheckedOnRows.Clear();
             }
 
-            for (int allTries = 0; allTries < GlobalConstants.MatrixSize; allTries++)
-            {
-                for (int row = 0; row < GlobalConstants.MatrixSize; row++)
-                {
-                    for (int col = allTries; col < GlobalConstants.MatrixSize; col++)
-                    {
-                        wordToBechecked.Append(wordsExplorerField[col, row]);
-                        var a = wordToBechecked.ToString().Length;
-                        if (wordToBechecked.ToString().Length > GlobalConstants.MinWordSize
-                            && wordsVerificator.IsWordInList(listOfAllWords, wordToBechecked.ToString()))
-                        {
-                            this.validWordsHolder.Add(wordToBechecked.ToString());
-                        }
-                    }
-                    wordToBechecked.Clear();
-
-                }
-
-                wordToBechecked.Clear();
-            }
+           
 
             return this.validWordsHolder;
         }
