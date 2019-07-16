@@ -9,7 +9,7 @@ namespace Crossword.Data
         private List<string> englishWords;
         private string[] englishAlphabet;
         
-
+        
         public EnglishWordsDictionary()
         {
             this.englishWords = new List<string>();

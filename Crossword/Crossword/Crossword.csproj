@@ -51,6 +51,7 @@
     <Compile Include="Counter.cs" />
     <Compile Include="CrosswordSolver.cs" />
     <Compile Include="Generators\CrosswordGenerator.cs" />
+    <Compile Include="Generators\WordsExplorerFieldGenerator.cs" />
     <Compile Include="MatrixWriter.cs" />
     <Compile Include="Operators\ArrayOperator.cs" />
     <Compile Include="Contracts\IArrayOperator.cs" />

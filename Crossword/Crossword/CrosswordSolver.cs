@@ -70,13 +70,13 @@ namespace Crossword
                 }
             }
 
-            Console.WriteLine("Write your name: ");
-            Console.WriteLine();
-            Console.WriteLine();
-            var names = Console.ReadLine();
-            var score = (wordsOperator.CollectedWordsFromCrossword.Count * 1000) / Counter.ReturnWrongAnswers();
+            //Console.WriteLine("Write your name: ");
+            //Console.WriteLine();
+            //Console.WriteLine();
+            //var names = Console.ReadLine();
+            //var score = (wordsOperator.CollectedWordsFromCrossword.Count * 1000) / Counter.ReturnWrongAnswers();
 
-            scoreKeeper.RegisterAccount(names, score);
+            //scoreKeeper.RegisterAccount(names, score);
         }
 
     }

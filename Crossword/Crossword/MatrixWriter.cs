@@ -6,7 +6,7 @@ namespace Crossword
     {
         private int numberOfWord;
         private WordsOperator wordsCounter;
-
+        
         public MatrixWriter(WordsOperator wordsCounter)
         {
             this.wordsCounter = wordsCounter;
