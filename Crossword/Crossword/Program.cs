@@ -1,7 +1,9 @@
 ﻿using Crossword.Constants;
 using Crossword.Data;
 using Crossword.Generators;
+using Crossword.Interactions;
 using Crossword.Operators;
+using System;
 
 namespace Crossword
 {
@@ -25,11 +27,17 @@ namespace Crossword
 
             var validWordsCounter = new ValidWordsCounter();
 
+            var wordsExplorerSolver = new WordsExplorerSolver();
+
             var wordsExplorerField = wordsExplorerFieldGenerator.GenerateField(englishDictionary.GetAplphabet);
 
             var listOfExistingWords  = validWordsCounter.GetListWithDecodedWords(wordsExplorerField, listOfAllWords);
 
+            painter.PaintWordsExplorer(wordsExplorerField);
 
+            var guessedWords = Console.ReadLine();
+
+            wordsExplorerSolver.GuessAWord(wordsExplorerField, listOfExistingWords, guessedWords);
 
             painter.PaintWordsExplorer(wordsExplorerField);
 

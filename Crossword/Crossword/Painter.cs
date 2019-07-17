@@ -9,7 +9,15 @@ namespace Crossword
 {
     public class Painter
     {
-        public void PaintWordsExplorer(string [,] matrix)
+        private List<int[]> coordinates;
+        private ArrayOperator arrayOperator;
+
+        public Painter()
+        {
+            this.coordinates = new List<int[]>();
+            this.arrayOperator = new ArrayOperator();
+        }
+        public void PaintWordsExplorer(string[,] matrix)
         {
             for (int row = 0; row < matrix.GetLength(0); row++)
             {
@@ -20,6 +28,91 @@ namespace Crossword
 
                 Console.WriteLine();
             }
+        }
+
+        public void RevealWord(string[,] fieldOfCodedWords, List<string> guessedWords)
+        {
+            var lineInArray = string.Empty;
+            int startIndex = 0;
+
+            for (int row = 0; row < fieldOfCodedWords.GetLength(0); row++)
+            {
+                lineInArray = arrayOperator.ExtractRowFromMatrix(fieldOfCodedWords, row);
+
+                for (int wordCount = 0; wordCount < guessedWords.Count; wordCount++)
+                {
+                    if (Regex.Match(lineInArray, guessedWords[wordCount]).Success)
+                    {
+                        startIndex = Regex.Match(lineInArray, guessedWords[wordCount]).Index;
+
+                        for (int nextLetter = 0; nextLetter < guessedWords[wordCount].Length; nextLetter++)
+                        {
+                            coordinates.Add(new int[]
+                            {
+                                row, startIndex + nextLetter
+                            });
+                        }
+                    }
+                }
+            }
+
+            for (int col = 0; col < fieldOfCodedWords.GetLength(1); col++)
+            {
+                lineInArray = arrayOperator.ExtractColFromMatrix(fieldOfCodedWords, col);
+
+                for (int wordCount = 0; wordCount < guessedWords.Count; wordCount++)
+                {
+                    if (Regex.Match(lineInArray, guessedWords[wordCount]).Success)
+                    {
+                        startIndex = Regex.Match(lineInArray, guessedWords[wordCount]).Index;
+
+                        for (int nextLetter = 0; nextLetter < guessedWords[wordCount].Length; nextLetter++)
+                        {
+                            coordinates.Add(new int[]
+                            {
+                                startIndex + nextLetter, col
+                            });
+                        }
+                    }
+                }
+            }
+
+            var isMatch = false;
+
+            for (int row = 0; row < fieldOfCodedWords.GetLength(0); row++)
+            {
+                for (int col = 0; col < fieldOfCodedWords.GetLength(1); col++)
+                {
+                    for (int indexOfCoordinatesOfGuessWord = 0; indexOfCoordinatesOfGuessWord < coordinates.Count; indexOfCoordinatesOfGuessWord++)
+                    {
+                        if (coordinates[indexOfCoordinatesOfGuessWord][0] == row && coordinates[indexOfCoordinatesOfGuessWord][1] == col)
+                        {
+                            isMatch = true;
+                        }
+                        else
+                        {
+                            continue;
+                        }
+                    }
+
+                    if (isMatch)
+                    {
+                        Console.ForegroundColor = ConsoleColor.Yellow;
+                        Console.Write("{0} ", fieldOfCodedWords[row, col]);
+                        isMatch = false;
+                    }
+                    else
+                    {
+                        Console.ResetColor();
+                        Console.Write("{0} ", fieldOfCodedWords[row, col]);
+                    }
+              
+                }
+
+                Console.WriteLine();
+            }
+
+            coordinates.Clear();
         }
 
         public void PaintMatrix(string[,] matrix, int intRowOrCol, int indexToStartFrom)
@@ -113,7 +206,7 @@ namespace Crossword
                     revealedCharacters = Regex.Replace(word, wordsOperator.RevealGuessedLetters(guessedLetters), GlobalConstants.SpecificSymbolToReplaceNull);
                     counter++;
                     Console.WriteLine(1 + " " + word.Count() + " letters" + " " + revealedCharacters);
-            
+
                 }
                 else
                 {
@@ -271,21 +364,14 @@ namespace Crossword
                                 Console.Write(" {0}", matrix[row, col][0]);
                                 Console.ForegroundColor = ConsoleColor.DarkGreen;
                                 Console.Write("{0}  ", matrix[row, col][1]);
-
-
                             }
                             else
                             {
-
                                 Console.ForegroundColor = ConsoleColor.White;
-
                                 Console.Write("{0}", matrix[row, col][0]);
                                 Console.Write("{0}", matrix[row, col][1]);
                                 Console.ForegroundColor = ConsoleColor.DarkGreen;
-
                                 Console.Write("{0}  ", matrix[row, col][2]);
-
-
                             }
                         }
                         else
@@ -356,14 +442,11 @@ namespace Crossword
                 Console.WriteLine();
                 Console.WriteLine();
             }
-
-
-
         }
 
         public bool ShowEndScreen(WordsOperator wordsOperator, List<string> guessedLetters)
         {
-            var containsSymbol = true ;
+            var containsSymbol = true;
             var revealedCharacters = string.Empty;
             var revealedWords = new List<string>();
 
