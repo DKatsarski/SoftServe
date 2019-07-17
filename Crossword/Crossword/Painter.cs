@@ -32,6 +32,7 @@ namespace Crossword
 
         public void RevealWord(string[,] fieldOfCodedWords, List<string> guessedWords)
         {
+            Console.Clear();
             var lineInArray = string.Empty;
             int startIndex = 0;
 

@@ -37,7 +37,7 @@ namespace Crossword.Generators
             };
             var randomLetter = alphabet[randomIndexNuber];
 
-            for (int i = 0; i < 4; i++)
+            for (int i = 0; i < 2; i++)
             {
                 if (!vowels.Contains(randomLetter))
                 {
