@@ -8,7 +8,7 @@ namespace Crossword
 {
     public static class Counter
     {
-        private static int counterOfTries = -1;
+        private static int counterOfTries;
 
       
 

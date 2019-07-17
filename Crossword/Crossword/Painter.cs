@@ -19,6 +19,8 @@ namespace Crossword
         }
         public void PaintWordsExplorer(string[,] matrix)
         {
+            Console.Clear();
+            Console.WriteLine();
             for (int row = 0; row < matrix.GetLength(0); row++)
             {
                 for (int col = 0; col < matrix.GetLength(1); col++)
@@ -131,12 +133,14 @@ namespace Crossword
             coordinates.Clear();
         }
 
-        public void GuessingAWordVisualizer()
+        public void GuessingAWordVisualizer(List<string> listOfExistingWords)
         {
+           
             Console.WriteLine();
             Console.WriteLine();
             Console.Write("Try guessing a word: ");
             Console.Write("                                         Your mistakes are: {0}", Counter.ReturnWrongAnswers());
+            Console.WriteLine("                                                     There are {0} words in this puzzel", listOfExistingWords.Count);
             Console.WriteLine();
         }
 

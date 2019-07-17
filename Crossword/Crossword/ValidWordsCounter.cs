@@ -45,6 +45,7 @@ namespace Crossword
                             this.validWordsHolder.Add(wordToBecheckedOnRows.ToString());
                         }
                     }
+
                     wordToBecheckedOnCols.Clear();
                     wordToBecheckedOnRows.Clear();
 
@@ -53,9 +54,7 @@ namespace Crossword
                 wordToBecheckedOnCols.Clear();
                 wordToBecheckedOnRows.Clear();
             }
-
-           
-
+            
             return this.validWordsHolder.Distinct().ToList();
         }
 

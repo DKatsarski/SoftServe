@@ -39,7 +39,7 @@ namespace Crossword
                     var wordsExplorerField = wordsExplorerFieldGenerator.GenerateField(englishDictionary.GetAplphabet);
                     var listOfExistingWords = validWordsCounter.GetListWithDecodedWords(wordsExplorerField, listOfAllWords);
                     painter.PaintWordsExplorer(wordsExplorerField);
-                    painter.GuessingAWordVisualizer();
+                    painter.GuessingAWordVisualizer(listOfExistingWords);
                     var guessedWords = Console.ReadLine();
                     wordsExplorerSolver.GuessAWord(wordsExplorerField, listOfExistingWords, guessedWords);
                     painter.PaintWordsExplorer(wordsExplorerField);
