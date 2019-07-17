@@ -37,21 +37,7 @@ namespace Crossword
 
                 if (guessedLetter == escapeButton)
                 {
-                    Console.Clear();
-                    Console.WriteLine();
-                    Console.ForegroundColor = ConsoleColor.Cyan;
-                    Console.WriteLine();
-                    Console.WriteLine();
-                    Console.WriteLine();
-                    Console.WriteLine();
-                    Console.WriteLine("                                 Thanks for playing!!!");
-                    Console.WriteLine();
-                    Console.WriteLine();
-                    Console.WriteLine();
-                    Console.WriteLine();
-                    Console.WriteLine();
-                    Console.WriteLine();
-
+                    painter.ExitScreen();
                     break;
                 }
 

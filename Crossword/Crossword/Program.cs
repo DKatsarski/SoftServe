@@ -42,7 +42,6 @@ namespace Crossword
                     painter.GuessingAWordVisualizer(listOfExistingWords);
                     var guessedWords = Console.ReadLine();
                     wordsExplorerSolver.GuessAWord(wordsExplorerField, listOfExistingWords, guessedWords);
-                    painter.PaintWordsExplorer(wordsExplorerField);
                     break;
                 }
                 else

@@ -19,33 +19,13 @@ namespace Crossword.Interactions
 
         public void GuessAWord(string[,] fieldOfCodedWords, List<string> listOfDecodedWords, string guessedWord)
         {
-            var escapeButton = "\u001b";
             while (true)
             {
-
-               // var guessedLetter = Console.ReadKey()
-               //.KeyChar
-               //.ToString().ToLower();
-
-               // if (guessedLetter == escapeButton)
-               // {
-               //     Console.Clear();
-               //     Console.WriteLine();
-               //     Console.ForegroundColor = ConsoleColor.Cyan;
-               //     Console.WriteLine();
-               //     Console.WriteLine();
-               //     Console.WriteLine();
-               //     Console.WriteLine();
-               //     Console.WriteLine("                                 Thanks for playing!!!");
-               //     Console.WriteLine();
-               //     Console.WriteLine();
-               //     Console.WriteLine();
-               //     Console.WriteLine();
-               //     Console.WriteLine();
-               //     Console.WriteLine();
-
-               //     break;
-               // }
+                if (guessedWord.ToLower() == "exit")
+                {
+                    painter.ExitScreen();
+                    break;
+                }
 
                 if (listOfDecodedWords.Contains(guessedWord))
                 {
@@ -59,9 +39,8 @@ namespace Crossword.Interactions
 
                 this.painter.RevealWord(fieldOfCodedWords, guessedWords);
                 painter.GuessingAWordVisualizer(listOfDecodedWords);
-               
-                guessedWord = Console.ReadLine();
 
+                guessedWord = Console.ReadLine();
             }
 
         }

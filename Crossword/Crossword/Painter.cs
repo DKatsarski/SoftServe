@@ -20,7 +20,6 @@ namespace Crossword
         public void PaintWordsExplorer(string[,] matrix)
         {
             Console.Clear();
-            Console.WriteLine();
             for (int row = 0; row < matrix.GetLength(0); row++)
             {
                 for (int col = 0; col < matrix.GetLength(1); col++)
@@ -45,6 +44,24 @@ namespace Crossword
             Console.WriteLine();
             Console.WriteLine();
             Console.WriteLine("                                   Press 1 for solving a crossword and 2 for start searching for words: ");
+        }
+
+        public void ExitScreen()
+        {
+            Console.Clear();
+            Console.WriteLine();
+            Console.ForegroundColor = ConsoleColor.Cyan;
+            Console.WriteLine();
+            Console.WriteLine();
+            Console.WriteLine();
+            Console.WriteLine();
+            Console.WriteLine("                                 Thanks for playing!!!");
+            Console.WriteLine();
+            Console.WriteLine();
+            Console.WriteLine();
+            Console.WriteLine();
+            Console.WriteLine();
+            Console.WriteLine();
         }
 
         public void RevealWord(string[,] fieldOfCodedWords, List<string> guessedWords)
@@ -142,6 +159,15 @@ namespace Crossword
             Console.Write("                                         Your mistakes are: {0}", Counter.ReturnWrongAnswers());
             Console.WriteLine("                                                     There are {0} words in this puzzel", listOfExistingWords.Count);
             Console.WriteLine();
+            Console.WriteLine();
+            Console.WriteLine();
+            Console.WriteLine();
+            Console.WriteLine();
+            Console.WriteLine();
+            Console.WriteLine();
+            Console.WriteLine();
+            Console.WriteLine();
+            Console.WriteLine("Type Exit to EXIT");
         }
 
         public void PaintMatrix(string[,] matrix, int intRowOrCol, int indexToStartFrom)
