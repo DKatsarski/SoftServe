@@ -28,28 +28,22 @@ namespace Crossword
                     crosswordGenerator.GenerateFrame();
                     painter.PaintMatrix(crossword, 0, 0);
                     crosswordGenerator.GenerateCrossword();
+                    break;
 
                 }
                 else if (gameOfChoice == 2)
                 {
                     var wordsExplorerFieldGenerator = new WordsExplorerFieldGenerator();
-
                     var validWordsCounter = new ValidWordsCounter();
-
                     var wordsExplorerSolver = new WordsExplorerSolver();
-
                     var wordsExplorerField = wordsExplorerFieldGenerator.GenerateField(englishDictionary.GetAplphabet);
-
                     var listOfExistingWords = validWordsCounter.GetListWithDecodedWords(wordsExplorerField, listOfAllWords);
-
                     painter.PaintWordsExplorer(wordsExplorerField);
-
                     painter.GuessingAWordVisualizer();
                     var guessedWords = Console.ReadLine();
-
                     wordsExplorerSolver.GuessAWord(wordsExplorerField, listOfExistingWords, guessedWords);
-
                     painter.PaintWordsExplorer(wordsExplorerField);
+                    break;
                 }
                 else
                 {
@@ -58,7 +52,6 @@ namespace Crossword
                     gameOfChoice = int.Parse(Console.ReadLine());
                 }
             }
-
         }
     }
 }
