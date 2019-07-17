@@ -16,32 +16,48 @@ namespace Crossword
             var randomGenerator = new RandomGenerator();
             var painter = new Painter();
             var listOfAllWords = wordsOperator.ListOfAllWords;
-            //string[,] crossword = new string[GlobalConstants.MatrixSize, GlobalConstants.MatrixSize];
-            //var crosswordGenerator = new CrosswordGenerator(crossword, wordsOperator);
-            //crosswordGenerator.GenerateFrame();
-            //painter.PaintMatrix(crossword, 0, 0);
-            //crosswordGenerator.GenerateCrossword();
+            painter.ChooseAGame();
+            var gameOfChoice = int.Parse(Console.ReadLine());
 
+            while (gameOfChoice != 1 || gameOfChoice != 2)
+            {
+                if (gameOfChoice == 1)
+                {
+                    string[,] crossword = new string[GlobalConstants.MatrixSize, GlobalConstants.MatrixSize];
+                    var crosswordGenerator = new CrosswordGenerator(crossword, wordsOperator);
+                    crosswordGenerator.GenerateFrame();
+                    painter.PaintMatrix(crossword, 0, 0);
+                    crosswordGenerator.GenerateCrossword();
 
-            var wordsExplorerFieldGenerator = new WordsExplorerFieldGenerator();
+                }
+                else if (gameOfChoice == 2)
+                {
+                    var wordsExplorerFieldGenerator = new WordsExplorerFieldGenerator();
 
-            var validWordsCounter = new ValidWordsCounter();
+                    var validWordsCounter = new ValidWordsCounter();
 
-            var wordsExplorerSolver = new WordsExplorerSolver();
+                    var wordsExplorerSolver = new WordsExplorerSolver();
 
-            var wordsExplorerField = wordsExplorerFieldGenerator.GenerateField(englishDictionary.GetAplphabet);
+                    var wordsExplorerField = wordsExplorerFieldGenerator.GenerateField(englishDictionary.GetAplphabet);
 
-            var listOfExistingWords  = validWordsCounter.GetListWithDecodedWords(wordsExplorerField, listOfAllWords);
+                    var listOfExistingWords = validWordsCounter.GetListWithDecodedWords(wordsExplorerField, listOfAllWords);
 
-            painter.PaintWordsExplorer(wordsExplorerField);
+                    painter.PaintWordsExplorer(wordsExplorerField);
 
-            var guessedWords = Console.ReadLine();
+                    painter.GuessingAWordVisualizer();
+                    var guessedWords = Console.ReadLine();
 
-            wordsExplorerSolver.GuessAWord(wordsExplorerField, listOfExistingWords, guessedWords);
+                    wordsExplorerSolver.GuessAWord(wordsExplorerField, listOfExistingWords, guessedWords);
 
-            painter.PaintWordsExplorer(wordsExplorerField);
-
-
+                    painter.PaintWordsExplorer(wordsExplorerField);
+                }
+                else
+                {
+                    Console.Clear();
+                    painter.ChooseAGame();
+                    gameOfChoice = int.Parse(Console.ReadLine());
+                }
+            }
 
         }
     }

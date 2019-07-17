@@ -30,6 +30,21 @@ namespace Crossword
             }
         }
 
+        public void ChooseAGame()
+        {
+            Console.WriteLine();
+            Console.WriteLine();
+            Console.WriteLine();
+            Console.WriteLine();
+            Console.WriteLine("                                                   What would you like to do?");
+            Console.WriteLine();
+            Console.WriteLine();
+            Console.WriteLine("                                Would you like to solve a crossword or discover words in a chaos of letters?");
+            Console.WriteLine();
+            Console.WriteLine();
+            Console.WriteLine("                                   Press 1 for solving a crossword and 2 for start searching for words: ");
+        }
+
         public void RevealWord(string[,] fieldOfCodedWords, List<string> guessedWords)
         {
             Console.Clear();
@@ -114,6 +129,15 @@ namespace Crossword
             }
 
             coordinates.Clear();
+        }
+
+        public void GuessingAWordVisualizer()
+        {
+            Console.WriteLine();
+            Console.WriteLine();
+            Console.Write("Try guessing a word: ");
+            Console.Write("                                         Your mistakes are: {0}", Counter.ReturnWrongAnswers());
+            Console.WriteLine();
         }
 
         public void PaintMatrix(string[,] matrix, int intRowOrCol, int indexToStartFrom)

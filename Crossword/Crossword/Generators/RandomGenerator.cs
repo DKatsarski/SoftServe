@@ -29,15 +29,11 @@ namespace Crossword.Generators
             int randomIndexNuber = randomGenerator.Next(GlobalConstants.MinIndexOfList, maxcIndexOfAlphabetList);
             var vowels = new string[]
                 {
-                    "a",
-                    "o",
-                    "e",
-                    "i",
-                    "u"
-            };
+                    "a", "o","e","i","u", "y"
+                };
             var randomLetter = alphabet[randomIndexNuber];
 
-            for (int i = 0; i < 2; i++)
+            for (int i = 0; i < 3; i++)
             {
                 if (!vowels.Contains(randomLetter))
                 {

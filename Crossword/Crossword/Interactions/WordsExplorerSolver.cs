@@ -57,6 +57,8 @@ namespace Crossword.Interactions
                     Counter.CounterOfWrongAnswers();
                 }
 
+                painter.GuessingAWordVisualizer();
+               
                 guessedWord = Console.ReadLine();
 
             }
