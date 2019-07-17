@@ -63,8 +63,6 @@ namespace Crossword
             }
 
             return matrix;
-
-
         }
 
         public string[,] WriteOnCol(string[,] matrix, string word, int indexToStartFrom, int col)

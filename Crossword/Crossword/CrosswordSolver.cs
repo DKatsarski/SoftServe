@@ -2,9 +2,6 @@
 using Crossword.Operators;
 using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace Crossword
 {
@@ -45,7 +42,7 @@ namespace Crossword
 
 
                 painter.ListWordsOnlyWithHints(wordsOperator, guessedLetters);
-                Console.Write("Suggest Letter or Press ESC to exit:                         Number of Tries: {0}", Counter.ReturnWrongAnswers());
+                Console.Write("Suggest Letter or Press ESC to exit:                         Wrong guesses: {0}", Counter.ReturnWrongAnswers());
                 Console.WriteLine();
 
                 if (painter.ShowEndScreen(wordsOperator, guessedLetters))
@@ -53,14 +50,6 @@ namespace Crossword
                     break;
                 }
             }
-
-            //Console.WriteLine("Write your name: ");
-            //Console.WriteLine();
-            //Console.WriteLine();
-            //var names = Console.ReadLine();
-            //var score = (wordsOperator.CollectedWordsFromCrossword.Count * 1000) / Counter.ReturnWrongAnswers();
-
-            //scoreKeeper.RegisterAccount(names, score);
         }
 
     }

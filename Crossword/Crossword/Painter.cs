@@ -159,7 +159,8 @@ namespace Crossword
             Console.WriteLine();
             Console.Write("Try guessing a word: ");
             Console.Write("                                         Your mistakes are: {0}", Counter.ReturnWrongAnswers());
-            Console.WriteLine("                                                     There are {0} words in this puzzel", listOfExistingWords.Count);
+            Console.WriteLine("                                                     There are {0} words in this puzzel                                  Type Exit to EXIT",
+                listOfExistingWords.Count);
             Console.WriteLine();
             Console.WriteLine();
             Console.WriteLine();
@@ -169,7 +170,7 @@ namespace Crossword
             Console.WriteLine();
             Console.WriteLine();
             Console.WriteLine();
-            Console.WriteLine("Type Exit to EXIT");
+            Console.WriteLine();
         }
 
         public void PaintMatrix(string[,] matrix, int intRowOrCol, int indexToStartFrom)

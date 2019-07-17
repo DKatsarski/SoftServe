@@ -1,6 +1,6 @@
 ﻿using Crossword.Constants;
-using Crossword.Data;
 using Crossword.Contracts;
+using Crossword.Data;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text.RegularExpressions;
