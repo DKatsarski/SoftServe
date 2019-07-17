@@ -146,7 +146,9 @@ namespace Crossword
 
                 Console.WriteLine();
             }
-
+            Console.WriteLine();
+            Console.WriteLine();
+            Console.WriteLine("You've managed to guess {0} words", guessedWords.Count);
             coordinates.Clear();
         }
 
@@ -276,6 +278,7 @@ namespace Crossword
             {
                 Counter.CounterOfWrongAnswers();
             }
+
         }
 
         public void ListAllTheWords(WordsOperator wordsOperator)
@@ -527,7 +530,7 @@ namespace Crossword
                 Console.WriteLine();
                 Console.WriteLine();
                 Console.WriteLine();
-                Console.Write("        You've managed to solve {0} words with {1} guesses!",
+                Console.Write("        You've managed to solve {0} words with {1} wrong guesses!",
                     wordsOperator.CollectedWordsFromCrossword.Count, Counter.ReturnWrongAnswers());
                 Console.WriteLine();
                 Console.WriteLine("        Your score is: {0}", score);

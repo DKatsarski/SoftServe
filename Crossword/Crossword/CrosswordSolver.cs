@@ -29,8 +29,6 @@ namespace Crossword
             var escapeButton = "\u001b";
             while (true)
             {
-
-
                 var guessedLetter = Console.ReadKey()
                 .KeyChar
                 .ToString().ToLower();
