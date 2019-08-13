@@ -1,0 +1,64 @@
+
+﻿<nav id="mySideNav" class="sidenav">
+     <a asp-controller="Users" asp-action="Profile" asp-route-name="@this.User.Identity.Name"style="margin-bottom: 20px">
+         <img width="100" height="100" src="http://icons.iconarchive.com/icons/graphicloads/flat-finance/128/person-icon.png" />
+     </a>
+     @if (this.User.Identity.IsAuthenticated)
+     {
+     <form asp-area="Identity" asp-page="/Account/Logout" asp-route-returnUrl="@Url.Action("Index", "Home", new { area = "" })" style="margin-bottom:0em">
+         <button type="submit" id="logout">Logout</button>
+     </form> 
+     }
+    <a class="nav-link notImg" asp-area="" asp-controller="HomePage" asp-action="HomePageView">Home</a>
+    <a class="nav-link notImg" asp-area="" asp-controller="Users" asp-action="Profile" asp-route-name="@this.User.Identity.Name">Profile</a>
+    <a class="nav-link notImg" asp-area="" asp-controller="RankList" asp-action="CurrentRankList">Rank List</a>
+    <a class="nav-link notImg" asp-area="" asp-controller="AdminEvent" asp-action="GetMyEvents">My Events</a>
+
+</nav>
+
+<style>
+    .sidenav {
+        font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, "Noto Sans", sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", "Noto Color Emoji";
+        font-size: 25px;
+        height: 100%;
+        width: 200px;
+        position: fixed;
+        z-index: 999;
+        top: 0;
+        left: 0;
+        background-color: darkblue;
+        overflow-x: hidden;
+        padding-top: 20px;
+    }
+
+    .sidenav a {
+        padding: 6px 6px 6px 32px;
+        text-decoration: none;
+        font-size: 25px;
+        color: white;
+        display: block;
+    }
+
+    .sidenav a.notImg:hover {
+        color: darkblue;
+        background-color: white;
+    }
+
+    #logout {
+        background-color: darkblue;
+        color: white;
+        border: 0;
+        margin: 0px;
+        padding-left: 0px;
+        padding-right: 55px;
+        padding-top: 0px;
+        padding-bottom: 0px;
+        width: 200px;
+        height: 50px;
+    }
+
+    #logout:hover {
+        color: darkblue;
+        background-color: white;
+    }
+</style>

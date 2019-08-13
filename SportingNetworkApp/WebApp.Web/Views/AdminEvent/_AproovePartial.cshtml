@@ -1,0 +1,59 @@
+﻿@model List<WebApp.Web.Models.Event.PlayerModel>
+
+@for (int i = 0; i < @Model.Count; i++)
+{
+    IDictionary<string, string> rv = new Dictionary<string, string>();
+    rv.Add("eventId", Model[i].EventId.ToString());
+    rv.Add("positionId", Model[i].PositionId.ToString());
+    rv.Add("userId", Model[i].Id);
+    <div class="row">
+        <div class="column">
+            <button type="button" class="btn btn-danger mx-3 mb-2" data-toggle="modal" data-target="#exampleModal" id="name">@Model[i].Name Wants to join!</button>
+        </div>
+        <div class="column">
+            <a class="button" role="button" asp-controller="AdminEvent" asp-all-route-data="@rv" asp-action="AprooveUser" id="aproove">Aproove</a>
+            <a class="button" role="button" asp-controller="AdminEvent" asp-all-route-data="@rv" asp-action="IgnoreUser" id="ignore">Ignore</a>
+        </div>
+    </div>
+}
+<br>
+<style>
+    #ignore {
+        background-color: darkred;
+        border: none;
+        color: white;
+        padding: 5px 15px;
+        text-align: center;
+        text-decoration: solid;
+        display: inline-block;
+        font-size: 14px;
+        margin: 4px 2px;
+        cursor: pointer;
+    }
+
+    #aproove {
+        background-color: green;
+        border: none;
+        color: white;
+        padding: 5px 15px;
+        text-align: center;
+        text-decoration: solid;
+        display: inline-block;
+        font-size: 14px;
+        margin: 4px 2px;
+        cursor: pointer;
+    }
+
+    #name {
+        background-color: darkslategrey;
+        border: none;
+        color: white;
+        padding: 5px 15px;
+        text-align: center;
+        text-decoration: solid;
+        display: inline-block;
+        font-size: 14px;
+        margin: 4px 2px;
+        cursor: pointer;
+    }
+</style>

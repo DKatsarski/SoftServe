@@ -1,0 +1,31 @@
+﻿<Project Sdk="Microsoft.NET.Sdk.Web">
+
+  <PropertyGroup>
+    <TargetFramework>netcoreapp2.2</TargetFramework>
+    <UserSecretsId>aspnet-WebApp.Web-D8DD2DEF-CF67-4ADF-B063-722EAF6EFC7B</UserSecretsId>
+    <AspNetCoreHostingModel>InProcess</AspNetCoreHostingModel>
+  </PropertyGroup>
+
+
+  <ItemGroup>
+    <PackageReference Include="Microsoft.AspNetCore.App" />
+    <PackageReference Include="Microsoft.AspNetCore.Razor.Design" Version="2.2.0" PrivateAssets="All" />
+    <PackageReference Include="Microsoft.Extensions.Caching.Redis" Version="2.2.0" />
+    <PackageReference Include="Microsoft.VisualStudio.Web.CodeGeneration.Design" Version="2.2.3" />
+    <PackageReference Include="StackExchange.Redis" Version="2.0.601" />
+  </ItemGroup>
+
+
+  <ItemGroup>
+    <Folder Include="wwwroot\images\homepage\" />
+  </ItemGroup>
+
+
+  <ItemGroup>
+    <ProjectReference Include="..\WebApp.ImageStorage\WebApp.ImageStorage.csproj" />
+    <ProjectReference Include="..\WebApp.Notifications\WebApp.Notifications.csproj" />
+    <ProjectReference Include="..\WebApp.Scheduler\WebApp.Scheduler.csproj" />
+    <ProjectReference Include="..\WebApp.Services\WebApp.Services.csproj" />
+  </ItemGroup>
+
+</Project>

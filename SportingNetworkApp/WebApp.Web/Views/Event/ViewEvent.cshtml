@@ -1,0 +1,89 @@
+﻿@{
+    Layout = null;
+}
+@model EventBindingModel;
+<head>
+    <link href="~/lib/bootstrap/dist/css/bootstrap.css" rel="stylesheet" />
+    <link href="~/lib/bootstrap/dist/css/bootstrap-grid.css" rel="stylesheet" />
+    <link href="~/lib/bootstrap/dist/css/bootstrap-reboot.css" rel="stylesheet" />
+</head>
+<div class="container">
+    <div id="sidebar">
+        @await Html.PartialAsync("_NavBarPartial")
+    </div>
+    <div id="content">
+        <div class="row">
+            <div class="column">
+                <img src=@Model.ImageURL id="EventImage" />
+                <center>@Model.Location</center>
+            </div>
+            <div class="column">
+                <center><h1>@Model.Title<h3>@Model.Time.ToString()</h3></h1></center>
+                <br />
+                <br />
+                <center>@Model.Description</center>
+            </div>
+        </div>
+        <div class="row">
+            <div class="column">
+                <h3><center>TEAM 1</center></h3>
+                @await Html.PartialAsync($"_TeamPartial", Model.Positions.Take(Model.Positions.Count / 2).ToList())
+            </div>
+            <div class="column">
+                <h3><center>TEAM 2</center></h3>
+                @await Html.PartialAsync($"_TeamPartial", Model.Positions.TakeLast(Model.Positions.Count / 2).ToList())
+            </div>
+        </div>
+    </div>
+</div>
+<style>
+    body {
+        margin: 0;
+        padding: 0;
+    }
+
+    .container {
+        position: relative;
+        padding: 10px;
+        top: 0px;
+        right: 0;
+        left: 0;
+        height: 1200px;
+        width: 100%;
+        min-width: 1000px;
+    }
+
+    #sidebar {
+        position: absolute;
+        top: 0;
+        bottom: 0;
+        left: 0;
+        width: 200px;
+        height: 1000px;
+    }
+
+    #content {
+        height: 700px;
+        margin-left: 200px;
+        padding: 10px;
+    }
+
+    #EventImage {
+        position: relative;
+        display: block;
+        margin-left: auto;
+        margin-right: auto;
+        z-index: 1;
+        margin-right: auto;
+        height: 100%;
+        max-height: 300px;
+        width: 100%;
+        max-width: 600px;
+    }
+
+    .column {
+        float: left;
+        width: 50%;
+    }
+</style>
+
